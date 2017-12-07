@@ -13,6 +13,7 @@
 
     <groupId>org.dracula</groupId>
     <artifactId>HT2017G8-portal</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
