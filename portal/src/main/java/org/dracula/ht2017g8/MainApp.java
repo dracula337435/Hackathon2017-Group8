@@ -1,4 +1,4 @@
-package org.dracula.ht2017g8.portal;
+package org.dracula.ht2017g8;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

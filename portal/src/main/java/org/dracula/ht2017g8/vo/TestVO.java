@@ -1,4 +1,4 @@
-package org.dracula.ht2017g8.portal.vo;
+package org.dracula.ht2017g8.vo;
 
 public class TestVO {
 

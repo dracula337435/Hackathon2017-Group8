@@ -41,7 +41,7 @@ do
 done
 
 #执行java命令
-nohup java -classpath $CLASSPATH org.dracula.ht2017g8.portal.MainApp &
+nohup java -classpath $CLASSPATH org.dracula.ht2017g8.MainApp &
 
 #为方便停止，记录pid
 echo $! > "$BIN_DIR/pid"
