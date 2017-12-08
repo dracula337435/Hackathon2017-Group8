@@ -16,42 +16,13 @@
     <packaging>pom</packaging>
 
     <modules>
+        <!--<module>abstract-pom/abstract-mod</module>-->
+        <!--<module>abstract-pom/concrete-mod</module>-->
         <module>portal</module>
     </modules>
 
     <properties>
         <springfox-swagger.version>2.7.0</springfox-swagger.version>
     </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <descriptor>src/assembly.xml</descriptor>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>**/*.properties</exclude>
-                        <exclude>bin/</exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

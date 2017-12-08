@@ -6,9 +6,9 @@
 
     <parent>
         <groupId>org.dracula</groupId>
-        <artifactId>Hackathon2017-Group8</artifactId>
+        <artifactId>HT2017G8-concrete</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>../abstract-pom/concrete-mod/pom.xml</relativePath>
     </parent>
 
     <groupId>org.dracula</groupId>
