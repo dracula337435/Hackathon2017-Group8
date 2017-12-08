@@ -19,6 +19,10 @@
         <module>portal</module>
     </modules>
 
+    <properties>
+        <springfox-swagger.version>2.7.0</springfox-swagger.version>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
