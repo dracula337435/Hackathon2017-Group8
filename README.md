@@ -46,8 +46,11 @@ jar，assembly插件配合，最终生成bin，conf和lib三个文件夹。
 * spring系列
 spring-boot
 starter-web
+spring-data-jpa
 * swagger
 * docker
 包含dockerfile
+* h2
+启用h2内存数据库，提高测试效率，减少测试数据对他人影响
 ## 舍弃的技术点
 * zk+dubbo
