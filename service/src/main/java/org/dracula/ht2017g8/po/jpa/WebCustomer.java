@@ -1,4 +1,4 @@
-package org.dracula.ht2017g8.po;
+package org.dracula.ht2017g8.po.jpa;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
