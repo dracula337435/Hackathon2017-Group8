@@ -36,7 +36,7 @@ sh <zip包下项目一层>/bin/start.sh
 ```
 sh <zip包下项目一层>/bin/stop.sh
 ```
-注，两个命令对`woring directory`没有要求，参数定位到脚本即可
+注，两个命令对`working directory`没有要求，参数定位到脚本即可
 
 ## 使用的主要技术
 * linux中用的启动脚本
