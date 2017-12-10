@@ -10,8 +10,6 @@ public class WebTimeLine {
 
     private String custdate;
 
-    private String carddata;
-
     private String carddate;
 
     private String ccarddate;
@@ -39,7 +37,6 @@ public class WebTimeLine {
                 ", custid='" + custid + '\'' +
                 ", custnm='" + custnm + '\'' +
                 ", custdate='" + custdate + '\'' +
-                ", carddata='" + carddata + '\'' +
                 ", carddate='" + carddate + '\'' +
                 ", ccarddate='" + ccarddate + '\'' +
                 ", trandate='" + trandate + '\'' +
@@ -83,14 +80,6 @@ public class WebTimeLine {
 
     public void setCustdate(String custdate) {
         this.custdate = custdate;
-    }
-
-    public String getCarddata() {
-        return carddata;
-    }
-
-    public void setCarddata(String carddata) {
-        this.carddata = carddata;
     }
 
     public String getCarddate() {

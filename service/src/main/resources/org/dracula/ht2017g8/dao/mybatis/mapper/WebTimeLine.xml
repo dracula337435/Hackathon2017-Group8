@@ -7,7 +7,6 @@
         <result column="custid" property="custid" jdbcType="VARCHAR" />
         <result column="custnm" property="custnm" jdbcType="VARCHAR" />
         <result column="custdate" property="custdate" jdbcType="VARCHAR" />
-        <result column="carddata" property="carddata" jdbcType="VARCHAR" />
         <result column="carddate" property="carddate" jdbcType="VARCHAR" />
         <result column="ccarddate" property="ccarddate" jdbcType="VARCHAR" />
         <result column="trandate" property="trandate" jdbcType="VARCHAR" />
