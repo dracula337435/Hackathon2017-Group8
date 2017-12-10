@@ -28,7 +28,7 @@ public class SpringDataJPATest {
 
     @Configuration
     @EnableJpaRepositories(basePackages="org.dracula.ht2017g8.dao.jpa", entityManagerFactoryRef = "entityManagerFactory")
-    @ImportResource("classpath:org/dracula/ht2017g8/dao/jpa.xml")
+    @ImportResource("classpath:org/dracula/ht2017g8/dao/jpa/jpa.xml")
     public static class Config{
 
 //        @Bean

@@ -38,7 +38,7 @@ public class MyBatisTest {
             SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
             sqlSessionFactoryBean.setDataSource(dataSource);
             PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-            sqlSessionFactoryBean.setMapperLocations(resolver.getResources("org/dracula/ht2017g8/dao/mapper/*.xml"));
+            sqlSessionFactoryBean.setMapperLocations(resolver.getResources("org/dracula/ht2017g8/dao/mybatis/mapper/*.xml"));
             return sqlSessionFactoryBean;
         }
 
