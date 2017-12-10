@@ -19,6 +19,8 @@
         <!--<module>abstract-pom/abstract-mod</module>-->
         <!--<module>abstract-pom/concrete-mod</module>-->
         <module>portal</module>
+        <module>service</module>
+        <module>servicei</module>
     </modules>
 
     <properties>

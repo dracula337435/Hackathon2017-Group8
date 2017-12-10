@@ -12,36 +12,15 @@
     </parent>
 
     <groupId>org.dracula</groupId>
-    <artifactId>HT2017G8-portal</artifactId>
+    <artifactId>HT2017G8-service</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
-
-        <!-- 兄弟模块 -->
         <dependency>
             <groupId>org.dracula</groupId>
-            <artifactId>HT2017G8-service</artifactId>
+            <artifactId>HT2017G8-servicei</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
-        <!-- spring boot -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- for swagger -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${springfox-swagger.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${springfox-swagger.version}</version>
-        </dependency>
-
     </dependencies>
 
 </project>
