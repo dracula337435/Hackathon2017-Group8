@@ -41,7 +41,9 @@ do
 done
 
 #执行java命令
-nohup java -classpath $CLASSPATH org.dracula.ht2017g8.MainApp &
+#nohup java -classpath $CLASSPATH org.dracula.ht2017g8.MainApp &
+#想用于docker，不能用nohup
+java -classpath $CLASSPATH org.dracula.ht2017g8.MainApp
 
 #为方便停止，记录pid
 echo $! > "$BIN_DIR/pid"
