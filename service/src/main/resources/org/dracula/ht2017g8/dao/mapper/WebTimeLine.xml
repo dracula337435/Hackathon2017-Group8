@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.dracula.ht2017g8.dao.mybatis.WebTimeLineDAO" >
+
+    <resultMap id="BaseResultMap" type="org.dracula.ht2017g8.po.mybatis.WebTimeLine">
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="custid" property="custid" jdbcType="VARCHAR" />
+        <result column="custnm" property="custnm" jdbcType="VARCHAR" />
+        <result column="custdate" property="custdate" jdbcType="VARCHAR" />
+        <result column="carddata" property="carddata" jdbcType="VARCHAR" />
+        <result column="carddate" property="carddate" jdbcType="VARCHAR" />
+        <result column="ccarddate" property="ccarddate" jdbcType="VARCHAR" />
+        <result column="trandate" property="trandate" jdbcType="VARCHAR" />
+        <result column="tottran" property="tottran" jdbcType="VARCHAR" />
+        <result column="totin" property="totin" jdbcType="VARCHAR" />
+        <result column="totout" property="totout" jdbcType="VARCHAR" />
+        <result column="totfee1" property="totfee1" jdbcType="VARCHAR" />
+        <result column="totfee2" property="totfee2" jdbcType="VARCHAR" />
+        <result column="totfee3" property="totfee3" jdbcType="VARCHAR" />
+        <result column="totfee4" property="totfee4" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT * FROM web_timeline
+    </select>
+
+</mapper>

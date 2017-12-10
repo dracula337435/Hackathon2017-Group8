@@ -1,14 +1,7 @@
-package org.dracula.ht2017g8.po;
+package org.dracula.ht2017g8.po.mybatis;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="web_timeline")
 public class WebTimeLine {
 
-    @Id
     private long id;
 
     private String custid;
