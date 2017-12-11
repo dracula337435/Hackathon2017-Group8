@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="my" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="false"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://10.64.218.19/team8?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=UTC"
+                        userId="root"
+                        password="team8"/>
+
+        <javaModelGenerator targetPackage="org.dracula.ht2017g8.po.mybatis"
+                            targetProject="/media/dracula/some-location/workspaces/IdeaProjects/Hackathon2017-Group8/service/src/test/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="org.dracula.ht2017g8.dao.mybatis.mapper"
+                         targetProject="/media/dracula/some-location/workspaces/IdeaProjects/Hackathon2017-Group8/service/src/test/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="org.dracula.ht2017g8.dao.mybatis"
+                             targetProject="/media/dracula/some-location/workspaces/IdeaProjects/Hackathon2017-Group8/service/src/test/java"
+                             type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- 各个表 -->
+        <!-- domainObjectName="HistoryData" 来指定po类的名字  -->
+        <!-- enableCountByExample="false" enableUpdateByExample="false"
+             enableDeleteByExample="false" enableSelectByExample="false"
+             selectByExampleQueryId="false"  -->
+        <!--<table tableName="history_data">-->
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        <!--</table>-->
+        <table tableName="web_card"></table>
+        <table tableName="web_cardapply"></table>
+        <table tableName="web_customer"></table>
+        <table tableName="web_timeline"></table>
+
+    </context>
+</generatorConfiguration>
