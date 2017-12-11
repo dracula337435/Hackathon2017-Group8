@@ -31,12 +31,11 @@ public class WebTimelineServiceImpl implements WebTimelineService {
             WebTimeline webTimeline = webTimelines.get(0);
             WebTimelineBO webTimelineBO = new WebTimelineBO();
             BeanUtils.copyProperties(webTimeline, webTimelineBO);
-            rslt.setCode(ReturnCodeAndMsg.SUCCESS);
+            rslt.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
             rslt.setData(webTimelineBO);
             return rslt;
         }else{
-            rslt.setCode("00001");
-            rslt.setMsg("未能检索到此客户的web_timeline信息");
+            rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00001);
             return rslt;
         }
     }

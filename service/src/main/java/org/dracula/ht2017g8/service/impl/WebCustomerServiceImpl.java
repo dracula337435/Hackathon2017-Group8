@@ -31,11 +31,10 @@ public class WebCustomerServiceImpl implements WebCustomerService{
             WebCustomerBO webCustomerBO = new WebCustomerBO();
             BeanUtils.copyProperties(webCustomer, webCustomerBO);
             webCustomerBOCommonBO.setData(webCustomerBO);
-            webCustomerBOCommonBO.setCode(ReturnCodeAndMsg.SUCCESS);
+            webCustomerBOCommonBO.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
             return webCustomerBOCommonBO;
         }else{
-            webCustomerBOCommonBO.setCode("00005");
-            webCustomerBOCommonBO.setMsg("未能检索到此客户的web_customer信息");
+            webCustomerBOCommonBO.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00005);
             return webCustomerBOCommonBO;
         }
     }

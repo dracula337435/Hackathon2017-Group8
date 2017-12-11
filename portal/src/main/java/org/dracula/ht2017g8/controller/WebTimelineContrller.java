@@ -1,6 +1,7 @@
 package org.dracula.ht2017g8.controller;
 
 import org.dracula.ht2017g8.bo.CommonBO;
+import org.dracula.ht2017g8.bo.ReturnCodeAndMsg;
 import org.dracula.ht2017g8.bo.WebTimelineBO;
 import org.dracula.ht2017g8.service.WebTimelineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,7 @@ public class WebTimelineContrller {
             return webTimelineBOCommonBO;
         }else{
             CommonBO<WebTimelineBO> webTimelineVOCommonVO = new CommonBO<>();
-            webTimelineVOCommonVO.setCode("00002");
-            webTimelineVOCommonVO.setMsg("查询客户web_timeline信息，后台异常，向portal返回null");
+            webTimelineVOCommonVO.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00002);
             return webTimelineVOCommonVO;
         }
     }

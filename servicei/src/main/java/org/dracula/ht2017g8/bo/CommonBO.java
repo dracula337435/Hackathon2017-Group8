@@ -31,4 +31,9 @@ public class CommonBO<DataType> {
     public void setData(DataType data) {
         this.data = data;
     }
+
+    public void setCodeAndMsg(ReturnCodeAndMsg codeAndMsg){
+        setCode(codeAndMsg.getCode());
+        setMsg(codeAndMsg.getMsg());
+    }
 }

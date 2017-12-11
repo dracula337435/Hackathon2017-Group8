@@ -31,11 +31,10 @@ public class WebCardapplyServiceImpl implements WebCardapplyService {
             WebCardapplyBO webCardapplyBO = new WebCardapplyBO();
             BeanUtils.copyProperties(webCardapply, webCardapplyBO);
             cardapplyBOCommonBO.setData(webCardapplyBO);
-            cardapplyBOCommonBO.setCode(ReturnCodeAndMsg.SUCCESS);
+            cardapplyBOCommonBO.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
             return cardapplyBOCommonBO;
         }else{
-            cardapplyBOCommonBO.setCode("00004");
-            cardapplyBOCommonBO.setMsg("未能检索到此客户的web_cardapply信息");
+            cardapplyBOCommonBO.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00004);
             return cardapplyBOCommonBO;
         }
     }
@@ -47,12 +46,11 @@ public class WebCardapplyServiceImpl implements WebCardapplyService {
         CommonBO<Integer> integerCommonBO = new CommonBO<>();
         int affected = webCardapplyMapper.insert(webCardapply);
         if(affected == 0){
-            integerCommonBO.setCode("00006");
-            integerCommonBO.setMsg("增加web_cardapply不成功");
+            integerCommonBO.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00006);
             return integerCommonBO;
         }else{
             integerCommonBO.setData(affected);
-            integerCommonBO.setCode(ReturnCodeAndMsg.SUCCESS);
+            integerCommonBO.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
             return integerCommonBO;
         }
     }

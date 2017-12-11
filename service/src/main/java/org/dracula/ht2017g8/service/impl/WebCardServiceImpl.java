@@ -31,11 +31,10 @@ public class WebCardServiceImpl implements WebCardService {
             WebCardBO webCardBO = new WebCardBO();
             BeanUtils.copyProperties(webCard, webCardBO);
             webCardBOCommonBO.setData(webCardBO);
-            webCardBOCommonBO.setCode(ReturnCodeAndMsg.SUCCESS);
+            webCardBOCommonBO.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
             return webCardBOCommonBO;
         }else{
-            webCardBOCommonBO.setCode("00003");
-            webCardBOCommonBO.setMsg("未能检索到此客户的web_card信息");
+            webCardBOCommonBO.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00003);
             return webCardBOCommonBO;
         }
     }
