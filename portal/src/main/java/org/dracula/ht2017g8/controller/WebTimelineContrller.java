@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WebTimelineContrller {
 
     @Autowired
-    WebTimelineService webTimelineService;
+    private WebTimelineService webTimelineService;
 
     @RequestMapping(value="/web_timeline/{custId}", method= RequestMethod.GET)
     public CommonBO<WebTimelineBO> getByCustId(@PathVariable("custId") String custId){

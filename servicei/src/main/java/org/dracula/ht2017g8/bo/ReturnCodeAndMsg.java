@@ -10,9 +10,11 @@ public enum ReturnCodeAndMsg {
     FAIL_00004("00004", "未能检索到此客户的web_cardapply信息"),
     FAIL_00005("00005", "未能检索到此客户的web_customer信息"),
     FAIL_00006("00006", "增加web_cardapply不成功"),
-    FAIL_00007("00007", ""),
-    FAIL_00008("00008", ""),
-    FAIL_00009("00009", ""),
+    FAIL_00007("00007", "查询客户web_customer信息，后台异常，service向portal返回null"),
+    FAIL_00008("00008", "查询客户web_card信息，后台异常，service向portal返回null"),
+    FAIL_00009("00009", "查询参数id不是合法数字"),
+    FAIL_00010("00010", "查询客户web_cardapply信息，后台异常，service向portal返回null"),
+    FAIL_00011("00011", "新增客户web_cardapply信息，后台异常，service向portal返回null"),
     ;
 
     ReturnCodeAndMsg(String code, String msg){
