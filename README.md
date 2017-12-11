@@ -53,4 +53,4 @@ spring-data-jpa
 * h2
 启用h2内存数据库，提高测试效率，减少测试数据对他人影响
 ## 舍弃的技术点
-* zk+dubbo
+* zookeeper+dubbo
