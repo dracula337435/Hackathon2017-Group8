@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dracula.ht2017g8.dao.mybatis.WebCardapplyMapper">
+  <resultMap id="BaseResultMap" type="org.dracula.ht2017g8.po.mybatis.WebCardapply">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name1" jdbcType="VARCHAR" property="name1" />
+    <result column="name2" jdbcType="VARCHAR" property="name2" />
+    <result column="pinyin" jdbcType="VARCHAR" property="pinyin" />
+    <result column="appellation" jdbcType="VARCHAR" property="appellation" />
+    <result column="passno" jdbcType="VARCHAR" property="passno" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="home_address1" jdbcType="VARCHAR" property="homeAddress1" />
+    <result column="home_address2" jdbcType="VARCHAR" property="homeAddress2" />
+    <result column="detail_add" jdbcType="VARCHAR" property="detailAdd" />
+    <result column="home_post" jdbcType="VARCHAR" property="homePost" />
+    <result column="residence_year" jdbcType="VARCHAR" property="residenceYear" />
+    <result column="residence_type" jdbcType="VARCHAR" property="residenceType" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="mobile_phone" jdbcType="VARCHAR" property="mobilePhone" />
+    <result column="family_name_mum" jdbcType="VARCHAR" property="familyNameMum" />
+    <result column="wkname" jdbcType="VARCHAR" property="wkname" />
+    <result column="wk_address1" jdbcType="VARCHAR" property="wkAddress1" />
+    <result column="wk_address2" jdbcType="VARCHAR" property="wkAddress2" />
+    <result column="detail_wk_add" jdbcType="VARCHAR" property="detailWkAdd" />
+    <result column="wk_post" jdbcType="VARCHAR" property="wkPost" />
+    <result column="wk_phone" jdbcType="VARCHAR" property="wkPhone" />
+    <result column="profession_type" jdbcType="VARCHAR" property="professionType" />
+    <result column="economic_type" jdbcType="VARCHAR" property="economicType" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="worktime_year" jdbcType="VARCHAR" property="worktimeYear" />
+    <result column="tot_income" jdbcType="VARCHAR" property="totIncome" />
+    <result column="connection_person" jdbcType="VARCHAR" property="connectionPerson" />
+    <result column="relationship" jdbcType="VARCHAR" property="relationship" />
+    <result column="con_person_wkname" jdbcType="VARCHAR" property="conPersonWkname" />
+    <result column="con_person_phone" jdbcType="VARCHAR" property="conPersonPhone" />
+    <result column="con_person_mobile" jdbcType="VARCHAR" property="conPersonMobile" />
+    <result column="account_send_type" jdbcType="VARCHAR" property="accountSendType" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="send_address" jdbcType="VARCHAR" property="sendAddress" />
+    <result column="need_pwd" jdbcType="VARCHAR" property="needPwd" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name1, name2, pinyin, appellation, passno, education, home_address1, home_address2, 
+    detail_add, home_post, residence_year, residence_type, phone, mobile_phone, family_name_mum, 
+    wkname, wk_address1, wk_address2, detail_wk_add, wk_post, wk_phone, profession_type, 
+    economic_type, title, worktime_year, tot_income, connection_person, relationship, 
+    con_person_wkname, con_person_phone, con_person_mobile, account_send_type, email, 
+    send_address, need_pwd
+  </sql>
+  <select id="selectByExample" parameterType="org.dracula.ht2017g8.po.mybatis.WebCardapplyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from web_cardapply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="org.dracula.ht2017g8.po.mybatis.WebCardapplyExample">
+    delete from web_cardapply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.dracula.ht2017g8.po.mybatis.WebCardapply">
+    insert into web_cardapply (id, name1, name2, 
+      pinyin, appellation, passno, 
+      education, home_address1, home_address2, 
+      detail_add, home_post, residence_year, 
+      residence_type, phone, mobile_phone, 
+      family_name_mum, wkname, wk_address1, 
+      wk_address2, detail_wk_add, wk_post, 
+      wk_phone, profession_type, economic_type, 
+      title, worktime_year, tot_income, 
+      connection_person, relationship, con_person_wkname, 
+      con_person_phone, con_person_mobile, account_send_type, 
+      email, send_address, need_pwd
+      )
+    values (#{id,jdbcType=INTEGER}, #{name1,jdbcType=VARCHAR}, #{name2,jdbcType=VARCHAR}, 
+      #{pinyin,jdbcType=VARCHAR}, #{appellation,jdbcType=VARCHAR}, #{passno,jdbcType=VARCHAR}, 
+      #{education,jdbcType=VARCHAR}, #{homeAddress1,jdbcType=VARCHAR}, #{homeAddress2,jdbcType=VARCHAR}, 
+      #{detailAdd,jdbcType=VARCHAR}, #{homePost,jdbcType=VARCHAR}, #{residenceYear,jdbcType=VARCHAR}, 
+      #{residenceType,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR}, 
+      #{familyNameMum,jdbcType=VARCHAR}, #{wkname,jdbcType=VARCHAR}, #{wkAddress1,jdbcType=VARCHAR}, 
+      #{wkAddress2,jdbcType=VARCHAR}, #{detailWkAdd,jdbcType=VARCHAR}, #{wkPost,jdbcType=VARCHAR}, 
+      #{wkPhone,jdbcType=VARCHAR}, #{professionType,jdbcType=VARCHAR}, #{economicType,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{worktimeYear,jdbcType=VARCHAR}, #{totIncome,jdbcType=VARCHAR}, 
+      #{connectionPerson,jdbcType=VARCHAR}, #{relationship,jdbcType=VARCHAR}, #{conPersonWkname,jdbcType=VARCHAR}, 
+      #{conPersonPhone,jdbcType=VARCHAR}, #{conPersonMobile,jdbcType=VARCHAR}, #{accountSendType,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{sendAddress,jdbcType=VARCHAR}, #{needPwd,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.dracula.ht2017g8.po.mybatis.WebCardapply">
+    insert into web_cardapply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name1 != null">
+        name1,
+      </if>
+      <if test="name2 != null">
+        name2,
+      </if>
+      <if test="pinyin != null">
+        pinyin,
+      </if>
+      <if test="appellation != null">
+        appellation,
+      </if>
+      <if test="passno != null">
+        passno,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="homeAddress1 != null">
+        home_address1,
+      </if>
+      <if test="homeAddress2 != null">
+        home_address2,
+      </if>
+      <if test="detailAdd != null">
+        detail_add,
+      </if>
+      <if test="homePost != null">
+        home_post,
+      </if>
+      <if test="residenceYear != null">
+        residence_year,
+      </if>
+      <if test="residenceType != null">
+        residence_type,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="mobilePhone != null">
+        mobile_phone,
+      </if>
+      <if test="familyNameMum != null">
+        family_name_mum,
+      </if>
+      <if test="wkname != null">
+        wkname,
+      </if>
+      <if test="wkAddress1 != null">
+        wk_address1,
+      </if>
+      <if test="wkAddress2 != null">
+        wk_address2,
+      </if>
+      <if test="detailWkAdd != null">
+        detail_wk_add,
+      </if>
+      <if test="wkPost != null">
+        wk_post,
+      </if>
+      <if test="wkPhone != null">
+        wk_phone,
+      </if>
+      <if test="professionType != null">
+        profession_type,
+      </if>
+      <if test="economicType != null">
+        economic_type,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="worktimeYear != null">
+        worktime_year,
+      </if>
+      <if test="totIncome != null">
+        tot_income,
+      </if>
+      <if test="connectionPerson != null">
+        connection_person,
+      </if>
+      <if test="relationship != null">
+        relationship,
+      </if>
+      <if test="conPersonWkname != null">
+        con_person_wkname,
+      </if>
+      <if test="conPersonPhone != null">
+        con_person_phone,
+      </if>
+      <if test="conPersonMobile != null">
+        con_person_mobile,
+      </if>
+      <if test="accountSendType != null">
+        account_send_type,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="sendAddress != null">
+        send_address,
+      </if>
+      <if test="needPwd != null">
+        need_pwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name1 != null">
+        #{name1,jdbcType=VARCHAR},
+      </if>
+      <if test="name2 != null">
+        #{name2,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyin != null">
+        #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="appellation != null">
+        #{appellation,jdbcType=VARCHAR},
+      </if>
+      <if test="passno != null">
+        #{passno,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress1 != null">
+        #{homeAddress1,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress2 != null">
+        #{homeAddress2,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAdd != null">
+        #{detailAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="homePost != null">
+        #{homePost,jdbcType=VARCHAR},
+      </if>
+      <if test="residenceYear != null">
+        #{residenceYear,jdbcType=VARCHAR},
+      </if>
+      <if test="residenceType != null">
+        #{residenceType,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null">
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="familyNameMum != null">
+        #{familyNameMum,jdbcType=VARCHAR},
+      </if>
+      <if test="wkname != null">
+        #{wkname,jdbcType=VARCHAR},
+      </if>
+      <if test="wkAddress1 != null">
+        #{wkAddress1,jdbcType=VARCHAR},
+      </if>
+      <if test="wkAddress2 != null">
+        #{wkAddress2,jdbcType=VARCHAR},
+      </if>
+      <if test="detailWkAdd != null">
+        #{detailWkAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="wkPost != null">
+        #{wkPost,jdbcType=VARCHAR},
+      </if>
+      <if test="wkPhone != null">
+        #{wkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="professionType != null">
+        #{professionType,jdbcType=VARCHAR},
+      </if>
+      <if test="economicType != null">
+        #{economicType,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="worktimeYear != null">
+        #{worktimeYear,jdbcType=VARCHAR},
+      </if>
+      <if test="totIncome != null">
+        #{totIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="connectionPerson != null">
+        #{connectionPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="relationship != null">
+        #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="conPersonWkname != null">
+        #{conPersonWkname,jdbcType=VARCHAR},
+      </if>
+      <if test="conPersonPhone != null">
+        #{conPersonPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="conPersonMobile != null">
+        #{conPersonMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="accountSendType != null">
+        #{accountSendType,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sendAddress != null">
+        #{sendAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="needPwd != null">
+        #{needPwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.dracula.ht2017g8.po.mybatis.WebCardapplyExample" resultType="java.lang.Long">
+    select count(*) from web_cardapply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update web_cardapply
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name1 != null">
+        name1 = #{record.name1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name2 != null">
+        name2 = #{record.name2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pinyin != null">
+        pinyin = #{record.pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appellation != null">
+        appellation = #{record.appellation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passno != null">
+        passno = #{record.passno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education != null">
+        education = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.homeAddress1 != null">
+        home_address1 = #{record.homeAddress1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.homeAddress2 != null">
+        home_address2 = #{record.homeAddress2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailAdd != null">
+        detail_add = #{record.detailAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.homePost != null">
+        home_post = #{record.homePost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.residenceYear != null">
+        residence_year = #{record.residenceYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.residenceType != null">
+        residence_type = #{record.residenceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobilePhone != null">
+        mobile_phone = #{record.mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.familyNameMum != null">
+        family_name_mum = #{record.familyNameMum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wkname != null">
+        wkname = #{record.wkname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wkAddress1 != null">
+        wk_address1 = #{record.wkAddress1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wkAddress2 != null">
+        wk_address2 = #{record.wkAddress2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailWkAdd != null">
+        detail_wk_add = #{record.detailWkAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wkPost != null">
+        wk_post = #{record.wkPost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wkPhone != null">
+        wk_phone = #{record.wkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.professionType != null">
+        profession_type = #{record.professionType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.economicType != null">
+        economic_type = #{record.economicType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.worktimeYear != null">
+        worktime_year = #{record.worktimeYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totIncome != null">
+        tot_income = #{record.totIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="record.connectionPerson != null">
+        connection_person = #{record.connectionPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationship != null">
+        relationship = #{record.relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="record.conPersonWkname != null">
+        con_person_wkname = #{record.conPersonWkname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.conPersonPhone != null">
+        con_person_phone = #{record.conPersonPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.conPersonMobile != null">
+        con_person_mobile = #{record.conPersonMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountSendType != null">
+        account_send_type = #{record.accountSendType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendAddress != null">
+        send_address = #{record.sendAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.needPwd != null">
+        need_pwd = #{record.needPwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update web_cardapply
+    set id = #{record.id,jdbcType=INTEGER},
+      name1 = #{record.name1,jdbcType=VARCHAR},
+      name2 = #{record.name2,jdbcType=VARCHAR},
+      pinyin = #{record.pinyin,jdbcType=VARCHAR},
+      appellation = #{record.appellation,jdbcType=VARCHAR},
+      passno = #{record.passno,jdbcType=VARCHAR},
+      education = #{record.education,jdbcType=VARCHAR},
+      home_address1 = #{record.homeAddress1,jdbcType=VARCHAR},
+      home_address2 = #{record.homeAddress2,jdbcType=VARCHAR},
+      detail_add = #{record.detailAdd,jdbcType=VARCHAR},
+      home_post = #{record.homePost,jdbcType=VARCHAR},
+      residence_year = #{record.residenceYear,jdbcType=VARCHAR},
+      residence_type = #{record.residenceType,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      mobile_phone = #{record.mobilePhone,jdbcType=VARCHAR},
+      family_name_mum = #{record.familyNameMum,jdbcType=VARCHAR},
+      wkname = #{record.wkname,jdbcType=VARCHAR},
+      wk_address1 = #{record.wkAddress1,jdbcType=VARCHAR},
+      wk_address2 = #{record.wkAddress2,jdbcType=VARCHAR},
+      detail_wk_add = #{record.detailWkAdd,jdbcType=VARCHAR},
+      wk_post = #{record.wkPost,jdbcType=VARCHAR},
+      wk_phone = #{record.wkPhone,jdbcType=VARCHAR},
+      profession_type = #{record.professionType,jdbcType=VARCHAR},
+      economic_type = #{record.economicType,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      worktime_year = #{record.worktimeYear,jdbcType=VARCHAR},
+      tot_income = #{record.totIncome,jdbcType=VARCHAR},
+      connection_person = #{record.connectionPerson,jdbcType=VARCHAR},
+      relationship = #{record.relationship,jdbcType=VARCHAR},
+      con_person_wkname = #{record.conPersonWkname,jdbcType=VARCHAR},
+      con_person_phone = #{record.conPersonPhone,jdbcType=VARCHAR},
+      con_person_mobile = #{record.conPersonMobile,jdbcType=VARCHAR},
+      account_send_type = #{record.accountSendType,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      send_address = #{record.sendAddress,jdbcType=VARCHAR},
+      need_pwd = #{record.needPwd,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

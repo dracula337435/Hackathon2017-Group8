@@ -1,7 +1,7 @@
 package org.dracula.ht2017g8.dao;
 
-import org.dracula.ht2017g8.dao.mybatis.WebTimeLineDAO;
-import org.dracula.ht2017g8.po.mybatis.WebTimeLine;
+import org.dracula.ht2017g8.dao.mybatis.WebTimelineMapper;
+import org.dracula.ht2017g8.po.mybatis.WebTimeline;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +15,12 @@ import java.util.List;
 public class MyBatisTest {
 
     @Autowired
-    WebTimeLineDAO webTimeLineDAO;
+    WebTimelineMapper webTimelineMapper;
 
     @Test
     public void test(){
-        List<WebTimeLine> webTimeLines = webTimeLineDAO.selectAll();
-        System.out.println(webTimeLines);
+        List<WebTimeline> webTimelines = webTimelineMapper.selectByExample(null);
+        System.out.println(webTimelines);
     }
 
 }

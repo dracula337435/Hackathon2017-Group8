@@ -1,8 +1,7 @@
 package org.dracula.ht2017g8.po.mybatis;
 
-public class WebTimeLine {
-
-    private long id;
+public class WebTimeline {
+    private Integer id;
 
     private String custid;
 
@@ -30,31 +29,11 @@ public class WebTimeLine {
 
     private String totfee4;
 
-    @Override
-    public String toString() {
-        return "WebTimeLine{" +
-                "id=" + id +
-                ", custid='" + custid + '\'' +
-                ", custnm='" + custnm + '\'' +
-                ", custdate='" + custdate + '\'' +
-                ", carddate='" + carddate + '\'' +
-                ", ccarddate='" + ccarddate + '\'' +
-                ", trandate='" + trandate + '\'' +
-                ", tottran='" + tottran + '\'' +
-                ", totin='" + totin + '\'' +
-                ", totout='" + totout + '\'' +
-                ", totfee1='" + totfee1 + '\'' +
-                ", totfee2='" + totfee2 + '\'' +
-                ", totfee3='" + totfee3 + '\'' +
-                ", totfee4='" + totfee4 + '\'' +
-                '}';
-    }
-
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -63,7 +42,7 @@ public class WebTimeLine {
     }
 
     public void setCustid(String custid) {
-        this.custid = custid;
+        this.custid = custid == null ? null : custid.trim();
     }
 
     public String getCustnm() {
@@ -71,7 +50,7 @@ public class WebTimeLine {
     }
 
     public void setCustnm(String custnm) {
-        this.custnm = custnm;
+        this.custnm = custnm == null ? null : custnm.trim();
     }
 
     public String getCustdate() {
@@ -79,7 +58,7 @@ public class WebTimeLine {
     }
 
     public void setCustdate(String custdate) {
-        this.custdate = custdate;
+        this.custdate = custdate == null ? null : custdate.trim();
     }
 
     public String getCarddate() {
@@ -87,7 +66,7 @@ public class WebTimeLine {
     }
 
     public void setCarddate(String carddate) {
-        this.carddate = carddate;
+        this.carddate = carddate == null ? null : carddate.trim();
     }
 
     public String getCcarddate() {
@@ -95,7 +74,7 @@ public class WebTimeLine {
     }
 
     public void setCcarddate(String ccarddate) {
-        this.ccarddate = ccarddate;
+        this.ccarddate = ccarddate == null ? null : ccarddate.trim();
     }
 
     public String getTrandate() {
@@ -103,7 +82,7 @@ public class WebTimeLine {
     }
 
     public void setTrandate(String trandate) {
-        this.trandate = trandate;
+        this.trandate = trandate == null ? null : trandate.trim();
     }
 
     public String getTottran() {
@@ -111,7 +90,7 @@ public class WebTimeLine {
     }
 
     public void setTottran(String tottran) {
-        this.tottran = tottran;
+        this.tottran = tottran == null ? null : tottran.trim();
     }
 
     public String getTotin() {
@@ -119,7 +98,7 @@ public class WebTimeLine {
     }
 
     public void setTotin(String totin) {
-        this.totin = totin;
+        this.totin = totin == null ? null : totin.trim();
     }
 
     public String getTotout() {
@@ -127,7 +106,7 @@ public class WebTimeLine {
     }
 
     public void setTotout(String totout) {
-        this.totout = totout;
+        this.totout = totout == null ? null : totout.trim();
     }
 
     public String getTotfee1() {
@@ -135,7 +114,7 @@ public class WebTimeLine {
     }
 
     public void setTotfee1(String totfee1) {
-        this.totfee1 = totfee1;
+        this.totfee1 = totfee1 == null ? null : totfee1.trim();
     }
 
     public String getTotfee2() {
@@ -143,7 +122,7 @@ public class WebTimeLine {
     }
 
     public void setTotfee2(String totfee2) {
-        this.totfee2 = totfee2;
+        this.totfee2 = totfee2 == null ? null : totfee2.trim();
     }
 
     public String getTotfee3() {
@@ -151,7 +130,7 @@ public class WebTimeLine {
     }
 
     public void setTotfee3(String totfee3) {
-        this.totfee3 = totfee3;
+        this.totfee3 = totfee3 == null ? null : totfee3.trim();
     }
 
     public String getTotfee4() {
@@ -159,6 +138,6 @@ public class WebTimeLine {
     }
 
     public void setTotfee4(String totfee4) {
-        this.totfee4 = totfee4;
+        this.totfee4 = totfee4 == null ? null : totfee4.trim();
     }
 }

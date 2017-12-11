@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dracula.ht2017g8.dao.mybatis.WebCustomerMapper">
+  <resultMap id="BaseResultMap" type="org.dracula.ht2017g8.po.mybatis.WebCustomer">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="custid" jdbcType="VARCHAR" property="custid" />
+    <result column="custnm" jdbcType="VARCHAR" property="custnm" />
+    <result column="custnm1" jdbcType="VARCHAR" property="custnm1" />
+    <result column="custnm2" jdbcType="VARCHAR" property="custnm2" />
+    <result column="pinyin1" jdbcType="VARCHAR" property="pinyin1" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="idno" jdbcType="VARCHAR" property="idno" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="hmaddr1" jdbcType="VARCHAR" property="hmaddr1" />
+    <result column="hmaddr2" jdbcType="VARCHAR" property="hmaddr2" />
+    <result column="hmaddr3" jdbcType="VARCHAR" property="hmaddr3" />
+    <result column="hmaddr4" jdbcType="VARCHAR" property="hmaddr4" />
+    <result column="hmpost" jdbcType="VARCHAR" property="hmpost" />
+    <result column="hmphone" jdbcType="VARCHAR" property="hmphone" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="wkname" jdbcType="VARCHAR" property="wkname" />
+    <result column="wkadd1" jdbcType="VARCHAR" property="wkadd1" />
+    <result column="wkadd2" jdbcType="VARCHAR" property="wkadd2" />
+    <result column="wkadd3" jdbcType="VARCHAR" property="wkadd3" />
+    <result column="wkadd4" jdbcType="VARCHAR" property="wkadd4" />
+    <result column="wkpost" jdbcType="VARCHAR" property="wkpost" />
+    <result column="wkphone" jdbcType="VARCHAR" property="wkphone" />
+    <result column="wktype" jdbcType="VARCHAR" property="wktype" />
+    <result column="ectype" jdbcType="VARCHAR" property="ectype" />
+    <result column="prolvl" jdbcType="VARCHAR" property="prolvl" />
+    <result column="wkyear" jdbcType="VARCHAR" property="wkyear" />
+    <result column="incom" jdbcType="VARCHAR" property="incom" />
+    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="childrens" jdbcType="VARCHAR" property="childrens" />
+    <result column="pronum" jdbcType="VARCHAR" property="pronum" />
+    <result column="totasset" jdbcType="VARCHAR" property="totasset" />
+    <result column="xpad" jdbcType="VARCHAR" property="xpad" />
+    <result column="fund" jdbcType="VARCHAR" property="fund" />
+    <result column="invm" jdbcType="VARCHAR" property="invm" />
+    <result column="ccard" jdbcType="VARCHAR" property="ccard" />
+    <result column="card" jdbcType="VARCHAR" property="card" />
+    <result column="borm" jdbcType="VARCHAR" property="borm" />
+    <result column="bocnet" jdbcType="VARCHAR" property="bocnet" />
+    <result column="mobnet" jdbcType="VARCHAR" property="mobnet" />
+    <result column="xpadg" jdbcType="VARCHAR" property="xpadg" />
+    <result column="cars" jdbcType="VARCHAR" property="cars" />
+    <result column="house" jdbcType="VARCHAR" property="house" />
+    <result column="pinyin2" jdbcType="VARCHAR" property="pinyin2" />
+    <result column="pinyin" jdbcType="VARCHAR" property="pinyin" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, custid, custnm, custnm1, custnm2, pinyin1, title, idno, education, hmaddr1, hmaddr2, 
+    hmaddr3, hmaddr4, hmpost, hmphone, mobile, wkname, wkadd1, wkadd2, wkadd3, wkadd4, 
+    wkpost, wkphone, wktype, ectype, prolvl, wkyear, incom, age, childrens, pronum, totasset, 
+    xpad, fund, invm, ccard, card, borm, bocnet, mobnet, xpadg, cars, house, pinyin2, 
+    pinyin
+  </sql>
+  <select id="selectByExample" parameterType="org.dracula.ht2017g8.po.mybatis.WebCustomerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from web_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="org.dracula.ht2017g8.po.mybatis.WebCustomerExample">
+    delete from web_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.dracula.ht2017g8.po.mybatis.WebCustomer">
+    insert into web_customer (id, custid, custnm, 
+      custnm1, custnm2, pinyin1, 
+      title, idno, education, 
+      hmaddr1, hmaddr2, hmaddr3, 
+      hmaddr4, hmpost, hmphone, 
+      mobile, wkname, wkadd1, 
+      wkadd2, wkadd3, wkadd4, 
+      wkpost, wkphone, wktype, 
+      ectype, prolvl, wkyear, 
+      incom, age, childrens, 
+      pronum, totasset, xpad, 
+      fund, invm, ccard, 
+      card, borm, bocnet, 
+      mobnet, xpadg, cars, 
+      house, pinyin2, pinyin
+      )
+    values (#{id,jdbcType=INTEGER}, #{custid,jdbcType=VARCHAR}, #{custnm,jdbcType=VARCHAR}, 
+      #{custnm1,jdbcType=VARCHAR}, #{custnm2,jdbcType=VARCHAR}, #{pinyin1,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{idno,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{hmaddr1,jdbcType=VARCHAR}, #{hmaddr2,jdbcType=VARCHAR}, #{hmaddr3,jdbcType=VARCHAR}, 
+      #{hmaddr4,jdbcType=VARCHAR}, #{hmpost,jdbcType=VARCHAR}, #{hmphone,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{wkname,jdbcType=VARCHAR}, #{wkadd1,jdbcType=VARCHAR}, 
+      #{wkadd2,jdbcType=VARCHAR}, #{wkadd3,jdbcType=VARCHAR}, #{wkadd4,jdbcType=VARCHAR}, 
+      #{wkpost,jdbcType=VARCHAR}, #{wkphone,jdbcType=VARCHAR}, #{wktype,jdbcType=VARCHAR}, 
+      #{ectype,jdbcType=VARCHAR}, #{prolvl,jdbcType=VARCHAR}, #{wkyear,jdbcType=VARCHAR}, 
+      #{incom,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{childrens,jdbcType=VARCHAR}, 
+      #{pronum,jdbcType=VARCHAR}, #{totasset,jdbcType=VARCHAR}, #{xpad,jdbcType=VARCHAR}, 
+      #{fund,jdbcType=VARCHAR}, #{invm,jdbcType=VARCHAR}, #{ccard,jdbcType=VARCHAR}, 
+      #{card,jdbcType=VARCHAR}, #{borm,jdbcType=VARCHAR}, #{bocnet,jdbcType=VARCHAR}, 
+      #{mobnet,jdbcType=VARCHAR}, #{xpadg,jdbcType=VARCHAR}, #{cars,jdbcType=VARCHAR}, 
+      #{house,jdbcType=VARCHAR}, #{pinyin2,jdbcType=VARCHAR}, #{pinyin,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.dracula.ht2017g8.po.mybatis.WebCustomer">
+    insert into web_customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="custid != null">
+        custid,
+      </if>
+      <if test="custnm != null">
+        custnm,
+      </if>
+      <if test="custnm1 != null">
+        custnm1,
+      </if>
+      <if test="custnm2 != null">
+        custnm2,
+      </if>
+      <if test="pinyin1 != null">
+        pinyin1,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="idno != null">
+        idno,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="hmaddr1 != null">
+        hmaddr1,
+      </if>
+      <if test="hmaddr2 != null">
+        hmaddr2,
+      </if>
+      <if test="hmaddr3 != null">
+        hmaddr3,
+      </if>
+      <if test="hmaddr4 != null">
+        hmaddr4,
+      </if>
+      <if test="hmpost != null">
+        hmpost,
+      </if>
+      <if test="hmphone != null">
+        hmphone,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="wkname != null">
+        wkname,
+      </if>
+      <if test="wkadd1 != null">
+        wkadd1,
+      </if>
+      <if test="wkadd2 != null">
+        wkadd2,
+      </if>
+      <if test="wkadd3 != null">
+        wkadd3,
+      </if>
+      <if test="wkadd4 != null">
+        wkadd4,
+      </if>
+      <if test="wkpost != null">
+        wkpost,
+      </if>
+      <if test="wkphone != null">
+        wkphone,
+      </if>
+      <if test="wktype != null">
+        wktype,
+      </if>
+      <if test="ectype != null">
+        ectype,
+      </if>
+      <if test="prolvl != null">
+        prolvl,
+      </if>
+      <if test="wkyear != null">
+        wkyear,
+      </if>
+      <if test="incom != null">
+        incom,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="childrens != null">
+        childrens,
+      </if>
+      <if test="pronum != null">
+        pronum,
+      </if>
+      <if test="totasset != null">
+        totasset,
+      </if>
+      <if test="xpad != null">
+        xpad,
+      </if>
+      <if test="fund != null">
+        fund,
+      </if>
+      <if test="invm != null">
+        invm,
+      </if>
+      <if test="ccard != null">
+        ccard,
+      </if>
+      <if test="card != null">
+        card,
+      </if>
+      <if test="borm != null">
+        borm,
+      </if>
+      <if test="bocnet != null">
+        bocnet,
+      </if>
+      <if test="mobnet != null">
+        mobnet,
+      </if>
+      <if test="xpadg != null">
+        xpadg,
+      </if>
+      <if test="cars != null">
+        cars,
+      </if>
+      <if test="house != null">
+        house,
+      </if>
+      <if test="pinyin2 != null">
+        pinyin2,
+      </if>
+      <if test="pinyin != null">
+        pinyin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="custid != null">
+        #{custid,jdbcType=VARCHAR},
+      </if>
+      <if test="custnm != null">
+        #{custnm,jdbcType=VARCHAR},
+      </if>
+      <if test="custnm1 != null">
+        #{custnm1,jdbcType=VARCHAR},
+      </if>
+      <if test="custnm2 != null">
+        #{custnm2,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyin1 != null">
+        #{pinyin1,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="idno != null">
+        #{idno,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="hmaddr1 != null">
+        #{hmaddr1,jdbcType=VARCHAR},
+      </if>
+      <if test="hmaddr2 != null">
+        #{hmaddr2,jdbcType=VARCHAR},
+      </if>
+      <if test="hmaddr3 != null">
+        #{hmaddr3,jdbcType=VARCHAR},
+      </if>
+      <if test="hmaddr4 != null">
+        #{hmaddr4,jdbcType=VARCHAR},
+      </if>
+      <if test="hmpost != null">
+        #{hmpost,jdbcType=VARCHAR},
+      </if>
+      <if test="hmphone != null">
+        #{hmphone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="wkname != null">
+        #{wkname,jdbcType=VARCHAR},
+      </if>
+      <if test="wkadd1 != null">
+        #{wkadd1,jdbcType=VARCHAR},
+      </if>
+      <if test="wkadd2 != null">
+        #{wkadd2,jdbcType=VARCHAR},
+      </if>
+      <if test="wkadd3 != null">
+        #{wkadd3,jdbcType=VARCHAR},
+      </if>
+      <if test="wkadd4 != null">
+        #{wkadd4,jdbcType=VARCHAR},
+      </if>
+      <if test="wkpost != null">
+        #{wkpost,jdbcType=VARCHAR},
+      </if>
+      <if test="wkphone != null">
+        #{wkphone,jdbcType=VARCHAR},
+      </if>
+      <if test="wktype != null">
+        #{wktype,jdbcType=VARCHAR},
+      </if>
+      <if test="ectype != null">
+        #{ectype,jdbcType=VARCHAR},
+      </if>
+      <if test="prolvl != null">
+        #{prolvl,jdbcType=VARCHAR},
+      </if>
+      <if test="wkyear != null">
+        #{wkyear,jdbcType=VARCHAR},
+      </if>
+      <if test="incom != null">
+        #{incom,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="childrens != null">
+        #{childrens,jdbcType=VARCHAR},
+      </if>
+      <if test="pronum != null">
+        #{pronum,jdbcType=VARCHAR},
+      </if>
+      <if test="totasset != null">
+        #{totasset,jdbcType=VARCHAR},
+      </if>
+      <if test="xpad != null">
+        #{xpad,jdbcType=VARCHAR},
+      </if>
+      <if test="fund != null">
+        #{fund,jdbcType=VARCHAR},
+      </if>
+      <if test="invm != null">
+        #{invm,jdbcType=VARCHAR},
+      </if>
+      <if test="ccard != null">
+        #{ccard,jdbcType=VARCHAR},
+      </if>
+      <if test="card != null">
+        #{card,jdbcType=VARCHAR},
+      </if>
+      <if test="borm != null">
+        #{borm,jdbcType=VARCHAR},
+      </if>
+      <if test="bocnet != null">
+        #{bocnet,jdbcType=VARCHAR},
+      </if>
+      <if test="mobnet != null">
+        #{mobnet,jdbcType=VARCHAR},
+      </if>
+      <if test="xpadg != null">
+        #{xpadg,jdbcType=VARCHAR},
+      </if>
+      <if test="cars != null">
+        #{cars,jdbcType=VARCHAR},
+      </if>
+      <if test="house != null">
+        #{house,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyin2 != null">
+        #{pinyin2,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyin != null">
+        #{pinyin,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.dracula.ht2017g8.po.mybatis.WebCustomerExample" resultType="java.lang.Long">
+    select count(*) from web_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update web_customer
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.custid != null">
+        custid = #{record.custid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custnm != null">
+        custnm = #{record.custnm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custnm1 != null">
+        custnm1 = #{record.custnm1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custnm2 != null">
+        custnm2 = #{record.custnm2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pinyin1 != null">
+        pinyin1 = #{record.pinyin1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idno != null">
+        idno = #{record.idno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education != null">
+        education = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hmaddr1 != null">
+        hmaddr1 = #{record.hmaddr1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hmaddr2 != null">
+        hmaddr2 = #{record.hmaddr2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hmaddr3 != null">
+        hmaddr3 = #{record.hmaddr3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hmaddr4 != null">
+        hmaddr4 = #{record.hmaddr4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hmpost != null">
+        hmpost = #{record.hmpost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hmphone != null">
+        hmphone = #{record.hmphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wkname != null">
+        wkname = #{record.wkname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wkadd1 != null">
+        wkadd1 = #{record.wkadd1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wkadd2 != null">
+        wkadd2 = #{record.wkadd2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wkadd3 != null">
+        wkadd3 = #{record.wkadd3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wkadd4 != null">
+        wkadd4 = #{record.wkadd4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wkpost != null">
+        wkpost = #{record.wkpost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wkphone != null">
+        wkphone = #{record.wkphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wktype != null">
+        wktype = #{record.wktype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ectype != null">
+        ectype = #{record.ectype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prolvl != null">
+        prolvl = #{record.prolvl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wkyear != null">
+        wkyear = #{record.wkyear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.incom != null">
+        incom = #{record.incom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.age != null">
+        age = #{record.age,jdbcType=VARCHAR},
+      </if>
+      <if test="record.childrens != null">
+        childrens = #{record.childrens,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pronum != null">
+        pronum = #{record.pronum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totasset != null">
+        totasset = #{record.totasset,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xpad != null">
+        xpad = #{record.xpad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fund != null">
+        fund = #{record.fund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invm != null">
+        invm = #{record.invm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ccard != null">
+        ccard = #{record.ccard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.card != null">
+        card = #{record.card,jdbcType=VARCHAR},
+      </if>
+      <if test="record.borm != null">
+        borm = #{record.borm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bocnet != null">
+        bocnet = #{record.bocnet,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobnet != null">
+        mobnet = #{record.mobnet,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xpadg != null">
+        xpadg = #{record.xpadg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cars != null">
+        cars = #{record.cars,jdbcType=VARCHAR},
+      </if>
+      <if test="record.house != null">
+        house = #{record.house,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pinyin2 != null">
+        pinyin2 = #{record.pinyin2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pinyin != null">
+        pinyin = #{record.pinyin,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update web_customer
+    set id = #{record.id,jdbcType=INTEGER},
+      custid = #{record.custid,jdbcType=VARCHAR},
+      custnm = #{record.custnm,jdbcType=VARCHAR},
+      custnm1 = #{record.custnm1,jdbcType=VARCHAR},
+      custnm2 = #{record.custnm2,jdbcType=VARCHAR},
+      pinyin1 = #{record.pinyin1,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      idno = #{record.idno,jdbcType=VARCHAR},
+      education = #{record.education,jdbcType=VARCHAR},
+      hmaddr1 = #{record.hmaddr1,jdbcType=VARCHAR},
+      hmaddr2 = #{record.hmaddr2,jdbcType=VARCHAR},
+      hmaddr3 = #{record.hmaddr3,jdbcType=VARCHAR},
+      hmaddr4 = #{record.hmaddr4,jdbcType=VARCHAR},
+      hmpost = #{record.hmpost,jdbcType=VARCHAR},
+      hmphone = #{record.hmphone,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      wkname = #{record.wkname,jdbcType=VARCHAR},
+      wkadd1 = #{record.wkadd1,jdbcType=VARCHAR},
+      wkadd2 = #{record.wkadd2,jdbcType=VARCHAR},
+      wkadd3 = #{record.wkadd3,jdbcType=VARCHAR},
+      wkadd4 = #{record.wkadd4,jdbcType=VARCHAR},
+      wkpost = #{record.wkpost,jdbcType=VARCHAR},
+      wkphone = #{record.wkphone,jdbcType=VARCHAR},
+      wktype = #{record.wktype,jdbcType=VARCHAR},
+      ectype = #{record.ectype,jdbcType=VARCHAR},
+      prolvl = #{record.prolvl,jdbcType=VARCHAR},
+      wkyear = #{record.wkyear,jdbcType=VARCHAR},
+      incom = #{record.incom,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=VARCHAR},
+      childrens = #{record.childrens,jdbcType=VARCHAR},
+      pronum = #{record.pronum,jdbcType=VARCHAR},
+      totasset = #{record.totasset,jdbcType=VARCHAR},
+      xpad = #{record.xpad,jdbcType=VARCHAR},
+      fund = #{record.fund,jdbcType=VARCHAR},
+      invm = #{record.invm,jdbcType=VARCHAR},
+      ccard = #{record.ccard,jdbcType=VARCHAR},
+      card = #{record.card,jdbcType=VARCHAR},
+      borm = #{record.borm,jdbcType=VARCHAR},
+      bocnet = #{record.bocnet,jdbcType=VARCHAR},
+      mobnet = #{record.mobnet,jdbcType=VARCHAR},
+      xpadg = #{record.xpadg,jdbcType=VARCHAR},
+      cars = #{record.cars,jdbcType=VARCHAR},
+      house = #{record.house,jdbcType=VARCHAR},
+      pinyin2 = #{record.pinyin2,jdbcType=VARCHAR},
+      pinyin = #{record.pinyin,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
