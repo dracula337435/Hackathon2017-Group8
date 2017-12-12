@@ -3,7 +3,7 @@
 DOCKER_IMAGE_VERSION="0.1.0001"
 DOCKER_IMAGE_NAME="ht2017g8-portal"
 
-sudo echo "[INFO] 使用超级用户权限" < sudo-pswd.txt
+sudo echo "[INFO] 使用超级用户权限"
 
 echo "[INFO] 目前docker中的容器情况"
 sudo docker ps -a
