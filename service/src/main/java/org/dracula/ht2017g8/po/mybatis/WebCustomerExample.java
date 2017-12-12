@@ -4223,6 +4223,76 @@ public class WebCustomerExample {
             addCriterion("pinyin not between", value1, value2, "pinyin");
             return (Criteria) this;
         }
+
+        public Criteria andProdetialIsNull() {
+            addCriterion("prodetial is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProdetialIsNotNull() {
+            addCriterion("prodetial is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProdetialEqualTo(String value) {
+            addCriterion("prodetial =", value, "prodetial");
+            return (Criteria) this;
+        }
+
+        public Criteria andProdetialNotEqualTo(String value) {
+            addCriterion("prodetial <>", value, "prodetial");
+            return (Criteria) this;
+        }
+
+        public Criteria andProdetialGreaterThan(String value) {
+            addCriterion("prodetial >", value, "prodetial");
+            return (Criteria) this;
+        }
+
+        public Criteria andProdetialGreaterThanOrEqualTo(String value) {
+            addCriterion("prodetial >=", value, "prodetial");
+            return (Criteria) this;
+        }
+
+        public Criteria andProdetialLessThan(String value) {
+            addCriterion("prodetial <", value, "prodetial");
+            return (Criteria) this;
+        }
+
+        public Criteria andProdetialLessThanOrEqualTo(String value) {
+            addCriterion("prodetial <=", value, "prodetial");
+            return (Criteria) this;
+        }
+
+        public Criteria andProdetialLike(String value) {
+            addCriterion("prodetial like", value, "prodetial");
+            return (Criteria) this;
+        }
+
+        public Criteria andProdetialNotLike(String value) {
+            addCriterion("prodetial not like", value, "prodetial");
+            return (Criteria) this;
+        }
+
+        public Criteria andProdetialIn(List<String> values) {
+            addCriterion("prodetial in", values, "prodetial");
+            return (Criteria) this;
+        }
+
+        public Criteria andProdetialNotIn(List<String> values) {
+            addCriterion("prodetial not in", values, "prodetial");
+            return (Criteria) this;
+        }
+
+        public Criteria andProdetialBetween(String value1, String value2) {
+            addCriterion("prodetial between", value1, value2, "prodetial");
+            return (Criteria) this;
+        }
+
+        public Criteria andProdetialNotBetween(String value1, String value2) {
+            addCriterion("prodetial not between", value1, value2, "prodetial");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

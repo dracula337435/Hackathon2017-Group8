@@ -119,6 +119,8 @@ public class WebCustomer {
 
     private String pinyin;
 
+    private String prodetial;
+
     public Integer getId() {
         return id;
     }
@@ -589,5 +591,13 @@ public class WebCustomer {
 
     public void setPinyin(String pinyin) {
         this.pinyin = pinyin == null ? null : pinyin.trim();
+    }
+
+    public String getProdetial() {
+        return prodetial;
+    }
+
+    public void setProdetial(String prodetial) {
+        this.prodetial = prodetial == null ? null : prodetial.trim();
     }
 }

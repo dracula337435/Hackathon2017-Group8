@@ -30,6 +30,8 @@ public class WebCustomer_SticknessVO {
 
     private String nianx;
 
+    private String prodetial;
+
     public String getPronum() {
         return pronum;
     }
@@ -140,5 +142,13 @@ public class WebCustomer_SticknessVO {
 
     public void setNianx(String nianx) {
         this.nianx = nianx;
+    }
+
+    public String getProdetial() {
+        return prodetial;
+    }
+
+    public void setProdetial(String prodetial) {
+        this.prodetial = prodetial;
     }
 }

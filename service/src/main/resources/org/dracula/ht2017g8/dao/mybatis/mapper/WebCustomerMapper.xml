@@ -61,6 +61,7 @@
     <result column="qianli" jdbcType="VARCHAR" property="qianli" />
     <result column="custpa" jdbcType="VARCHAR" property="custpa" />
     <result column="pinyin" jdbcType="VARCHAR" property="pinyin" />
+    <result column="prodetial" jdbcType="VARCHAR" property="prodetial" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -126,7 +127,7 @@
     wkpost, wkphone, wktype, ectype, prolvl, wkyear, incom, age, childrens, pronum, ccard, 
     xpad, fund, invm, tpcc, bond, insure, jcj, card, borm, bocnet, mobnet, xpadg, cars, 
     house, custlvl, totasset, pinyin2, years, intot, outtot, othcust, daifa, nianx, zhongcd, 
-    qianli, custpa, pinyin
+    qianli, custpa, pinyin, prodetial
   </sql>
   <select id="selectByExample" parameterType="org.dracula.ht2017g8.po.mybatis.WebCustomerExample" resultMap="BaseResultMap">
     select
@@ -168,7 +169,7 @@
       years, intot, outtot, 
       othcust, daifa, nianx, 
       zhongcd, qianli, custpa, 
-      pinyin)
+      pinyin, prodetial)
     values (#{id,jdbcType=INTEGER}, #{custid,jdbcType=VARCHAR}, #{custnm,jdbcType=VARCHAR}, 
       #{custnm1,jdbcType=VARCHAR}, #{custnm2,jdbcType=VARCHAR}, #{pinyin1,jdbcType=VARCHAR}, 
       #{title,jdbcType=VARCHAR}, #{idno,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
@@ -188,7 +189,7 @@
       #{years,jdbcType=VARCHAR}, #{intot,jdbcType=VARCHAR}, #{outtot,jdbcType=VARCHAR}, 
       #{othcust,jdbcType=VARCHAR}, #{daifa,jdbcType=VARCHAR}, #{nianx,jdbcType=VARCHAR}, 
       #{zhongcd,jdbcType=VARCHAR}, #{qianli,jdbcType=VARCHAR}, #{custpa,jdbcType=VARCHAR}, 
-      #{pinyin,jdbcType=VARCHAR})
+      #{pinyin,jdbcType=VARCHAR}, #{prodetial,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.dracula.ht2017g8.po.mybatis.WebCustomer">
     insert into web_customer
@@ -370,6 +371,9 @@
       <if test="pinyin != null">
         pinyin,
       </if>
+      <if test="prodetial != null">
+        prodetial,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -548,6 +552,9 @@
       </if>
       <if test="pinyin != null">
         #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="prodetial != null">
+        #{prodetial,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -737,6 +744,9 @@
       <if test="record.pinyin != null">
         pinyin = #{record.pinyin,jdbcType=VARCHAR},
       </if>
+      <if test="record.prodetial != null">
+        prodetial = #{record.prodetial,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -802,7 +812,8 @@
       zhongcd = #{record.zhongcd,jdbcType=VARCHAR},
       qianli = #{record.qianli,jdbcType=VARCHAR},
       custpa = #{record.custpa,jdbcType=VARCHAR},
-      pinyin = #{record.pinyin,jdbcType=VARCHAR}
+      pinyin = #{record.pinyin,jdbcType=VARCHAR},
+      prodetial = #{record.prodetial,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

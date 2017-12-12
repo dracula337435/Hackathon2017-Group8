@@ -120,6 +120,8 @@ public class WebCustomerBO {
 
     private String pinyin;
 
+    private String prodetial;
+
     public Integer getId() {
         return id;
     }
@@ -590,5 +592,13 @@ public class WebCustomerBO {
 
     public void setPinyin(String pinyin) {
         this.pinyin = pinyin;
+    }
+
+    public String getProdetial() {
+        return prodetial;
+    }
+
+    public void setProdetial(String prodetial) {
+        this.prodetial = prodetial;
     }
 }
