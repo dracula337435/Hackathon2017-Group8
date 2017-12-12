@@ -1,21 +1,21 @@
 
-CREATE TABLE `web_timeline` (
+CREATE TABLE `web_busintro` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `custid` varchar(16) DEFAULT NULL COMMENT '客户号',
-  `custnm` varchar(50) DEFAULT NULL COMMENT '客户名称',
-  `custdate` varchar(20) DEFAULT NULL COMMENT '成为中行客户时间',
-  `carddate` varchar(20) DEFAULT NULL COMMENT '第一张借记卡',
-  `ccarddate` varchar(20) DEFAULT NULL COMMENT '第一张信用卡',
-  `trandate` varchar(20) DEFAULT NULL COMMENT '第一笔信用卡交易',
-  `tottran` varchar(50) DEFAULT NULL COMMENT '本年累计信用卡消费额',
-  `totin` varchar(50) DEFAULT NULL COMMENT '本年进账资金总额',
-  `totout` varchar(50) DEFAULT NULL COMMENT '本年出账资金总额',
-  `totfee1` varchar(50) DEFAULT NULL COMMENT '本年累计话费',
-  `totfee2` varchar(50) DEFAULT NULL COMMENT '本年累计燃气费',
-  `totfee3` varchar(50) DEFAULT NULL COMMENT '本年累计水费',
-  `totfee4` varchar(50) DEFAULT NULL COMMENT '本年',
+  `businame` varchar(30) DEFAULT NULL COMMENT '业务名称',
+  `busiintro` varchar(200) DEFAULT NULL COMMENT '业务介绍',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `web_timeline` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `custnm` varchar(100) DEFAULT NULL,
+  `custid` varchar(10) DEFAULT NULL,
+  `datetime` varchar(20) DEFAULT NULL,
+  `channel` varchar(100) DEFAULT NULL,
+  `action` varchar(200) DEFAULT NULL,
+  `acttype` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=166 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `web_customer` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -23,7 +23,7 @@ CREATE TABLE `web_customer` (
   `custnm` varchar(50) DEFAULT NULL COMMENT '客户名称',
   `custnm1` varchar(20) DEFAULT NULL COMMENT '客户姓',
   `custnm2` varchar(30) DEFAULT NULL COMMENT '客户名',
-  `pinyin` varchar(100) DEFAULT NULL COMMENT '姓名拼音',
+  `pinyin1` varchar(100) DEFAULT NULL COMMENT '姓名拼音',
   `title` varchar(30) DEFAULT NULL COMMENT '称谓',
   `idno` varchar(18) DEFAULT NULL COMMENT '身份证号',
   `education` varchar(30) DEFAULT NULL COMMENT '教育程度',
@@ -48,12 +48,15 @@ CREATE TABLE `web_customer` (
   `incom` varchar(20) DEFAULT NULL COMMENT '年收入总额',
   `age` varchar(10) DEFAULT NULL COMMENT '年龄',
   `childrens` varchar(10) DEFAULT NULL COMMENT '有无子女',
-  `pronum` varchar(10) DEFAULT NULL COMMENT '产品持有种类（理财，基金，存款，信用卡，借记卡，贷款，网银，手机银行，贵金属）',
-  `totasset` varchar(18) DEFAULT NULL COMMENT '总资产',
+  `pronum` varchar(10) DEFAULT NULL COMMENT '产品持有个数',
+  `ccard` varchar(10) DEFAULT NULL COMMENT '信用卡',
   `xpad` varchar(18) DEFAULT NULL COMMENT '理财',
   `fund` varchar(18) DEFAULT NULL COMMENT '基金',
   `invm` varchar(18) DEFAULT NULL COMMENT '存款',
-  `ccard` varchar(10) DEFAULT NULL COMMENT '信用卡',
+  `tpcc` varchar(10) DEFAULT NULL COMMENT '三方',
+  `bond` varchar(10) DEFAULT NULL COMMENT '债券',
+  `insure` varchar(10) DEFAULT NULL COMMENT '保险',
+  `jcj` varchar(10) DEFAULT NULL COMMENT '积存金',
   `card` varchar(10) DEFAULT NULL COMMENT '借记卡',
   `borm` varchar(18) DEFAULT NULL COMMENT '贷款',
   `bocnet` varchar(10) DEFAULT NULL COMMENT '网银',
@@ -61,8 +64,22 @@ CREATE TABLE `web_customer` (
   `xpadg` varchar(10) DEFAULT NULL COMMENT '贵金属(有、无)',
   `cars` varchar(10) DEFAULT NULL COMMENT '车',
   `house` varchar(10) DEFAULT NULL COMMENT '房子',
+  `custlvl` varchar(255) DEFAULT NULL COMMENT '客户等级（大众、理财、财富、私行）',
+  `totasset` varchar(18) DEFAULT NULL COMMENT '总资产',
+  `pinyin2` varchar(20) DEFAULT NULL COMMENT '拼音2',
+  `years` varchar(10) DEFAULT NULL COMMENT '成为中行客户时间（年）',
+  `intot` varchar(10) DEFAULT NULL COMMENT '近一年转入资金',
+  `outtot` varchar(10) DEFAULT NULL COMMENT '近一年转出资金',
+  `othcust` varchar(10) DEFAULT NULL COMMENT '他行客户（是否）',
+  `daifa` varchar(10) DEFAULT NULL COMMENT '代发代扣业务（有无）',
+  `nianx` varchar(20) DEFAULT NULL COMMENT '客户粘性',
+  `zhongcd` varchar(20) DEFAULT NULL COMMENT '客户忠诚度',
+  `qianli` varchar(20) DEFAULT NULL COMMENT '客户潜在价值',
+  `custpa` varchar(10) DEFAULT NULL COMMENT '客户贡献度',
+  `pinyin` varchar(255) DEFAULT NULL,
+  `prodetial` varchar(300) DEFAULT NULL COMMENT '产品持有情况',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `web_card` (
   `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '序号',
@@ -111,4 +128,17 @@ CREATE TABLE `web_cardapply` (
   `send_address` varchar(100) DEFAULT NULL COMMENT '您的卡片等重要资料寄送地址（单位地址，家庭地址）',
   `need_pwd` varchar(10) DEFAULT NULL COMMENT '刷卡消费时是否需要密码',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `web_rate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `curr` varchar(20) DEFAULT NULL COMMENT '货币',
+  `currin` double DEFAULT NULL COMMENT '现汇买入价',
+  `cashin` double DEFAULT NULL COMMENT '现钞买入价',
+  `currout` double DEFAULT NULL COMMENT '现汇卖出价',
+  `cashout` double DEFAULT NULL COMMENT '现钞卖出价',
+  `midrate` double DEFAULT NULL COMMENT '中行折算价',
+  `reldate` varchar(20) DEFAULT NULL COMMENT '发布日期',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+
