@@ -33,11 +33,14 @@
     <result column="age" jdbcType="VARCHAR" property="age" />
     <result column="childrens" jdbcType="VARCHAR" property="childrens" />
     <result column="pronum" jdbcType="VARCHAR" property="pronum" />
-    <result column="totasset" jdbcType="VARCHAR" property="totasset" />
+    <result column="ccard" jdbcType="VARCHAR" property="ccard" />
     <result column="xpad" jdbcType="VARCHAR" property="xpad" />
     <result column="fund" jdbcType="VARCHAR" property="fund" />
     <result column="invm" jdbcType="VARCHAR" property="invm" />
-    <result column="ccard" jdbcType="VARCHAR" property="ccard" />
+    <result column="tpcc" jdbcType="VARCHAR" property="tpcc" />
+    <result column="bond" jdbcType="VARCHAR" property="bond" />
+    <result column="insure" jdbcType="VARCHAR" property="insure" />
+    <result column="jcj" jdbcType="VARCHAR" property="jcj" />
     <result column="card" jdbcType="VARCHAR" property="card" />
     <result column="borm" jdbcType="VARCHAR" property="borm" />
     <result column="bocnet" jdbcType="VARCHAR" property="bocnet" />
@@ -45,7 +48,18 @@
     <result column="xpadg" jdbcType="VARCHAR" property="xpadg" />
     <result column="cars" jdbcType="VARCHAR" property="cars" />
     <result column="house" jdbcType="VARCHAR" property="house" />
+    <result column="custlvl" jdbcType="VARCHAR" property="custlvl" />
+    <result column="totasset" jdbcType="VARCHAR" property="totasset" />
     <result column="pinyin2" jdbcType="VARCHAR" property="pinyin2" />
+    <result column="years" jdbcType="VARCHAR" property="years" />
+    <result column="intot" jdbcType="VARCHAR" property="intot" />
+    <result column="outtot" jdbcType="VARCHAR" property="outtot" />
+    <result column="othcust" jdbcType="VARCHAR" property="othcust" />
+    <result column="daifa" jdbcType="VARCHAR" property="daifa" />
+    <result column="nianx" jdbcType="VARCHAR" property="nianx" />
+    <result column="zhongcd" jdbcType="VARCHAR" property="zhongcd" />
+    <result column="qianli" jdbcType="VARCHAR" property="qianli" />
+    <result column="custpa" jdbcType="VARCHAR" property="custpa" />
     <result column="pinyin" jdbcType="VARCHAR" property="pinyin" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -109,9 +123,10 @@
   <sql id="Base_Column_List">
     id, custid, custnm, custnm1, custnm2, pinyin1, title, idno, education, hmaddr1, hmaddr2, 
     hmaddr3, hmaddr4, hmpost, hmphone, mobile, wkname, wkadd1, wkadd2, wkadd3, wkadd4, 
-    wkpost, wkphone, wktype, ectype, prolvl, wkyear, incom, age, childrens, pronum, totasset, 
-    xpad, fund, invm, ccard, card, borm, bocnet, mobnet, xpadg, cars, house, pinyin2, 
-    pinyin
+    wkpost, wkphone, wktype, ectype, prolvl, wkyear, incom, age, childrens, pronum, ccard, 
+    xpad, fund, invm, tpcc, bond, insure, jcj, card, borm, bocnet, mobnet, xpadg, cars, 
+    house, custlvl, totasset, pinyin2, years, intot, outtot, othcust, daifa, nianx, zhongcd, 
+    qianli, custpa, pinyin
   </sql>
   <select id="selectByExample" parameterType="org.dracula.ht2017g8.po.mybatis.WebCustomerExample" resultMap="BaseResultMap">
     select
@@ -144,12 +159,16 @@
       wkpost, wkphone, wktype, 
       ectype, prolvl, wkyear, 
       incom, age, childrens, 
-      pronum, totasset, xpad, 
-      fund, invm, ccard, 
-      card, borm, bocnet, 
-      mobnet, xpadg, cars, 
-      house, pinyin2, pinyin
-      )
+      pronum, ccard, xpad, 
+      fund, invm, tpcc, bond, 
+      insure, jcj, card, 
+      borm, bocnet, mobnet, 
+      xpadg, cars, house, 
+      custlvl, totasset, pinyin2, 
+      years, intot, outtot, 
+      othcust, daifa, nianx, 
+      zhongcd, qianli, custpa, 
+      pinyin)
     values (#{id,jdbcType=INTEGER}, #{custid,jdbcType=VARCHAR}, #{custnm,jdbcType=VARCHAR}, 
       #{custnm1,jdbcType=VARCHAR}, #{custnm2,jdbcType=VARCHAR}, #{pinyin1,jdbcType=VARCHAR}, 
       #{title,jdbcType=VARCHAR}, #{idno,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
@@ -160,12 +179,16 @@
       #{wkpost,jdbcType=VARCHAR}, #{wkphone,jdbcType=VARCHAR}, #{wktype,jdbcType=VARCHAR}, 
       #{ectype,jdbcType=VARCHAR}, #{prolvl,jdbcType=VARCHAR}, #{wkyear,jdbcType=VARCHAR}, 
       #{incom,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{childrens,jdbcType=VARCHAR}, 
-      #{pronum,jdbcType=VARCHAR}, #{totasset,jdbcType=VARCHAR}, #{xpad,jdbcType=VARCHAR}, 
-      #{fund,jdbcType=VARCHAR}, #{invm,jdbcType=VARCHAR}, #{ccard,jdbcType=VARCHAR}, 
-      #{card,jdbcType=VARCHAR}, #{borm,jdbcType=VARCHAR}, #{bocnet,jdbcType=VARCHAR}, 
-      #{mobnet,jdbcType=VARCHAR}, #{xpadg,jdbcType=VARCHAR}, #{cars,jdbcType=VARCHAR}, 
-      #{house,jdbcType=VARCHAR}, #{pinyin2,jdbcType=VARCHAR}, #{pinyin,jdbcType=VARCHAR}
-      )
+      #{pronum,jdbcType=VARCHAR}, #{ccard,jdbcType=VARCHAR}, #{xpad,jdbcType=VARCHAR}, 
+      #{fund,jdbcType=VARCHAR}, #{invm,jdbcType=VARCHAR}, #{tpcc,jdbcType=VARCHAR}, #{bond,jdbcType=VARCHAR}, 
+      #{insure,jdbcType=VARCHAR}, #{jcj,jdbcType=VARCHAR}, #{card,jdbcType=VARCHAR}, 
+      #{borm,jdbcType=VARCHAR}, #{bocnet,jdbcType=VARCHAR}, #{mobnet,jdbcType=VARCHAR}, 
+      #{xpadg,jdbcType=VARCHAR}, #{cars,jdbcType=VARCHAR}, #{house,jdbcType=VARCHAR}, 
+      #{custlvl,jdbcType=VARCHAR}, #{totasset,jdbcType=VARCHAR}, #{pinyin2,jdbcType=VARCHAR}, 
+      #{years,jdbcType=VARCHAR}, #{intot,jdbcType=VARCHAR}, #{outtot,jdbcType=VARCHAR}, 
+      #{othcust,jdbcType=VARCHAR}, #{daifa,jdbcType=VARCHAR}, #{nianx,jdbcType=VARCHAR}, 
+      #{zhongcd,jdbcType=VARCHAR}, #{qianli,jdbcType=VARCHAR}, #{custpa,jdbcType=VARCHAR}, 
+      #{pinyin,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.dracula.ht2017g8.po.mybatis.WebCustomer">
     insert into web_customer
@@ -263,8 +286,8 @@
       <if test="pronum != null">
         pronum,
       </if>
-      <if test="totasset != null">
-        totasset,
+      <if test="ccard != null">
+        ccard,
       </if>
       <if test="xpad != null">
         xpad,
@@ -275,8 +298,17 @@
       <if test="invm != null">
         invm,
       </if>
-      <if test="ccard != null">
-        ccard,
+      <if test="tpcc != null">
+        tpcc,
+      </if>
+      <if test="bond != null">
+        bond,
+      </if>
+      <if test="insure != null">
+        insure,
+      </if>
+      <if test="jcj != null">
+        jcj,
       </if>
       <if test="card != null">
         card,
@@ -299,8 +331,41 @@
       <if test="house != null">
         house,
       </if>
+      <if test="custlvl != null">
+        custlvl,
+      </if>
+      <if test="totasset != null">
+        totasset,
+      </if>
       <if test="pinyin2 != null">
         pinyin2,
+      </if>
+      <if test="years != null">
+        years,
+      </if>
+      <if test="intot != null">
+        intot,
+      </if>
+      <if test="outtot != null">
+        outtot,
+      </if>
+      <if test="othcust != null">
+        othcust,
+      </if>
+      <if test="daifa != null">
+        daifa,
+      </if>
+      <if test="nianx != null">
+        nianx,
+      </if>
+      <if test="zhongcd != null">
+        zhongcd,
+      </if>
+      <if test="qianli != null">
+        qianli,
+      </if>
+      <if test="custpa != null">
+        custpa,
       </if>
       <if test="pinyin != null">
         pinyin,
@@ -400,8 +465,8 @@
       <if test="pronum != null">
         #{pronum,jdbcType=VARCHAR},
       </if>
-      <if test="totasset != null">
-        #{totasset,jdbcType=VARCHAR},
+      <if test="ccard != null">
+        #{ccard,jdbcType=VARCHAR},
       </if>
       <if test="xpad != null">
         #{xpad,jdbcType=VARCHAR},
@@ -412,8 +477,17 @@
       <if test="invm != null">
         #{invm,jdbcType=VARCHAR},
       </if>
-      <if test="ccard != null">
-        #{ccard,jdbcType=VARCHAR},
+      <if test="tpcc != null">
+        #{tpcc,jdbcType=VARCHAR},
+      </if>
+      <if test="bond != null">
+        #{bond,jdbcType=VARCHAR},
+      </if>
+      <if test="insure != null">
+        #{insure,jdbcType=VARCHAR},
+      </if>
+      <if test="jcj != null">
+        #{jcj,jdbcType=VARCHAR},
       </if>
       <if test="card != null">
         #{card,jdbcType=VARCHAR},
@@ -436,8 +510,41 @@
       <if test="house != null">
         #{house,jdbcType=VARCHAR},
       </if>
+      <if test="custlvl != null">
+        #{custlvl,jdbcType=VARCHAR},
+      </if>
+      <if test="totasset != null">
+        #{totasset,jdbcType=VARCHAR},
+      </if>
       <if test="pinyin2 != null">
         #{pinyin2,jdbcType=VARCHAR},
+      </if>
+      <if test="years != null">
+        #{years,jdbcType=VARCHAR},
+      </if>
+      <if test="intot != null">
+        #{intot,jdbcType=VARCHAR},
+      </if>
+      <if test="outtot != null">
+        #{outtot,jdbcType=VARCHAR},
+      </if>
+      <if test="othcust != null">
+        #{othcust,jdbcType=VARCHAR},
+      </if>
+      <if test="daifa != null">
+        #{daifa,jdbcType=VARCHAR},
+      </if>
+      <if test="nianx != null">
+        #{nianx,jdbcType=VARCHAR},
+      </if>
+      <if test="zhongcd != null">
+        #{zhongcd,jdbcType=VARCHAR},
+      </if>
+      <if test="qianli != null">
+        #{qianli,jdbcType=VARCHAR},
+      </if>
+      <if test="custpa != null">
+        #{custpa,jdbcType=VARCHAR},
       </if>
       <if test="pinyin != null">
         #{pinyin,jdbcType=VARCHAR},
@@ -546,8 +653,8 @@
       <if test="record.pronum != null">
         pronum = #{record.pronum,jdbcType=VARCHAR},
       </if>
-      <if test="record.totasset != null">
-        totasset = #{record.totasset,jdbcType=VARCHAR},
+      <if test="record.ccard != null">
+        ccard = #{record.ccard,jdbcType=VARCHAR},
       </if>
       <if test="record.xpad != null">
         xpad = #{record.xpad,jdbcType=VARCHAR},
@@ -558,8 +665,17 @@
       <if test="record.invm != null">
         invm = #{record.invm,jdbcType=VARCHAR},
       </if>
-      <if test="record.ccard != null">
-        ccard = #{record.ccard,jdbcType=VARCHAR},
+      <if test="record.tpcc != null">
+        tpcc = #{record.tpcc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bond != null">
+        bond = #{record.bond,jdbcType=VARCHAR},
+      </if>
+      <if test="record.insure != null">
+        insure = #{record.insure,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jcj != null">
+        jcj = #{record.jcj,jdbcType=VARCHAR},
       </if>
       <if test="record.card != null">
         card = #{record.card,jdbcType=VARCHAR},
@@ -582,8 +698,41 @@
       <if test="record.house != null">
         house = #{record.house,jdbcType=VARCHAR},
       </if>
+      <if test="record.custlvl != null">
+        custlvl = #{record.custlvl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totasset != null">
+        totasset = #{record.totasset,jdbcType=VARCHAR},
+      </if>
       <if test="record.pinyin2 != null">
         pinyin2 = #{record.pinyin2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.years != null">
+        years = #{record.years,jdbcType=VARCHAR},
+      </if>
+      <if test="record.intot != null">
+        intot = #{record.intot,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outtot != null">
+        outtot = #{record.outtot,jdbcType=VARCHAR},
+      </if>
+      <if test="record.othcust != null">
+        othcust = #{record.othcust,jdbcType=VARCHAR},
+      </if>
+      <if test="record.daifa != null">
+        daifa = #{record.daifa,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nianx != null">
+        nianx = #{record.nianx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhongcd != null">
+        zhongcd = #{record.zhongcd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qianli != null">
+        qianli = #{record.qianli,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custpa != null">
+        custpa = #{record.custpa,jdbcType=VARCHAR},
       </if>
       <if test="record.pinyin != null">
         pinyin = #{record.pinyin,jdbcType=VARCHAR},
@@ -626,11 +775,14 @@
       age = #{record.age,jdbcType=VARCHAR},
       childrens = #{record.childrens,jdbcType=VARCHAR},
       pronum = #{record.pronum,jdbcType=VARCHAR},
-      totasset = #{record.totasset,jdbcType=VARCHAR},
+      ccard = #{record.ccard,jdbcType=VARCHAR},
       xpad = #{record.xpad,jdbcType=VARCHAR},
       fund = #{record.fund,jdbcType=VARCHAR},
       invm = #{record.invm,jdbcType=VARCHAR},
-      ccard = #{record.ccard,jdbcType=VARCHAR},
+      tpcc = #{record.tpcc,jdbcType=VARCHAR},
+      bond = #{record.bond,jdbcType=VARCHAR},
+      insure = #{record.insure,jdbcType=VARCHAR},
+      jcj = #{record.jcj,jdbcType=VARCHAR},
       card = #{record.card,jdbcType=VARCHAR},
       borm = #{record.borm,jdbcType=VARCHAR},
       bocnet = #{record.bocnet,jdbcType=VARCHAR},
@@ -638,7 +790,18 @@
       xpadg = #{record.xpadg,jdbcType=VARCHAR},
       cars = #{record.cars,jdbcType=VARCHAR},
       house = #{record.house,jdbcType=VARCHAR},
+      custlvl = #{record.custlvl,jdbcType=VARCHAR},
+      totasset = #{record.totasset,jdbcType=VARCHAR},
       pinyin2 = #{record.pinyin2,jdbcType=VARCHAR},
+      years = #{record.years,jdbcType=VARCHAR},
+      intot = #{record.intot,jdbcType=VARCHAR},
+      outtot = #{record.outtot,jdbcType=VARCHAR},
+      othcust = #{record.othcust,jdbcType=VARCHAR},
+      daifa = #{record.daifa,jdbcType=VARCHAR},
+      nianx = #{record.nianx,jdbcType=VARCHAR},
+      zhongcd = #{record.zhongcd,jdbcType=VARCHAR},
+      qianli = #{record.qianli,jdbcType=VARCHAR},
+      custpa = #{record.custpa,jdbcType=VARCHAR},
       pinyin = #{record.pinyin,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />

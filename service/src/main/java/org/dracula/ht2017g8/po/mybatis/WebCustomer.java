@@ -63,7 +63,7 @@ public class WebCustomer {
 
     private String pronum;
 
-    private String totasset;
+    private String ccard;
 
     private String xpad;
 
@@ -71,7 +71,13 @@ public class WebCustomer {
 
     private String invm;
 
-    private String ccard;
+    private String tpcc;
+
+    private String bond;
+
+    private String insure;
+
+    private String jcj;
 
     private String card;
 
@@ -87,7 +93,29 @@ public class WebCustomer {
 
     private String house;
 
+    private String custlvl;
+
+    private String totasset;
+
     private String pinyin2;
+
+    private String years;
+
+    private String intot;
+
+    private String outtot;
+
+    private String othcust;
+
+    private String daifa;
+
+    private String nianx;
+
+    private String zhongcd;
+
+    private String qianli;
+
+    private String custpa;
 
     private String pinyin;
 
@@ -339,12 +367,12 @@ public class WebCustomer {
         this.pronum = pronum == null ? null : pronum.trim();
     }
 
-    public String getTotasset() {
-        return totasset;
+    public String getCcard() {
+        return ccard;
     }
 
-    public void setTotasset(String totasset) {
-        this.totasset = totasset == null ? null : totasset.trim();
+    public void setCcard(String ccard) {
+        this.ccard = ccard == null ? null : ccard.trim();
     }
 
     public String getXpad() {
@@ -371,12 +399,36 @@ public class WebCustomer {
         this.invm = invm == null ? null : invm.trim();
     }
 
-    public String getCcard() {
-        return ccard;
+    public String getTpcc() {
+        return tpcc;
     }
 
-    public void setCcard(String ccard) {
-        this.ccard = ccard == null ? null : ccard.trim();
+    public void setTpcc(String tpcc) {
+        this.tpcc = tpcc == null ? null : tpcc.trim();
+    }
+
+    public String getBond() {
+        return bond;
+    }
+
+    public void setBond(String bond) {
+        this.bond = bond == null ? null : bond.trim();
+    }
+
+    public String getInsure() {
+        return insure;
+    }
+
+    public void setInsure(String insure) {
+        this.insure = insure == null ? null : insure.trim();
+    }
+
+    public String getJcj() {
+        return jcj;
+    }
+
+    public void setJcj(String jcj) {
+        this.jcj = jcj == null ? null : jcj.trim();
     }
 
     public String getCard() {
@@ -435,12 +487,100 @@ public class WebCustomer {
         this.house = house == null ? null : house.trim();
     }
 
+    public String getCustlvl() {
+        return custlvl;
+    }
+
+    public void setCustlvl(String custlvl) {
+        this.custlvl = custlvl == null ? null : custlvl.trim();
+    }
+
+    public String getTotasset() {
+        return totasset;
+    }
+
+    public void setTotasset(String totasset) {
+        this.totasset = totasset == null ? null : totasset.trim();
+    }
+
     public String getPinyin2() {
         return pinyin2;
     }
 
     public void setPinyin2(String pinyin2) {
         this.pinyin2 = pinyin2 == null ? null : pinyin2.trim();
+    }
+
+    public String getYears() {
+        return years;
+    }
+
+    public void setYears(String years) {
+        this.years = years == null ? null : years.trim();
+    }
+
+    public String getIntot() {
+        return intot;
+    }
+
+    public void setIntot(String intot) {
+        this.intot = intot == null ? null : intot.trim();
+    }
+
+    public String getOuttot() {
+        return outtot;
+    }
+
+    public void setOuttot(String outtot) {
+        this.outtot = outtot == null ? null : outtot.trim();
+    }
+
+    public String getOthcust() {
+        return othcust;
+    }
+
+    public void setOthcust(String othcust) {
+        this.othcust = othcust == null ? null : othcust.trim();
+    }
+
+    public String getDaifa() {
+        return daifa;
+    }
+
+    public void setDaifa(String daifa) {
+        this.daifa = daifa == null ? null : daifa.trim();
+    }
+
+    public String getNianx() {
+        return nianx;
+    }
+
+    public void setNianx(String nianx) {
+        this.nianx = nianx == null ? null : nianx.trim();
+    }
+
+    public String getZhongcd() {
+        return zhongcd;
+    }
+
+    public void setZhongcd(String zhongcd) {
+        this.zhongcd = zhongcd == null ? null : zhongcd.trim();
+    }
+
+    public String getQianli() {
+        return qianli;
+    }
+
+    public void setQianli(String qianli) {
+        this.qianli = qianli == null ? null : qianli.trim();
+    }
+
+    public String getCustpa() {
+        return custpa;
+    }
+
+    public void setCustpa(String custpa) {
+        this.custpa = custpa == null ? null : custpa.trim();
     }
 
     public String getPinyin() {

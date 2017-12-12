@@ -64,7 +64,7 @@ public class WebCustomerBO {
 
     private String pronum;
 
-    private String totasset;
+    private String ccard;
 
     private String xpad;
 
@@ -72,7 +72,13 @@ public class WebCustomerBO {
 
     private String invm;
 
-    private String ccard;
+    private String tpcc;
+
+    private String bond;
+
+    private String insure;
+
+    private String jcj;
 
     private String card;
 
@@ -88,7 +94,29 @@ public class WebCustomerBO {
 
     private String house;
 
+    private String custlvl;
+
+    private String totasset;
+
     private String pinyin2;
+
+    private String years;
+
+    private String intot;
+
+    private String outtot;
+
+    private String othcust;
+
+    private String daifa;
+
+    private String nianx;
+
+    private String zhongcd;
+
+    private String qianli;
+
+    private String custpa;
 
     private String pinyin;
 
@@ -340,12 +368,12 @@ public class WebCustomerBO {
         this.pronum = pronum;
     }
 
-    public String getTotasset() {
-        return totasset;
+    public String getCcard() {
+        return ccard;
     }
 
-    public void setTotasset(String totasset) {
-        this.totasset = totasset;
+    public void setCcard(String ccard) {
+        this.ccard = ccard;
     }
 
     public String getXpad() {
@@ -372,12 +400,36 @@ public class WebCustomerBO {
         this.invm = invm;
     }
 
-    public String getCcard() {
-        return ccard;
+    public String getTpcc() {
+        return tpcc;
     }
 
-    public void setCcard(String ccard) {
-        this.ccard = ccard;
+    public void setTpcc(String tpcc) {
+        this.tpcc = tpcc;
+    }
+
+    public String getBond() {
+        return bond;
+    }
+
+    public void setBond(String bond) {
+        this.bond = bond;
+    }
+
+    public String getInsure() {
+        return insure;
+    }
+
+    public void setInsure(String insure) {
+        this.insure = insure;
+    }
+
+    public String getJcj() {
+        return jcj;
+    }
+
+    public void setJcj(String jcj) {
+        this.jcj = jcj;
     }
 
     public String getCard() {
@@ -436,12 +488,100 @@ public class WebCustomerBO {
         this.house = house;
     }
 
+    public String getCustlvl() {
+        return custlvl;
+    }
+
+    public void setCustlvl(String custlvl) {
+        this.custlvl = custlvl;
+    }
+
+    public String getTotasset() {
+        return totasset;
+    }
+
+    public void setTotasset(String totasset) {
+        this.totasset = totasset;
+    }
+
     public String getPinyin2() {
         return pinyin2;
     }
 
     public void setPinyin2(String pinyin2) {
         this.pinyin2 = pinyin2;
+    }
+
+    public String getYears() {
+        return years;
+    }
+
+    public void setYears(String years) {
+        this.years = years;
+    }
+
+    public String getIntot() {
+        return intot;
+    }
+
+    public void setIntot(String intot) {
+        this.intot = intot;
+    }
+
+    public String getOuttot() {
+        return outtot;
+    }
+
+    public void setOuttot(String outtot) {
+        this.outtot = outtot;
+    }
+
+    public String getOthcust() {
+        return othcust;
+    }
+
+    public void setOthcust(String othcust) {
+        this.othcust = othcust;
+    }
+
+    public String getDaifa() {
+        return daifa;
+    }
+
+    public void setDaifa(String daifa) {
+        this.daifa = daifa;
+    }
+
+    public String getNianx() {
+        return nianx;
+    }
+
+    public void setNianx(String nianx) {
+        this.nianx = nianx;
+    }
+
+    public String getZhongcd() {
+        return zhongcd;
+    }
+
+    public void setZhongcd(String zhongcd) {
+        this.zhongcd = zhongcd;
+    }
+
+    public String getQianli() {
+        return qianli;
+    }
+
+    public void setQianli(String qianli) {
+        this.qianli = qianli;
+    }
+
+    public String getCustpa() {
+        return custpa;
+    }
+
+    public void setCustpa(String custpa) {
+        this.custpa = custpa;
     }
 
     public String getPinyin() {
