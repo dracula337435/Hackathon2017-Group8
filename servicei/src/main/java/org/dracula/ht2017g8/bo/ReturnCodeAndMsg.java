@@ -15,6 +15,8 @@ public enum ReturnCodeAndMsg {
     FAIL_00009("00009", "查询参数id不是合法数字"),
     FAIL_00010("00010", "查询客户web_cardapply信息，后台异常，service向portal返回null"),
     FAIL_00011("00011", "新增客户web_cardapply信息，后台异常，service向portal返回null"),
+    FAIL_00012("00013", "未能查询到web_busintro信息"),
+    FAIL_00013("00013", "查询客户web_busintro信息，后台异常，service向portal返回null")
     ;
 
     ReturnCodeAndMsg(String code, String msg){

@@ -1,6 +1,8 @@
 package org.dracula.ht2017g8.dao;
 
+import org.dracula.ht2017g8.dao.mybatis.WebBusintroMapper;
 import org.dracula.ht2017g8.dao.mybatis.WebTimelineMapper;
+import org.dracula.ht2017g8.po.mybatis.WebBusintro;
 import org.dracula.ht2017g8.po.mybatis.WebTimeline;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +23,16 @@ public class MyBatisTest {
     public void test(){
         List<WebTimeline> webTimelines = webTimelineMapper.selectByExample(null);
         System.out.println(webTimelines);
+    }
+
+    @Autowired
+    WebBusintroMapper webBusintroMapper;
+    @Test
+    public void test2(){
+        List<WebBusintro> webBusintros = webBusintroMapper.selectByExample(null);
+        for(WebBusintro po: webBusintros){
+            System.out.println(po.getBusiintro());
+        }
     }
 
 }
