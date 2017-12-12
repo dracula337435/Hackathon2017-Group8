@@ -17,7 +17,7 @@ import java.util.List;
 public class WebBusintroServiceImpl implements WebBusintroService {
 
     @Autowired
-    WebBusintroMapper webBusintroMapper;
+    private WebBusintroMapper webBusintroMapper;
 
     @Override
     public CommonBO<List<WebBusintroBO>> getAll() {

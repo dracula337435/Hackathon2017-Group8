@@ -17,7 +17,7 @@ import java.util.List;
 public class WebCustomerServiceImpl implements WebCustomerService{
 
     @Autowired
-    WebCustomerMapper webCustomerMapper;
+    private WebCustomerMapper webCustomerMapper;
 
     @Override
     public CommonBO<WebCustomerBO> getByCustId(String custId) {

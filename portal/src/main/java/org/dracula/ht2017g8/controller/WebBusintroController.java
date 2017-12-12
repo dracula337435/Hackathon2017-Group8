@@ -15,7 +15,7 @@ import java.util.List;
 public class WebBusintroController {
 
     @Autowired
-    WebBusintroService webBusintroService;
+    private WebBusintroService webBusintroService;
 
     @RequestMapping(value="/web_busintro", method=RequestMethod.GET)
     public CommonBO<List<WebBusintroBO>> getAll(){

@@ -17,7 +17,7 @@ import java.util.List;
 public class WebCardServiceImpl implements WebCardService {
 
     @Autowired
-    WebCardMapper webCardMapper;
+    private WebCardMapper webCardMapper;
 
     @Override
     public CommonBO<WebCardBO> getById(Integer id) {
