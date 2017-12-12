@@ -8,7 +8,7 @@
     <result column="datatime" jdbcType="VARCHAR" property="datatime" />
     <result column="channel" jdbcType="VARCHAR" property="channel" />
     <result column="action" jdbcType="VARCHAR" property="action" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="acttype" jdbcType="VARCHAR" property="acttype" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, custnm, custid, datatime, channel, action, type
+    id, custnm, custid, datatime, channel, action, acttype
   </sql>
   <select id="selectByExample" parameterType="org.dracula.ht2017g8.po.mybatis.WebTimelineExample" resultMap="BaseResultMap">
     select
@@ -94,10 +94,10 @@
   <insert id="insert" parameterType="org.dracula.ht2017g8.po.mybatis.WebTimeline">
     insert into web_timeline (id, custnm, custid, 
       datatime, channel, action, 
-      type)
+      acttype)
     values (#{id,jdbcType=INTEGER}, #{custnm,jdbcType=VARCHAR}, #{custid,jdbcType=VARCHAR}, 
       #{datatime,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{action,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR})
+      #{acttype,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.dracula.ht2017g8.po.mybatis.WebTimeline">
     insert into web_timeline
@@ -120,8 +120,8 @@
       <if test="action != null">
         action,
       </if>
-      <if test="type != null">
-        type,
+      <if test="acttype != null">
+        acttype,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -143,8 +143,8 @@
       <if test="action != null">
         #{action,jdbcType=VARCHAR},
       </if>
-      <if test="type != null">
-        #{type,jdbcType=VARCHAR},
+      <if test="acttype != null">
+        #{acttype,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -175,8 +175,8 @@
       <if test="record.action != null">
         action = #{record.action,jdbcType=VARCHAR},
       </if>
-      <if test="record.type != null">
-        type = #{record.type,jdbcType=VARCHAR},
+      <if test="record.acttype != null">
+        acttype = #{record.acttype,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -191,7 +191,7 @@
       datatime = #{record.datatime,jdbcType=VARCHAR},
       channel = #{record.channel,jdbcType=VARCHAR},
       action = #{record.action,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=VARCHAR}
+      acttype = #{record.acttype,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -13,7 +13,7 @@ public class WebTimeline {
 
     private String action;
 
-    private String type;
+    private String acttype;
 
     public Integer getId() {
         return id;
@@ -63,11 +63,11 @@ public class WebTimeline {
         this.action = action == null ? null : action.trim();
     }
 
-    public String getType() {
-        return type;
+    public String getActtype() {
+        return acttype;
     }
 
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+    public void setActtype(String acttype) {
+        this.acttype = acttype == null ? null : acttype.trim();
     }
 }

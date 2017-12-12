@@ -514,73 +514,73 @@ public class WebTimelineExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNull() {
-            addCriterion("type is null");
+        public Criteria andActtypeIsNull() {
+            addCriterion("acttype is null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNotNull() {
-            addCriterion("type is not null");
+        public Criteria andActtypeIsNotNull() {
+            addCriterion("acttype is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeEqualTo(String value) {
-            addCriterion("type =", value, "type");
+        public Criteria andActtypeEqualTo(String value) {
+            addCriterion("acttype =", value, "acttype");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotEqualTo(String value) {
-            addCriterion("type <>", value, "type");
+        public Criteria andActtypeNotEqualTo(String value) {
+            addCriterion("acttype <>", value, "acttype");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThan(String value) {
-            addCriterion("type >", value, "type");
+        public Criteria andActtypeGreaterThan(String value) {
+            addCriterion("acttype >", value, "acttype");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("type >=", value, "type");
+        public Criteria andActtypeGreaterThanOrEqualTo(String value) {
+            addCriterion("acttype >=", value, "acttype");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThan(String value) {
-            addCriterion("type <", value, "type");
+        public Criteria andActtypeLessThan(String value) {
+            addCriterion("acttype <", value, "acttype");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThanOrEqualTo(String value) {
-            addCriterion("type <=", value, "type");
+        public Criteria andActtypeLessThanOrEqualTo(String value) {
+            addCriterion("acttype <=", value, "acttype");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLike(String value) {
-            addCriterion("type like", value, "type");
+        public Criteria andActtypeLike(String value) {
+            addCriterion("acttype like", value, "acttype");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotLike(String value) {
-            addCriterion("type not like", value, "type");
+        public Criteria andActtypeNotLike(String value) {
+            addCriterion("acttype not like", value, "acttype");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIn(List<String> values) {
-            addCriterion("type in", values, "type");
+        public Criteria andActtypeIn(List<String> values) {
+            addCriterion("acttype in", values, "acttype");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotIn(List<String> values) {
-            addCriterion("type not in", values, "type");
+        public Criteria andActtypeNotIn(List<String> values) {
+            addCriterion("acttype not in", values, "acttype");
             return (Criteria) this;
         }
 
-        public Criteria andTypeBetween(String value1, String value2) {
-            addCriterion("type between", value1, value2, "type");
+        public Criteria andActtypeBetween(String value1, String value2) {
+            addCriterion("acttype between", value1, value2, "acttype");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotBetween(String value1, String value2) {
-            addCriterion("type not between", value1, value2, "type");
+        public Criteria andActtypeNotBetween(String value1, String value2) {
+            addCriterion("acttype not between", value1, value2, "acttype");
             return (Criteria) this;
         }
     }
