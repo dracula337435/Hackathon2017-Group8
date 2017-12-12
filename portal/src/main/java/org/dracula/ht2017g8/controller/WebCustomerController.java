@@ -4,6 +4,8 @@ import org.dracula.ht2017g8.bo.CommonBO;
 import org.dracula.ht2017g8.bo.ReturnCodeAndMsg;
 import org.dracula.ht2017g8.bo.WebCustomerBO;
 import org.dracula.ht2017g8.service.WebCustomerService;
+import org.dracula.ht2017g8.vo.*;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,12 +19,36 @@ public class WebCustomerController {
     private WebCustomerService webCustomerService;
 
     @RequestMapping(value="/web_customer/{custId}", method= RequestMethod.GET)
-    public CommonBO<WebCustomerBO> getByCustId(@PathVariable("custId") String custId){
+    public CommonBO<WebCustomerVO> getByCustId(@PathVariable("custId") String custId){
         CommonBO<WebCustomerBO> customerBOCommonBO = webCustomerService.getByCustId(custId);
+        CommonBO<WebCustomerVO> rslt = new CommonBO<>();
         if(customerBOCommonBO != null){
-            return customerBOCommonBO;
+            if(ReturnCodeAndMsg.SUCCESS.getCode().equals(customerBOCommonBO.getCode())){
+                WebCustomerBO webCustomerBO = customerBOCommonBO.getData();
+                WebCustomer_SticknessVO sticknessVO = new WebCustomer_SticknessVO();
+                BeanUtils.copyProperties(webCustomerBO, sticknessVO);
+                WebCustomer_PotentialVO potentialVO = new WebCustomer_PotentialVO();
+                BeanUtils.copyProperties(webCustomerBO, potentialVO);
+                WebCustomer_LoyaltyVO loyaltyVO = new WebCustomer_LoyaltyVO();
+                BeanUtils.copyProperties(webCustomerBO, loyaltyVO);
+                WebCustomer_LevelVO levelVO = new WebCustomer_LevelVO();
+                BeanUtils.copyProperties(webCustomerBO, levelVO);
+                WebCustomer_BaseVO baseVO = new WebCustomer_BaseVO();
+                BeanUtils.copyProperties(webCustomerBO, baseVO);
+                WebCustomerVO webCustomerVO = new WebCustomerVO();
+                webCustomerVO.setBase(baseVO);
+                webCustomerVO.setLevel(levelVO);
+                webCustomerVO.setLoyalty(loyaltyVO);
+                webCustomerVO.setPotential(potentialVO);
+                webCustomerVO.setStickness(sticknessVO);
+                rslt.setData(webCustomerVO);
+                rslt.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
+            }else{
+                rslt.setMsg(customerBOCommonBO.getMsg());
+                rslt.setCode(customerBOCommonBO.getCode());
+            }
+            return rslt;
         }else{
-            CommonBO<WebCustomerBO> rslt = new CommonBO<>();
             rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00007);
             return rslt;
         }
