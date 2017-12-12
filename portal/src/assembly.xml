@@ -27,6 +27,7 @@
             <includes>
                 <include>Dockerfile</include>
                 <include>deploy-docker.sh</include>
+                <include>sudo-pswd.txt</include>
             </includes>
             <outputDirectory>/</outputDirectory>
         </fileSet>
