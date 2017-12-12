@@ -8,7 +8,7 @@ public class WebTimelineBO {
 
     private String custid;
 
-    private String datatime;
+    private String datetime;
 
     private String channel;
 
@@ -40,12 +40,12 @@ public class WebTimelineBO {
         this.custid = custid;
     }
 
-    public String getDatatime() {
-        return datatime;
+    public String getDatetime() {
+        return datetime;
     }
 
-    public void setDatatime(String datatime) {
-        this.datatime = datatime;
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
     }
 
     public String getChannel() {

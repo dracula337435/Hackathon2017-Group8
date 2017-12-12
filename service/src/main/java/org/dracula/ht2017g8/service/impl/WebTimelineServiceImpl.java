@@ -37,7 +37,7 @@ public class WebTimelineServiceImpl implements WebTimelineService {
             for(WebTimeline webTimeline: webTimelines){
                 WebTimelineBO webTimelineBO = new WebTimelineBO();
                 BeanUtils.copyProperties(webTimeline, webTimelineBO);
-                String dateTime = webTimelineBO.getDatatime();
+                String dateTime = webTimelineBO.getDatetime();
                 if(dateTime != null && dateTime.length()>=4){
                     String year = dateTime.substring(0, 4);
                     add(mapByYear, year, webTimelineBO);

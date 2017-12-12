@@ -304,73 +304,73 @@ public class WebTimelineExample {
             return (Criteria) this;
         }
 
-        public Criteria andDatatimeIsNull() {
-            addCriterion("datatime is null");
+        public Criteria andDatetimeIsNull() {
+            addCriterion("datetime is null");
             return (Criteria) this;
         }
 
-        public Criteria andDatatimeIsNotNull() {
-            addCriterion("datatime is not null");
+        public Criteria andDatetimeIsNotNull() {
+            addCriterion("datetime is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDatatimeEqualTo(String value) {
-            addCriterion("datatime =", value, "datatime");
+        public Criteria andDatetimeEqualTo(String value) {
+            addCriterion("datetime =", value, "datetime");
             return (Criteria) this;
         }
 
-        public Criteria andDatatimeNotEqualTo(String value) {
-            addCriterion("datatime <>", value, "datatime");
+        public Criteria andDatetimeNotEqualTo(String value) {
+            addCriterion("datetime <>", value, "datetime");
             return (Criteria) this;
         }
 
-        public Criteria andDatatimeGreaterThan(String value) {
-            addCriterion("datatime >", value, "datatime");
+        public Criteria andDatetimeGreaterThan(String value) {
+            addCriterion("datetime >", value, "datetime");
             return (Criteria) this;
         }
 
-        public Criteria andDatatimeGreaterThanOrEqualTo(String value) {
-            addCriterion("datatime >=", value, "datatime");
+        public Criteria andDatetimeGreaterThanOrEqualTo(String value) {
+            addCriterion("datetime >=", value, "datetime");
             return (Criteria) this;
         }
 
-        public Criteria andDatatimeLessThan(String value) {
-            addCriterion("datatime <", value, "datatime");
+        public Criteria andDatetimeLessThan(String value) {
+            addCriterion("datetime <", value, "datetime");
             return (Criteria) this;
         }
 
-        public Criteria andDatatimeLessThanOrEqualTo(String value) {
-            addCriterion("datatime <=", value, "datatime");
+        public Criteria andDatetimeLessThanOrEqualTo(String value) {
+            addCriterion("datetime <=", value, "datetime");
             return (Criteria) this;
         }
 
-        public Criteria andDatatimeLike(String value) {
-            addCriterion("datatime like", value, "datatime");
+        public Criteria andDatetimeLike(String value) {
+            addCriterion("datetime like", value, "datetime");
             return (Criteria) this;
         }
 
-        public Criteria andDatatimeNotLike(String value) {
-            addCriterion("datatime not like", value, "datatime");
+        public Criteria andDatetimeNotLike(String value) {
+            addCriterion("datetime not like", value, "datetime");
             return (Criteria) this;
         }
 
-        public Criteria andDatatimeIn(List<String> values) {
-            addCriterion("datatime in", values, "datatime");
+        public Criteria andDatetimeIn(List<String> values) {
+            addCriterion("datetime in", values, "datetime");
             return (Criteria) this;
         }
 
-        public Criteria andDatatimeNotIn(List<String> values) {
-            addCriterion("datatime not in", values, "datatime");
+        public Criteria andDatetimeNotIn(List<String> values) {
+            addCriterion("datetime not in", values, "datetime");
             return (Criteria) this;
         }
 
-        public Criteria andDatatimeBetween(String value1, String value2) {
-            addCriterion("datatime between", value1, value2, "datatime");
+        public Criteria andDatetimeBetween(String value1, String value2) {
+            addCriterion("datetime between", value1, value2, "datetime");
             return (Criteria) this;
         }
 
-        public Criteria andDatatimeNotBetween(String value1, String value2) {
-            addCriterion("datatime not between", value1, value2, "datatime");
+        public Criteria andDatetimeNotBetween(String value1, String value2) {
+            addCriterion("datetime not between", value1, value2, "datetime");
             return (Criteria) this;
         }
 

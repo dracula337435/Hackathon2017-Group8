@@ -5,7 +5,7 @@
     <result column="id" jdbcType="INTEGER" property="id" />
     <result column="custnm" jdbcType="VARCHAR" property="custnm" />
     <result column="custid" jdbcType="VARCHAR" property="custid" />
-    <result column="datatime" jdbcType="VARCHAR" property="datatime" />
+    <result column="datetime" jdbcType="VARCHAR" property="datetime" />
     <result column="channel" jdbcType="VARCHAR" property="channel" />
     <result column="action" jdbcType="VARCHAR" property="action" />
     <result column="acttype" jdbcType="VARCHAR" property="acttype" />
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, custnm, custid, datatime, channel, action, acttype
+    id, custnm, custid, datetime, channel, action, acttype
   </sql>
   <select id="selectByExample" parameterType="org.dracula.ht2017g8.po.mybatis.WebTimelineExample" resultMap="BaseResultMap">
     select
@@ -93,10 +93,10 @@
   </delete>
   <insert id="insert" parameterType="org.dracula.ht2017g8.po.mybatis.WebTimeline">
     insert into web_timeline (id, custnm, custid, 
-      datatime, channel, action, 
+      datetime, channel, action, 
       acttype)
     values (#{id,jdbcType=INTEGER}, #{custnm,jdbcType=VARCHAR}, #{custid,jdbcType=VARCHAR}, 
-      #{datatime,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{action,jdbcType=VARCHAR}, 
+      #{datetime,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{action,jdbcType=VARCHAR}, 
       #{acttype,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.dracula.ht2017g8.po.mybatis.WebTimeline">
@@ -111,8 +111,8 @@
       <if test="custid != null">
         custid,
       </if>
-      <if test="datatime != null">
-        datatime,
+      <if test="datetime != null">
+        datetime,
       </if>
       <if test="channel != null">
         channel,
@@ -134,8 +134,8 @@
       <if test="custid != null">
         #{custid,jdbcType=VARCHAR},
       </if>
-      <if test="datatime != null">
-        #{datatime,jdbcType=VARCHAR},
+      <if test="datetime != null">
+        #{datetime,jdbcType=VARCHAR},
       </if>
       <if test="channel != null">
         #{channel,jdbcType=VARCHAR},
@@ -166,8 +166,8 @@
       <if test="record.custid != null">
         custid = #{record.custid,jdbcType=VARCHAR},
       </if>
-      <if test="record.datatime != null">
-        datatime = #{record.datatime,jdbcType=VARCHAR},
+      <if test="record.datetime != null">
+        datetime = #{record.datetime,jdbcType=VARCHAR},
       </if>
       <if test="record.channel != null">
         channel = #{record.channel,jdbcType=VARCHAR},
@@ -188,7 +188,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       custnm = #{record.custnm,jdbcType=VARCHAR},
       custid = #{record.custid,jdbcType=VARCHAR},
-      datatime = #{record.datatime,jdbcType=VARCHAR},
+      datetime = #{record.datetime,jdbcType=VARCHAR},
       channel = #{record.channel,jdbcType=VARCHAR},
       action = #{record.action,jdbcType=VARCHAR},
       acttype = #{record.acttype,jdbcType=VARCHAR}

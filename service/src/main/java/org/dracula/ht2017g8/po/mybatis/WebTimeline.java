@@ -7,7 +7,7 @@ public class WebTimeline {
 
     private String custid;
 
-    private String datatime;
+    private String datetime;
 
     private String channel;
 
@@ -39,12 +39,12 @@ public class WebTimeline {
         this.custid = custid == null ? null : custid.trim();
     }
 
-    public String getDatatime() {
-        return datatime;
+    public String getDatetime() {
+        return datetime;
     }
 
-    public void setDatatime(String datatime) {
-        this.datatime = datatime == null ? null : datatime.trim();
+    public void setDatetime(String datetime) {
+        this.datetime = datetime == null ? null : datetime.trim();
     }
 
     public String getChannel() {
