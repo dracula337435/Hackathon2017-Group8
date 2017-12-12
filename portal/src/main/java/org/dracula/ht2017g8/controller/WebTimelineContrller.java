@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.Map;
+
 @RestController
 public class WebTimelineContrller {
 
@@ -17,14 +20,13 @@ public class WebTimelineContrller {
     private WebTimelineService webTimelineService;
 
     @RequestMapping(value="/web_timeline/{custId}", method= RequestMethod.GET)
-    public CommonBO<WebTimelineBO> getByCustId(@PathVariable("custId") String custId){
-        CommonBO<WebTimelineBO> webTimelineBOCommonBO = webTimelineService.getByCustId(custId);
+    public CommonBO<Map<String, List<WebTimelineBO>>> getByCustId(@PathVariable("custId") String custId){
+        CommonBO<Map<String, List<WebTimelineBO>>> webTimelineBOCommonBO = webTimelineService.getByCustId(custId);
         if(webTimelineBOCommonBO !=null){
             return webTimelineBOCommonBO;
         }else{
-            CommonBO<WebTimelineBO> webTimelineVOCommonVO = new CommonBO<>();
-            webTimelineVOCommonVO.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00002);
-            return webTimelineVOCommonVO;
+            webTimelineBOCommonBO.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00002);
+            return webTimelineBOCommonBO;
         }
     }
 

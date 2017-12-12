@@ -3,19 +3,12 @@
 <mapper namespace="org.dracula.ht2017g8.dao.mybatis.WebTimelineMapper">
   <resultMap id="BaseResultMap" type="org.dracula.ht2017g8.po.mybatis.WebTimeline">
     <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="custid" jdbcType="VARCHAR" property="custid" />
     <result column="custnm" jdbcType="VARCHAR" property="custnm" />
-    <result column="custdate" jdbcType="VARCHAR" property="custdate" />
-    <result column="carddate" jdbcType="VARCHAR" property="carddate" />
-    <result column="ccarddate" jdbcType="VARCHAR" property="ccarddate" />
-    <result column="trandate" jdbcType="VARCHAR" property="trandate" />
-    <result column="tottran" jdbcType="VARCHAR" property="tottran" />
-    <result column="totin" jdbcType="VARCHAR" property="totin" />
-    <result column="totout" jdbcType="VARCHAR" property="totout" />
-    <result column="totfee1" jdbcType="VARCHAR" property="totfee1" />
-    <result column="totfee2" jdbcType="VARCHAR" property="totfee2" />
-    <result column="totfee3" jdbcType="VARCHAR" property="totfee3" />
-    <result column="totfee4" jdbcType="VARCHAR" property="totfee4" />
+    <result column="custid" jdbcType="VARCHAR" property="custid" />
+    <result column="datatime" jdbcType="VARCHAR" property="datatime" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="action" jdbcType="VARCHAR" property="action" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -76,8 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, custid, custnm, custdate, carddate, ccarddate, trandate, tottran, totin, totout, 
-    totfee1, totfee2, totfee3, totfee4
+    id, custnm, custid, datatime, channel, action, type
   </sql>
   <select id="selectByExample" parameterType="org.dracula.ht2017g8.po.mybatis.WebTimelineExample" resultMap="BaseResultMap">
     select
@@ -100,16 +92,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.dracula.ht2017g8.po.mybatis.WebTimeline">
-    insert into web_timeline (id, custid, custnm, 
-      custdate, carddate, ccarddate, 
-      trandate, tottran, totin, 
-      totout, totfee1, totfee2, 
-      totfee3, totfee4)
-    values (#{id,jdbcType=INTEGER}, #{custid,jdbcType=VARCHAR}, #{custnm,jdbcType=VARCHAR}, 
-      #{custdate,jdbcType=VARCHAR}, #{carddate,jdbcType=VARCHAR}, #{ccarddate,jdbcType=VARCHAR}, 
-      #{trandate,jdbcType=VARCHAR}, #{tottran,jdbcType=VARCHAR}, #{totin,jdbcType=VARCHAR}, 
-      #{totout,jdbcType=VARCHAR}, #{totfee1,jdbcType=VARCHAR}, #{totfee2,jdbcType=VARCHAR}, 
-      #{totfee3,jdbcType=VARCHAR}, #{totfee4,jdbcType=VARCHAR})
+    insert into web_timeline (id, custnm, custid, 
+      datatime, channel, action, 
+      type)
+    values (#{id,jdbcType=INTEGER}, #{custnm,jdbcType=VARCHAR}, #{custid,jdbcType=VARCHAR}, 
+      #{datatime,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{action,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.dracula.ht2017g8.po.mybatis.WebTimeline">
     insert into web_timeline
@@ -117,88 +105,46 @@
       <if test="id != null">
         id,
       </if>
-      <if test="custid != null">
-        custid,
-      </if>
       <if test="custnm != null">
         custnm,
       </if>
-      <if test="custdate != null">
-        custdate,
+      <if test="custid != null">
+        custid,
       </if>
-      <if test="carddate != null">
-        carddate,
+      <if test="datatime != null">
+        datatime,
       </if>
-      <if test="ccarddate != null">
-        ccarddate,
+      <if test="channel != null">
+        channel,
       </if>
-      <if test="trandate != null">
-        trandate,
+      <if test="action != null">
+        action,
       </if>
-      <if test="tottran != null">
-        tottran,
-      </if>
-      <if test="totin != null">
-        totin,
-      </if>
-      <if test="totout != null">
-        totout,
-      </if>
-      <if test="totfee1 != null">
-        totfee1,
-      </if>
-      <if test="totfee2 != null">
-        totfee2,
-      </if>
-      <if test="totfee3 != null">
-        totfee3,
-      </if>
-      <if test="totfee4 != null">
-        totfee4,
+      <if test="type != null">
+        type,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="custid != null">
-        #{custid,jdbcType=VARCHAR},
-      </if>
       <if test="custnm != null">
         #{custnm,jdbcType=VARCHAR},
       </if>
-      <if test="custdate != null">
-        #{custdate,jdbcType=VARCHAR},
+      <if test="custid != null">
+        #{custid,jdbcType=VARCHAR},
       </if>
-      <if test="carddate != null">
-        #{carddate,jdbcType=VARCHAR},
+      <if test="datatime != null">
+        #{datatime,jdbcType=VARCHAR},
       </if>
-      <if test="ccarddate != null">
-        #{ccarddate,jdbcType=VARCHAR},
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
       </if>
-      <if test="trandate != null">
-        #{trandate,jdbcType=VARCHAR},
+      <if test="action != null">
+        #{action,jdbcType=VARCHAR},
       </if>
-      <if test="tottran != null">
-        #{tottran,jdbcType=VARCHAR},
-      </if>
-      <if test="totin != null">
-        #{totin,jdbcType=VARCHAR},
-      </if>
-      <if test="totout != null">
-        #{totout,jdbcType=VARCHAR},
-      </if>
-      <if test="totfee1 != null">
-        #{totfee1,jdbcType=VARCHAR},
-      </if>
-      <if test="totfee2 != null">
-        #{totfee2,jdbcType=VARCHAR},
-      </if>
-      <if test="totfee3 != null">
-        #{totfee3,jdbcType=VARCHAR},
-      </if>
-      <if test="totfee4 != null">
-        #{totfee4,jdbcType=VARCHAR},
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -214,44 +160,23 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.custid != null">
-        custid = #{record.custid,jdbcType=VARCHAR},
-      </if>
       <if test="record.custnm != null">
         custnm = #{record.custnm,jdbcType=VARCHAR},
       </if>
-      <if test="record.custdate != null">
-        custdate = #{record.custdate,jdbcType=VARCHAR},
+      <if test="record.custid != null">
+        custid = #{record.custid,jdbcType=VARCHAR},
       </if>
-      <if test="record.carddate != null">
-        carddate = #{record.carddate,jdbcType=VARCHAR},
+      <if test="record.datatime != null">
+        datatime = #{record.datatime,jdbcType=VARCHAR},
       </if>
-      <if test="record.ccarddate != null">
-        ccarddate = #{record.ccarddate,jdbcType=VARCHAR},
+      <if test="record.channel != null">
+        channel = #{record.channel,jdbcType=VARCHAR},
       </if>
-      <if test="record.trandate != null">
-        trandate = #{record.trandate,jdbcType=VARCHAR},
+      <if test="record.action != null">
+        action = #{record.action,jdbcType=VARCHAR},
       </if>
-      <if test="record.tottran != null">
-        tottran = #{record.tottran,jdbcType=VARCHAR},
-      </if>
-      <if test="record.totin != null">
-        totin = #{record.totin,jdbcType=VARCHAR},
-      </if>
-      <if test="record.totout != null">
-        totout = #{record.totout,jdbcType=VARCHAR},
-      </if>
-      <if test="record.totfee1 != null">
-        totfee1 = #{record.totfee1,jdbcType=VARCHAR},
-      </if>
-      <if test="record.totfee2 != null">
-        totfee2 = #{record.totfee2,jdbcType=VARCHAR},
-      </if>
-      <if test="record.totfee3 != null">
-        totfee3 = #{record.totfee3,jdbcType=VARCHAR},
-      </if>
-      <if test="record.totfee4 != null">
-        totfee4 = #{record.totfee4,jdbcType=VARCHAR},
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -261,19 +186,12 @@
   <update id="updateByExample" parameterType="map">
     update web_timeline
     set id = #{record.id,jdbcType=INTEGER},
-      custid = #{record.custid,jdbcType=VARCHAR},
       custnm = #{record.custnm,jdbcType=VARCHAR},
-      custdate = #{record.custdate,jdbcType=VARCHAR},
-      carddate = #{record.carddate,jdbcType=VARCHAR},
-      ccarddate = #{record.ccarddate,jdbcType=VARCHAR},
-      trandate = #{record.trandate,jdbcType=VARCHAR},
-      tottran = #{record.tottran,jdbcType=VARCHAR},
-      totin = #{record.totin,jdbcType=VARCHAR},
-      totout = #{record.totout,jdbcType=VARCHAR},
-      totfee1 = #{record.totfee1,jdbcType=VARCHAR},
-      totfee2 = #{record.totfee2,jdbcType=VARCHAR},
-      totfee3 = #{record.totfee3,jdbcType=VARCHAR},
-      totfee4 = #{record.totfee4,jdbcType=VARCHAR}
+      custid = #{record.custid,jdbcType=VARCHAR},
+      datatime = #{record.datatime,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=VARCHAR},
+      action = #{record.action,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
