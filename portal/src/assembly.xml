@@ -26,6 +26,7 @@
             <directory>${project.basedir}/src</directory>
             <includes>
                 <include>Dockerfile</include>
+                <include>deploy-docker.sh</include>
             </includes>
             <outputDirectory>/</outputDirectory>
         </fileSet>
