@@ -2,7 +2,18 @@
 
 ## 启动
 
-### docker 
+### docker 自动
+`mvn package`即得zip包，解开zip包，在Dockerfile一级，执行
+```
+sh deploy-docker.sh
+```
+此命令将
+* 检查，停止，删除旧容器
+* 检查，删除旧镜像
+* 打包新的docker镜像
+* 用新镜像启动新容器
+
+### docker 手动
 #### 要生成docker镜像
 `mvn package`即得zip包，解开zip包，在Dockerfile一级，执行
 ```
@@ -52,5 +63,6 @@ spring-data-jpa
 包含dockerfile
 * h2
 启用h2内存数据库，提高测试效率，减少测试数据对他人影响
+* kotlin
 ## 舍弃的技术点
 * zookeeper+dubbo
