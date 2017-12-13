@@ -2,20 +2,20 @@ package org.dracula.ht2017g8.bo
 
 class WebRateBO{
 
-    private var id: Int? = null
+    var id: Int? = null
 
-    private var curr: String? = null
+    var curr: String? = null
 
-    private var currin: Double? = null
+    var currin: Double? = null
 
-    private var cashin: Double? = null
+    var cashin: Double? = null
 
-    private var currout: Double? = null
+    var currout: Double? = null
 
-    private var cashout: Double? = null
+    var cashout: Double? = null
 
-    private var midrate: Double? = null
+    var midrate: Double? = null
 
-    private var reldate: String? = null
+    var reldate: String? = null
 
 }

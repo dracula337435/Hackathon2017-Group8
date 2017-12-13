@@ -2,76 +2,76 @@ package org.dracula.ht2017g8.bo
 
 class WebCardapplyBO {
 
-    private var id: Int? = null
+    var id: Int? = null
 
-    private var name1: String? = null
+    var name1: String? = null
 
-    private var name2: String? = null
+    var name2: String? = null
 
-    private var pinyin: String? = null
+    var pinyin: String? = null
 
-    private var appellation: String? = null
+    var appellation: String? = null
 
-    private var passno: String? = null
+    var passno: String? = null
 
-    private var education: String? = null
+    var education: String? = null
 
-    private var homeAddress1: String? = null
+    var homeAddress1: String? = null
 
-    private var homeAddress2: String? = null
+    var homeAddress2: String? = null
 
-    private var detailAdd: String? = null
+    var detailAdd: String? = null
 
-    private var homePost: String? = null
+    var homePost: String? = null
 
-    private var residenceYear: String? = null
+    var residenceYear: String? = null
 
-    private var residenceType: String? = null
+    var residenceType: String? = null
 
-    private var phone: String? = null
+    var phone: String? = null
 
-    private var mobilePhone: String? = null
+    var mobilePhone: String? = null
 
-    private var familyNameMum: String? = null
+    var familyNameMum: String? = null
 
-    private var wkname: String? = null
+    var wkname: String? = null
 
-    private var wkAddress1: String? = null
+    var wkAddress1: String? = null
 
-    private var wkAddress2: String? = null
+    var wkAddress2: String? = null
 
-    private var detailWkAdd: String? = null
+    var detailWkAdd: String? = null
 
-    private var wkPost: String? = null
+    var wkPost: String? = null
 
-    private var wkPhone: String? = null
+    var wkPhone: String? = null
 
-    private var professionType: String? = null
+    var professionType: String? = null
 
-    private var economicType: String? = null
+    var economicType: String? = null
 
-    private var title: String? = null
+    var title: String? = null
 
-    private var worktimeYear: String? = null
+    var worktimeYear: String? = null
 
-    private var totIncome: String? = null
+    var totIncome: String? = null
 
-    private var connectionPerson: String? = null
+    var connectionPerson: String? = null
 
-    private var relationship: String? = null
+    var relationship: String? = null
 
-    private var conPersonWkname: String? = null
+    var conPersonWkname: String? = null
 
-    private var conPersonPhone: String? = null
+    var conPersonPhone: String? = null
 
-    private var conPersonMobile: String? = null
+    var conPersonMobile: String? = null
 
-    private var accountSendType: String? = null
+    var accountSendType: String? = null
 
-    private var email: String? = null
+    var email: String? = null
 
-    private var sendAddress: String? = null
+    var sendAddress: String? = null
 
-    private var needPwd: String? = null
+    var needPwd: String? = null
 
 }
