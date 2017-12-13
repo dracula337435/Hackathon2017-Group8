@@ -1,5 +1,8 @@
 package org.dracula.ht2017g8.service.impl;
 
+import org.dracula.ht2017g8.bo_othersys.PayLoadsBO;
+import org.dracula.ht2017g8.service.impl.util.Json;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,9 +12,7 @@ import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ModelServiceImpl {
 
@@ -127,6 +128,36 @@ public class ModelServiceImpl {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static String getRequiredJson(Object... boList){
+        String rslt = null;
+        if(boList != null && boList.length > 0){
+            PayLoadsBO payLoadsBO = new PayLoadsBO();
+            Map<String, String> tmpMap = null;
+            //
+            List<String> fieldsList = new LinkedList<>();
+            payLoadsBO.setFields(fieldsList);
+            boolean is1stElement = true;
+            //
+            List<List<String>> valueListList = new LinkedList<>();
+            for(Object bo: boList){
+                String tmp = Json.getJsonString(bo);
+                tmpMap = Json.readJsonAsMap(tmp, String.class, String.class);
+                List<String> valueList = new LinkedList<>();
+                for(String key: tmpMap.keySet()){
+                    valueList.add(tmpMap.get(key));
+                    if(is1stElement){
+                        fieldsList.add(key);
+                    }
+                }
+                is1stElement = false;
+                valueListList.add(valueList);
+            }
+            payLoadsBO.setValues(valueListList);
+            return Json.getJsonString(payLoadsBO);
+        }
+        return rslt;
     }
 
     public String getWml_service_credentials_url() {
