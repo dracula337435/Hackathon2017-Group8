@@ -21,6 +21,8 @@ public class ModelServiceImpl {
 
     private String wml_service_credentials_password;
 
+    private String wml_service_scoringUrl;
+
     private boolean useProxy;
 
     private String proxyIP;
@@ -65,7 +67,7 @@ public class ModelServiceImpl {
                 jsonString.append(line);
             }
             // Scoring request
-            URL scoringUrl = new URL("https://ibm-watson-ml.mybluemix.net/v3/wml_instances/edbdeb87-218e-4faa-a403-6f418dfc9dd2/published_models/fe1d6cc3-3898-4cff-a979-c19e12010edb/deployments/87f41e76-007c-4437-b8d2-82fa93e571df/online");
+            URL scoringUrl = new URL(wml_service_scoringUrl);
             String wml_token = "Bearer " +
                     jsonString.toString()
                             .replace("\"","")
@@ -173,5 +175,13 @@ public class ModelServiceImpl {
 
     public void setProxyPort(int proxyPort) {
         this.proxyPort = proxyPort;
+    }
+
+    public String getWml_service_scoringUrl() {
+        return wml_service_scoringUrl;
+    }
+
+    public void setWml_service_scoringUrl(String wml_service_scoringUrl) {
+        this.wml_service_scoringUrl = wml_service_scoringUrl;
     }
 }

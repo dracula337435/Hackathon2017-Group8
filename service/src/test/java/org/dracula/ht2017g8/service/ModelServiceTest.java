@@ -16,6 +16,7 @@ public class ModelServiceTest {
         modelService.setWml_service_credentials_url("https://ibm-watson-ml.mybluemix.net");
         modelService.setWml_service_credentials_username("793ddab0-5897-4f74-b20e-dfd0d175b25e");
         modelService.setWml_service_credentials_password("f2d6e707-0b44-4c3b-a1b2-bdfdde1e1887");
+        modelService.setWml_service_scoringUrl("https://ibm-watson-ml.mybluemix.net/v3/wml_instances/edbdeb87-218e-4faa-a403-6f418dfc9dd2/published_models/fe1d6cc3-3898-4cff-a979-c19e12010edb/deployments/87f41e76-007c-4437-b8d2-82fa93e571df/online");
         modelService.setUseProxy(true);
         modelService.setProxyIP("127.0.0.1");
         modelService.setProxyPort(50374);
