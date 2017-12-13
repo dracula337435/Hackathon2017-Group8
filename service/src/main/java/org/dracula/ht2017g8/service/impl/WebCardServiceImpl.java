@@ -9,8 +9,10 @@ import org.dracula.ht2017g8.po.mybatis.WebCardExample;
 import org.dracula.ht2017g8.service.WebCardService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Component
@@ -25,7 +27,7 @@ public class WebCardServiceImpl implements WebCardService {
         WebCardExample.Criteria webCardExampleCriteria = webCardExample.createCriteria();
         webCardExampleCriteria.andIdEqualTo(id);
         CommonBO<WebCardBO> webCardBOCommonBO = new CommonBO<>();
-        List<WebCard> webCards = webCardMapper.selectByExample(webCardExample);
+        List<WebCard> webCards = webCardMapper.selectByExampleWithBLOBs(webCardExample);
         if(webCards !=null && webCards.size() >0){
             WebCard webCard = webCards.get(0);
             WebCardBO webCardBO = new WebCardBO();
@@ -39,4 +41,29 @@ public class WebCardServiceImpl implements WebCardService {
         }
     }
 
+    @Override
+    public CommonBO<List<WebCardBO>> getSome(int limit) {
+        WebCardExample webCardExample = new WebCardExample();
+        webCardExample.setOrderByClause("id");
+        List<WebCard> webCards = webCardMapper.selectByExampleWithBLOBs(webCardExample);
+        CommonBO<List<WebCardBO>> rslt = new CommonBO<>();
+        List<WebCardBO> list = new LinkedList<>();
+        if(webCards != null && webCards.size()>0){
+            int size = webCards.size();
+            if(size < limit)
+                limit = size;
+            for(int i=0; i<limit; i++){
+                WebCard po = webCards.get(i);
+                WebCardBO bo = new WebCardBO();
+                BeanUtils.copyProperties(po, bo);
+                list.add(bo);
+            }
+            rslt.setData(list);
+            rslt.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
+            return rslt;
+        }else{
+            rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00016);
+            return rslt;
+        }
+    }
 }

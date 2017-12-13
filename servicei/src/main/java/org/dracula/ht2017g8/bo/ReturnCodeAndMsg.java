@@ -18,7 +18,9 @@ public enum ReturnCodeAndMsg {
     FAIL_00012("00013", "未能查询到web_busintro信息"),
     FAIL_00013("00013", "查询客户web_busintro信息，后台异常，service向portal返回null"),
     FAIL_00014("00014", "未能查询到web_rate信息"),
-    FAIL_00015("00015", "查询客户web_rate信息，后台异常，service向portal返回null")
+    FAIL_00015("00015", "查询客户web_rate信息，后台异常，service向portal返回null"),
+    FAIL_00016("00016", "未能检索到web_card信息"),
+    FAIL_00017("00017", "查询web_card信息，后台异常，service向portal返回null")
     ;
 
     ReturnCodeAndMsg(String code, String msg){

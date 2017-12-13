@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class WebCardController {
 
@@ -33,6 +35,18 @@ public class WebCardController {
             CommonBO<WebCardBO> rslt = new CommonBO<>();
             rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00008);
             return rslt;
+        }
+    }
+
+    @RequestMapping(value="/web_card", method=RequestMethod.GET)
+    public CommonBO<List<WebCardBO>> getSome(){
+        CommonBO<List<WebCardBO>> listCommonBO = webCardService.getSome(8);
+        if(listCommonBO != null){
+            return listCommonBO;
+        }else{
+            listCommonBO = new CommonBO<>();
+            listCommonBO.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00006);
+            return listCommonBO;
         }
     }
 
