@@ -18,6 +18,8 @@ public class WebCustomer_BaseVO {
 
     private String house;
 
+    private String account;
+
     public String getCustnm() {
         return custnm;
     }
@@ -80,5 +82,13 @@ public class WebCustomer_BaseVO {
 
     public void setHouse(String house) {
         this.house = house;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 }

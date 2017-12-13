@@ -122,6 +122,8 @@ public class WebCustomerBO {
 
     private String prodetial;
 
+    private String account;
+
     public Integer getId() {
         return id;
     }
@@ -600,5 +602,13 @@ public class WebCustomerBO {
 
     public void setProdetial(String prodetial) {
         this.prodetial = prodetial;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 }

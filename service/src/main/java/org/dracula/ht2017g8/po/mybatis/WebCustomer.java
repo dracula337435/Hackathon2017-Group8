@@ -121,6 +121,8 @@ public class WebCustomer {
 
     private String prodetial;
 
+    private String account;
+
     public Integer getId() {
         return id;
     }
@@ -599,5 +601,13 @@ public class WebCustomer {
 
     public void setProdetial(String prodetial) {
         this.prodetial = prodetial == null ? null : prodetial.trim();
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account == null ? null : account.trim();
     }
 }
