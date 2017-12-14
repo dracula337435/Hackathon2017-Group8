@@ -2,6 +2,7 @@ package org.dracula.ht2017g8.service.impl;
 
 import org.dracula.ht2017g8.bo_othersys.PayLoadsBO;
 import org.dracula.ht2017g8.service.impl.util.Json;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,18 +17,25 @@ import java.util.*;
 
 public class ModelServiceImpl {
 
+    @Value("predict.auth.url")
     private String wml_service_credentials_url;
 
+    @Value("predict.auth.username")
     private String wml_service_credentials_username;
 
+    @Value("predict.auth.password")
     private String wml_service_credentials_password;
 
+    @Value("predict.scoringUrl")
     private String wml_service_scoringUrl;
 
+    @Value("predict.proxy.switch")
     private boolean useProxy;
 
+    @Value("10.64.218.19")
     private String proxyIP;
 
+    @Value("57411")
     private int proxyPort;
 
     public String predict(String payload){
