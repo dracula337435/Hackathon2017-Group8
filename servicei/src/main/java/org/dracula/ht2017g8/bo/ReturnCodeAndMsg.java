@@ -28,7 +28,8 @@ public enum ReturnCodeAndMsg {
     FAIL_00022("00022", "mybluemix返回登录token，解析出错，需要检查用户名密码，或检查最新的登录token格式"),
     FAIL_00023("00023", "连接模型的restful出错，需要检查scoring-url或代理设置，或检查网络情况"),
     FAIL_00024("00024", "连接模型进行预测部分，意外错误，需要查看日志"),
-    FAIL_00025("00025", "model向predict返回null")
+    FAIL_00025("00025", "model向predict返回null"),
+    FAIL_00026("00026", "预测信用卡推荐，service向portal返回null")
     ;
 
     ReturnCodeAndMsg(String code, String msg){
