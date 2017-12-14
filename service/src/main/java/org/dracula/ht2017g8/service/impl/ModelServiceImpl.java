@@ -41,62 +41,31 @@ public class ModelServiceImpl implements ModelService {
     @Value("${predict.proxy.port}")
     private int proxyPort;
 
+    private long lastAuthTimeMilli = -1;
+
+    private long maxBetweenAuth = 3600*1000;
+
+    private String lastAuthToken;
+
     public CommonBO<String> predict(String payload){
 
         CommonBO<String> rslt = new CommonBO<>();
-
-        // NOTE: you must manually construct wml_credentials hash map below
-        // using information retrieved from your IBM Cloud Watson Machine Learning Service instance
-        Map<String, String> wml_credentials = new HashMap<String, String>()
-        {{
-            put("url", wml_service_credentials_url);
-            put("username", wml_service_credentials_username);
-            put("password", wml_service_credentials_password);
-        }};
-        String wml_auth_header = "Basic " +
-                Base64.getEncoder().encodeToString((wml_credentials.get("username") + ":" +
-                        wml_credentials.get("password")).getBytes(StandardCharsets.UTF_8));
-        String wml_url = wml_credentials.get("url") + "/v3/identity/token";
-        HttpURLConnection tokenConnection = null;
         HttpURLConnection scoringConnection = null;
-        BufferedReader tokenBuffer = null;
         BufferedReader scoringBuffer = null;
         try {
             // Getting WML token
-            try {
-                URL tokenUrl = new URL(wml_url);
-                if(useProxy) {
-                    Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyIP, proxyPort));
-                    tokenConnection = (HttpURLConnection) tokenUrl.openConnection(proxy);
+            String wml_token;
+            CommonBO<String> tokenCommonBO = getAuth();
+            if(tokenCommonBO != null){
+                if(! ReturnCodeAndMsg.SUCCESS.getCode().equals(tokenCommonBO.getCode())){
+                    wml_token = tokenCommonBO.getData();
                 }else{
-                    tokenConnection = (HttpURLConnection) tokenUrl.openConnection();
+                    return tokenCommonBO;
                 }
-                tokenConnection.setDoInput(true);
-                tokenConnection.setDoOutput(true);
-                tokenConnection.setRequestMethod("GET");
-                tokenConnection.setRequestProperty("Authorization", wml_auth_header);
-                tokenBuffer = new BufferedReader(new InputStreamReader(tokenConnection.getInputStream()));
-            } catch (IOException e) {
-                e.printStackTrace();
-                rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00021);
-                return rslt;
-            }
-            StringBuffer jsonString = new StringBuffer();
-            String line;
-            while ((line = tokenBuffer.readLine()) != null) {
-                jsonString.append(line);
-            }
-            String wml_token = null;
-            try {
-                wml_token = "Bearer " +
-                        jsonString.toString()
-                                .replace("\"","")
-                                .replace("}", "")
-                                .split(":")[1];
-            } catch (Exception e) {
-                e.printStackTrace();
-                rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00022);
-                return rslt;
+            }else{
+                CommonBO<String> tmpRslt = new CommonBO<>();
+                tmpRslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00008);
+                return tmpRslt;
             }
             // Scoring request
             try {
@@ -141,16 +110,6 @@ public class ModelServiceImpl implements ModelService {
             return rslt;
         }
         finally {
-            if (tokenConnection != null) {
-                tokenConnection.disconnect();
-            }
-            try {
-                if (tokenBuffer != null) {
-                    tokenBuffer.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             if (scoringConnection != null) {
                 scoringConnection.disconnect();
             }
@@ -161,6 +120,94 @@ public class ModelServiceImpl implements ModelService {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private CommonBO<String> getAuth(){
+        if(System.currentTimeMillis() - lastAuthTimeMilli >= maxBetweenAuth){
+            return getAuth0();
+        }else{
+            CommonBO<String> rslt = new CommonBO();
+            rslt.setData(lastAuthToken);
+            return rslt;
+        }
+    }
+
+    private CommonBO<String> getAuth0(){
+
+        CommonBO<String> rslt = new CommonBO<>();
+
+        // NOTE: you must manually construct wml_credentials hash map below
+        // using information retrieved from your IBM Cloud Watson Machine Learning Service instance
+        Map<String, String> wml_credentials = new HashMap<String, String>()
+        {{
+            put("url", wml_service_credentials_url);
+            put("username", wml_service_credentials_username);
+            put("password", wml_service_credentials_password);
+        }};
+        String wml_auth_header = "Basic " +
+                Base64.getEncoder().encodeToString((wml_credentials.get("username") + ":" +
+                        wml_credentials.get("password")).getBytes(StandardCharsets.UTF_8));
+        String wml_url = wml_credentials.get("url") + "/v3/identity/token";
+        HttpURLConnection tokenConnection = null;
+        BufferedReader tokenBuffer = null;
+
+        try {
+            URL tokenUrl = new URL(wml_url);
+            if(useProxy) {
+                Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyIP, proxyPort));
+                tokenConnection = (HttpURLConnection) tokenUrl.openConnection(proxy);
+            }else{
+                tokenConnection = (HttpURLConnection) tokenUrl.openConnection();
+            }
+            tokenConnection.setDoInput(true);
+            tokenConnection.setDoOutput(true);
+            tokenConnection.setRequestMethod("GET");
+            tokenConnection.setRequestProperty("Authorization", wml_auth_header);
+            tokenBuffer = new BufferedReader(new InputStreamReader(tokenConnection.getInputStream()));
+        } catch (IOException e) {
+            e.printStackTrace();
+            rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00021);
+            return rslt;
+        }
+        StringBuffer jsonString = new StringBuffer();
+        String line;
+        try {
+            while ((line = tokenBuffer.readLine()) != null) {
+                jsonString.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally{
+            if (tokenConnection != null) {
+                tokenConnection.disconnect();
+            }
+            try {
+                if (tokenBuffer != null) {
+                    tokenBuffer.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        String wml_token = null;
+        try {
+            wml_token = "Bearer " +
+                    jsonString.toString()
+                            .replace("\"","")
+                            .replace("}", "")
+                            .split(":")[1];
+            //
+            lastAuthToken = wml_token;
+            lastAuthTimeMilli = System.currentTimeMillis();
+            //
+            rslt.setData(wml_token);
+            rslt.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
+            return rslt;
+        } catch (Exception e) {
+            e.printStackTrace();
+            rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00022);
+            return rslt;
         }
     }
 

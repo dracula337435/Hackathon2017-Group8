@@ -6,6 +6,7 @@ import org.dracula.ht2017g8.bo_othersys.CardPredictBO;
 import org.dracula.ht2017g8.dao.mybatis.WebCustapplyMapper;
 import org.dracula.ht2017g8.po.mybatis.WebCustapply;
 import org.dracula.ht2017g8.po.mybatis.WebCustapplyExample;
+import org.dracula.ht2017g8.service.ModelService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,7 @@ public class PredictionServiceImpl {
     private WebCustapplyMapper webCustapplyMappler;
 
     @Autowired
-    private ModelServiceImpl modelService;
+    private ModelService modelService;
 
     public CommonBO<String> predict(String custId){
         CommonBO<String> rslt = new CommonBO<>();

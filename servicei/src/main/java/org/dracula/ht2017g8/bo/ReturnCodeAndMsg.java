@@ -29,7 +29,8 @@ public enum ReturnCodeAndMsg {
     FAIL_00023("00023", "连接模型的restful出错，需要检查scoring-url或代理设置，或检查网络情况"),
     FAIL_00024("00024", "连接模型进行预测部分，意外错误，需要查看日志"),
     FAIL_00025("00025", "model向predict返回null"),
-    FAIL_00026("00026", "预测信用卡推荐，service向portal返回null")
+    FAIL_00026("00026", "预测信用卡推荐，service向portal返回null"),
+    FAIL_00027("00027", "预测信用卡推荐，得到的token返回对象为null，意外错误")
     ;
 
     ReturnCodeAndMsg(String code, String msg){
