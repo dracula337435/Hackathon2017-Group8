@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 @Configuration
 public class DataSourceConfig {
 
-    @Value("db.ip&port")
+    @Value("${db.ip&port}")
     private String db_ip_port;
 
     @Bean

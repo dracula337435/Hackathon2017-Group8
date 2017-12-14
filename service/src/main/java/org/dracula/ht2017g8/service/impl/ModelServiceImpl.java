@@ -20,25 +20,25 @@ import java.util.*;
 
 public class ModelServiceImpl implements ModelService {
 
-    @Value("predict.auth.url")
+    @Value("${predict.auth.url}")
     private String wml_service_credentials_url;
 
-    @Value("predict.auth.username")
+    @Value("${predict.auth.username}")
     private String wml_service_credentials_username;
 
-    @Value("predict.auth.password")
+    @Value("${predict.auth.password}")
     private String wml_service_credentials_password;
 
-    @Value("predict.scoringUrl")
+    @Value("${predict.scoringUrl}")
     private String wml_service_scoringUrl;
 
-    @Value("predict.proxy.switch")
+    @Value("${predict.proxy.switch}")
     private boolean useProxy;
 
-    @Value("10.64.218.19")
+    @Value("${predict.proxy.ip}")
     private String proxyIP;
 
-    @Value("57411")
+    @Value("${predict.proxy.port}")
     private int proxyPort;
 
     public CommonBO<String> predict(String payload){
