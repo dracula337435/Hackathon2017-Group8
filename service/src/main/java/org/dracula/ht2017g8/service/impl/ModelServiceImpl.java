@@ -1,6 +1,9 @@
 package org.dracula.ht2017g8.service.impl;
 
+import org.dracula.ht2017g8.bo.CommonBO;
+import org.dracula.ht2017g8.bo.ReturnCodeAndMsg;
 import org.dracula.ht2017g8.bo_othersys.PayLoadsBO;
+import org.dracula.ht2017g8.service.ModelService;
 import org.dracula.ht2017g8.service.impl.util.Json;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -15,7 +18,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class ModelServiceImpl {
+public class ModelServiceImpl implements ModelService {
 
     @Value("predict.auth.url")
     private String wml_service_credentials_url;
@@ -38,7 +41,9 @@ public class ModelServiceImpl {
     @Value("57411")
     private int proxyPort;
 
-    public String predict(String payload){
+    public CommonBO<String> predict(String payload){
+
+        CommonBO<String> rslt = new CommonBO<>();
 
         // NOTE: you must manually construct wml_credentials hash map below
         // using information retrieved from your IBM Cloud Watson Machine Learning Service instance
@@ -58,61 +63,82 @@ public class ModelServiceImpl {
         BufferedReader scoringBuffer = null;
         try {
             // Getting WML token
-            URL tokenUrl = new URL(wml_url);
-            if(useProxy) {
-                Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyIP, proxyPort));
-                tokenConnection = (HttpURLConnection) tokenUrl.openConnection(proxy);
-            }else{
-                tokenConnection = (HttpURLConnection) tokenUrl.openConnection();
+            try {
+                URL tokenUrl = new URL(wml_url);
+                if(useProxy) {
+                    Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyIP, proxyPort));
+                    tokenConnection = (HttpURLConnection) tokenUrl.openConnection(proxy);
+                }else{
+                    tokenConnection = (HttpURLConnection) tokenUrl.openConnection();
+                }
+                tokenConnection.setDoInput(true);
+                tokenConnection.setDoOutput(true);
+                tokenConnection.setRequestMethod("GET");
+                tokenConnection.setRequestProperty("Authorization", wml_auth_header);
+                tokenBuffer = new BufferedReader(new InputStreamReader(tokenConnection.getInputStream()));
+            } catch (IOException e) {
+                e.printStackTrace();
+                rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00021);
+                return rslt;
             }
-            tokenConnection.setDoInput(true);
-            tokenConnection.setDoOutput(true);
-            tokenConnection.setRequestMethod("GET");
-            tokenConnection.setRequestProperty("Authorization", wml_auth_header);
-            tokenBuffer = new BufferedReader(new InputStreamReader(tokenConnection.getInputStream()));
             StringBuffer jsonString = new StringBuffer();
             String line;
             while ((line = tokenBuffer.readLine()) != null) {
                 jsonString.append(line);
             }
-            // Scoring request
-            URL scoringUrl = new URL(wml_service_scoringUrl);
-            String wml_token = "Bearer " +
-                    jsonString.toString()
-                            .replace("\"","")
-                            .replace("}", "")
-                            .split(":")[1];
-            if(useProxy){
-                Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyIP, proxyPort));
-                scoringConnection = (HttpURLConnection) scoringUrl.openConnection(proxy);
-            }else{
-                scoringConnection = (HttpURLConnection) scoringUrl.openConnection();
+            String wml_token = null;
+            try {
+                wml_token = "Bearer " +
+                        jsonString.toString()
+                                .replace("\"","")
+                                .replace("}", "")
+                                .split(":")[1];
+            } catch (Exception e) {
+                e.printStackTrace();
+                rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00022);
+                return rslt;
             }
+            // Scoring request
+            try {
+                URL scoringUrl = new URL(wml_service_scoringUrl);
+                if(useProxy){
+                    Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyIP, proxyPort));
+                    scoringConnection = (HttpURLConnection) scoringUrl.openConnection(proxy);
+                }else{
+                    scoringConnection = (HttpURLConnection) scoringUrl.openConnection();
+                }
 
-            scoringConnection.setDoInput(true);
-            scoringConnection.setDoOutput(true);
-            scoringConnection.setRequestMethod("POST");
-            scoringConnection.setRequestProperty("Accept", "application/json");
-            scoringConnection.setRequestProperty("Authorization", wml_token);
-            scoringConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-            OutputStreamWriter writer = new OutputStreamWriter(scoringConnection.getOutputStream(), "UTF-8");
+                scoringConnection.setDoInput(true);
+                scoringConnection.setDoOutput(true);
+                scoringConnection.setRequestMethod("POST");
+                scoringConnection.setRequestProperty("Accept", "application/json");
+                scoringConnection.setRequestProperty("Authorization", wml_token);
+                scoringConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                OutputStreamWriter writer = new OutputStreamWriter(scoringConnection.getOutputStream(), "UTF-8");
 
-            // NOTE: manually define and pass the array(s) of values to be scored in the next line
-            writer.write(payload);
-            writer.close();
+                // NOTE: manually define and pass the array(s) of values to be scored in the next line
+                writer.write(payload);
+                writer.close();
 
-            scoringBuffer = new BufferedReader(new InputStreamReader(scoringConnection.getInputStream()));
+                scoringBuffer = new BufferedReader(new InputStreamReader(scoringConnection.getInputStream()));
+            } catch (IOException e) {
+                e.printStackTrace();
+                rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00007);
+            }
             StringBuffer jsonStringScoring = new StringBuffer();
             String lineScoring;
             while ((lineScoring = scoringBuffer.readLine()) != null) {
                 jsonStringScoring.append(lineScoring);
             }
-            return jsonStringScoring.toString();
+            rslt.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
+            rslt.setData(jsonStringScoring.toString());
+            return rslt;
         } catch (IOException e) {
             System.out.println("The URL is not valid.");
             System.out.println(e.getMessage());
             e.printStackTrace();
-            return null;
+            rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00024);
+            return rslt;
         }
         finally {
             if (tokenConnection != null) {

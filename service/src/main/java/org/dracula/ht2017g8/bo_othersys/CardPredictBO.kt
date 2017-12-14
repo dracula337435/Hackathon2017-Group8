@@ -1,4 +1,4 @@
-package org.dracula.ht2017g8.service
+package org.dracula.ht2017g8.bo_othersys
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

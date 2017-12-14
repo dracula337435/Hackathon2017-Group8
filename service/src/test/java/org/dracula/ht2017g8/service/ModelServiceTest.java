@@ -1,5 +1,7 @@
 package org.dracula.ht2017g8.service;
 
+import org.dracula.ht2017g8.bo.CommonBO;
+import org.dracula.ht2017g8.bo_othersys.CardPredictBO;
 import org.dracula.ht2017g8.service.impl.ModelServiceImpl;
 import org.junit.Test;
 
@@ -20,8 +22,8 @@ public class ModelServiceTest {
         modelService.setUseProxy(true);
         modelService.setProxyIP("10.64.218.19");
         modelService.setProxyPort(57411);
-        String prediction = modelService.predict(payload);
-        System.out.println(prediction);
+        CommonBO<String> stringCommonBO = modelService.predict(payload);
+        System.out.println(stringCommonBO);
     }
 
     @Test
@@ -44,8 +46,8 @@ public class ModelServiceTest {
         modelService.setProxyIP("10.64.218.19");
         modelService.setProxyPort(57411);
         //
-        String prediction = modelService.predict(payload);
-        System.out.println(prediction);
+        CommonBO<String> stringCommonBO = modelService.predict(payload);
+        System.out.println(stringCommonBO);
     }
 
     @Test
