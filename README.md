@@ -3,7 +3,7 @@
 ## 启动
 
 ### docker 自动
-`mvn package`即得zip包，解开zip包，在Dockerfile一级，执行
+`mvn package`即得zip包，解开zip包，在<zip包下项目一层>/docker一级，执行
 ```
 sh deploy-docker.sh
 ```
@@ -15,7 +15,7 @@ sh deploy-docker.sh
 
 ### docker 手动
 #### 要生成docker镜像
-`mvn package`即得zip包，解开zip包，在Dockerfile一级，执行
+`mvn package`即得zip包，解开zip包，在<zip包下项目一层>一级，执行
 ```
 sudo docker build -t <镜像全名> .
 ```

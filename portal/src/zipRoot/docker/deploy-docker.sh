@@ -49,6 +49,7 @@ echo "[INFO] 制作新镜像"
 DOCKER_IMAGE_FULL_NAME=$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION
 echo $DOCKER_IMAGE_FULL_NAME
 echo "[INFO] 新镜像全名"
+cd ..
 sudo docker build -t $DOCKER_IMAGE_FULL_NAME .
 echo "[INFO] 用上述镜像启动容器"
 sudo docker run -d -p 20080:9080 $DOCKER_IMAGE_FULL_NAME

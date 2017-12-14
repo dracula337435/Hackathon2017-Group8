@@ -23,12 +23,7 @@
             <fileMode>0755</fileMode>
         </fileSet>
         <fileSet>
-            <directory>${project.basedir}/src</directory>
-            <includes>
-                <include>Dockerfile</include>
-                <include>deploy-docker.sh</include>
-                <include>sudo-pswd.txt</include>
-            </includes>
+            <directory>${project.basedir}/src/zipRoot</directory>
             <outputDirectory>/</outputDirectory>
         </fileSet>
     </fileSets>
