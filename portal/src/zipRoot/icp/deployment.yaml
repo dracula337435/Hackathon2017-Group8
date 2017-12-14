@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: "portal"
+#修改到对应team的namespace
+  namespace: team8
+spec:
+#定义副本数
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "portal"
+    spec:
+      containers:
+      - env:
+#请在下方加入需要的环境变量
+        - name: SOME_ENV_NAME
+          value: "some-value"
+        name: portal
+        image: 172.16.100.16:5005/guanxiaokang/ht2017team8-portal
+        ports:
+#请在下方加入需要的端口，注意写清协议
+        - containerPort: 9080
+          name: portal
+          protocol: TCP
+#以下这一行请勿动
+      imagePullSecrets:
+      - name: gitlab.registrykey
