@@ -54,4 +54,15 @@ public class WebCustomerController {
         }
     }
 
+    @RequestMapping(value="/web_customer/{custId}/complete_info", method= RequestMethod.GET)
+    public CommonBO<WebCustomerBO> getByCustIdCompleteInfo(@PathVariable("custId") String custId){
+        CommonBO<WebCustomerBO> customerBOCommonBO = webCustomerService.getByCustId(custId);
+        if(customerBOCommonBO != null){
+            return customerBOCommonBO;
+        }else{
+            customerBOCommonBO.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00018);
+            return customerBOCommonBO;
+        }
+    }
+
 }
