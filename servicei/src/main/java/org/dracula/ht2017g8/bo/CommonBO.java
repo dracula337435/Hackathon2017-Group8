@@ -36,4 +36,13 @@ public class CommonBO<DataType> {
         setCode(codeAndMsg.getCode());
         setMsg(codeAndMsg.getMsg());
     }
+
+    @Override
+    public String toString() {
+        return "CommonBO{" +
+                "code='" + code + '\'' +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }
