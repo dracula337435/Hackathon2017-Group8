@@ -7,6 +7,7 @@ import org.dracula.ht2017g8.dao.mybatis.WebCustapplyMapper;
 import org.dracula.ht2017g8.po.mybatis.WebCustapply;
 import org.dracula.ht2017g8.po.mybatis.WebCustapplyExample;
 import org.dracula.ht2017g8.service.ModelService;
+import org.dracula.ht2017g8.service.PredictionService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class PredictionServiceImpl {
+public class PredictionServiceImpl implements PredictionService {
 
     @Autowired
     private WebCustapplyMapper webCustapplyMappler;
@@ -22,6 +23,7 @@ public class PredictionServiceImpl {
     @Autowired
     private ModelService modelService;
 
+    @Override
     public CommonBO<String> predict(String custId){
         CommonBO<String> rslt = new CommonBO<>();
         WebCustapplyExample example = new WebCustapplyExample();

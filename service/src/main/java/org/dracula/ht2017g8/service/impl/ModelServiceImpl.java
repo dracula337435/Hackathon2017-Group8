@@ -6,6 +6,7 @@ import org.dracula.ht2017g8.bo_othersys.PayLoadsBO;
 import org.dracula.ht2017g8.service.ModelService;
 import org.dracula.ht2017g8.service.impl.util.Json;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+@Component
 public class ModelServiceImpl implements ModelService {
 
     @Value("${predict.auth.url}")
