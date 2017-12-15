@@ -67,5 +67,6 @@ spring-boot-admin及server带来的静态资源问题
 启用h2内存数据库，提高测试效率，减少测试数据对他人影响
 * kotlin
 和java的混合编译，先kotlin，多了kotlin文件夹
+
 ## 舍弃的技术点
 * zookeeper+dubbo
