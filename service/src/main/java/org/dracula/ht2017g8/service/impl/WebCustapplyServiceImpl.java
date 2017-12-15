@@ -29,8 +29,9 @@ public class WebCustapplyServiceImpl implements WebCustapplyService {
         List<WebCustapply> webCustapplies = webCustapplyMapper.selectByExample(example);
         if(webCustapplies != null && webCustapplies.size() >0 ){
             WebCustapply po = webCustapplies.get(0);
-            CardPredictBO bo = new CardPredictBO();
+            WebCustapplyBO bo = new WebCustapplyBO();
             BeanUtils.copyProperties(po, bo);
+            rslt.setData(bo);
             rslt.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
             return rslt;
         }else{
