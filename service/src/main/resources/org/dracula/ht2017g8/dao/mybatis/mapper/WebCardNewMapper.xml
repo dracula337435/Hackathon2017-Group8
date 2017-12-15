@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dracula.ht2017g8.dao.mybatis.WebCardNewMapper">
+
+    <resultMap id="BaseResultMap" type="org.dracula.ht2017g8.po.mybatis.WebCard">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="card_code" jdbcType="VARCHAR" property="cardCode" />
+        <result column="pro_name" jdbcType="VARCHAR" property="proName" />
+        <result column="pic_link" jdbcType="VARCHAR" property="picLink" />
+        <result column="pro_introduct" jdbcType="LONGVARCHAR" property="proIntroduct" />
+    </resultMap>
+
+    <select id="getByProduct" resultMap="BaseResultMap">
+        SELECT a.*
+        FROM web_card a
+        JOIN web_cardmap b
+        ON a.`card_code`=b.`cardname`
+        WHERE b.`prolinename`=#{product}
+    </select>
+
+</mapper>

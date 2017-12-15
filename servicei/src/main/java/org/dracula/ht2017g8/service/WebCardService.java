@@ -11,4 +11,6 @@ public interface WebCardService {
 
     CommonBO<List<WebCardBO>> getSome(int limit);
 
+    CommonBO<List<WebCardBO>> getByProduct(String product);
+
 }

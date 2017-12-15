@@ -4,12 +4,12 @@ import org.dracula.ht2017g8.bo.CommonBO;
 import org.dracula.ht2017g8.bo.ReturnCodeAndMsg;
 import org.dracula.ht2017g8.bo.WebCardBO;
 import org.dracula.ht2017g8.dao.mybatis.WebCardMapper;
+import org.dracula.ht2017g8.dao.mybatis.WebCardNewMapper;
 import org.dracula.ht2017g8.po.mybatis.WebCard;
 import org.dracula.ht2017g8.po.mybatis.WebCardExample;
 import org.dracula.ht2017g8.service.WebCardService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
@@ -20,6 +20,9 @@ public class WebCardServiceImpl implements WebCardService {
 
     @Autowired
     private WebCardMapper webCardMapper;
+
+    @Autowired
+    private WebCardNewMapper webCardNewMapper;
 
     @Override
     public CommonBO<WebCardBO> getById(Integer id) {
@@ -64,6 +67,26 @@ public class WebCardServiceImpl implements WebCardService {
         }else{
             rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00016);
             return rslt;
+        }
+    }
+
+    @Override
+    public CommonBO<List<WebCardBO>> getByProduct(String product) {
+        CommonBO<List<WebCardBO>> listCommonBO = new CommonBO<>();
+        List<WebCard> poList = webCardNewMapper.getByProduct(product);
+        if(poList != null && poList.size() > 0){
+            List<WebCardBO> boList = new LinkedList<>();
+            for(WebCard po: poList){
+                WebCardBO bo = new WebCardBO();
+                BeanUtils.copyProperties(po, bo);
+                boList.add(bo);
+            }
+            listCommonBO.setData(boList);
+            listCommonBO.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
+            return listCommonBO;
+        }else{
+            listCommonBO.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00030);
+            return listCommonBO;
         }
     }
 }

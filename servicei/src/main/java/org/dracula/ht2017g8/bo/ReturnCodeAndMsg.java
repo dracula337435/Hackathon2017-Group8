@@ -32,7 +32,9 @@ public enum ReturnCodeAndMsg {
     FAIL_00026("00026", "预测信用卡推荐，service向portal返回null"),
     FAIL_00027("00027", "预测信用卡推荐，得到的token返回对象为null，意外错误"),
     FAIL_00028("00028", "未查询到此客户的web_custapply信息"),
-    FAIL_00029("00029", "查询客户的web_custapply信息，service向portal返回null")
+    FAIL_00029("00029", "查询客户的web_custapply信息，service向portal返回null"),
+    FAIL_00030("00030", "未查询到此产品线的web_card信息"),
+    FAIL_00031("00031", "查询到此产品线的web_card信息，service向portal返回null")
     ;
 
     ReturnCodeAndMsg(String code, String msg){
