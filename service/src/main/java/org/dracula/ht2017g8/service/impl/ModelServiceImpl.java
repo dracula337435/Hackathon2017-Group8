@@ -68,8 +68,6 @@ public class ModelServiceImpl implements ModelService {
 
     public CommonBO<String> predict(String payload){
 
-        logger.info("将要连接模型进行预测，入参pyaload="+payload);
-
         CommonBO<String> rslt = new CommonBO<>();
         HttpsURLConnection scoringConnection = null;
         BufferedReader scoringBuffer = null;
@@ -77,6 +75,7 @@ public class ModelServiceImpl implements ModelService {
             // Getting WML token
             String wml_token;
             CommonBO<String> tokenCommonBO = getAuth();
+            logger.info("包含认证token的bo="+tokenCommonBO);
             if(tokenCommonBO != null){
                 if(ReturnCodeAndMsg.SUCCESS.getCode().equals(tokenCommonBO.getCode())){
                     wml_token = tokenCommonBO.getData();
@@ -90,6 +89,7 @@ public class ModelServiceImpl implements ModelService {
             }
             // Scoring request
             try {
+                logger.info("将要发送到mybluemix预测。目标url="+wml_service_scoringUrl+"，代理开关="+useProxy+"，代理ip:port="+proxyIP+":"+proxyPort);
                 URL scoringUrl = new URL(wml_service_scoringUrl);
                 if(useProxy){
                     Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(proxyIP, proxyPort));
@@ -107,6 +107,7 @@ public class ModelServiceImpl implements ModelService {
                 OutputStreamWriter writer = new OutputStreamWriter(scoringConnection.getOutputStream(), "UTF-8");
 
                 // NOTE: manually define and pass the array(s) of values to be scored in the next line
+                logger.info("将要行预测，送mybluemix的数据="+payload);
                 writer.write(payload);
                 writer.close();
 
@@ -188,7 +189,7 @@ public class ModelServiceImpl implements ModelService {
     private CommonBO<String> getAuth(){
         long currentMili = System.currentTimeMillis();
         if(currentMili - lastAuthTimeMilli >= maxBetweenAuth){
-            logger.info("距离上次认证太久，重新认证");
+            logger.info("距离上次成功认证太久，重新认证");
             return getAuth0();
         }else{
             logger.info("使用上次认证的信息");
@@ -266,6 +267,7 @@ public class ModelServiceImpl implements ModelService {
                             .replace("\"","")
                             .replace("}", "")
                             .split(":")[1];
+            logger.info("认证成功，得到token="+wml_token+"。即将更新上次成功认证时间和新token");
             //
             lastAuthToken = wml_token;
             lastAuthTimeMilli = System.currentTimeMillis();
