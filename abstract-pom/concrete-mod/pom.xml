@@ -32,6 +32,9 @@
     </dependencies>
 
     <build>
+        <filters>
+            <filter>src/filters/${env}.properties</filter>
+        </filters>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

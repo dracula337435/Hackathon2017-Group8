@@ -51,6 +51,25 @@
         </dependency>
     </dependencies>
 
+    <!-- profile，filter -->
+    <profiles>
+        <profile><!-- 开发环境 -->
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile><!-- 中心环境上 -->
+            <id>icp</id>
+            <properties>
+                <env>icp</env>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <!--混合java和kotlin，需要kotlin在compile插件之前-->
