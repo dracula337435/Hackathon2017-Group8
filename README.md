@@ -54,15 +54,18 @@ sh <zip包下项目一层>/bin/stop.sh
 * maven
 jar，assembly插件配合，最终生成bin，conf和lib三个文件夹。
 多了abstact和concrete两个pom，分别被接口模块和非接口模块继承，以方便为非接口模块单独设置filter，测试，assembly
+profile和filter
 * spring系列
 spring-boot
 starter-web
 spring-data-jpa
+spring-boot-admin及server带来的静态资源问题
 * swagger
 * docker
 包含dockerfile
 * h2
 启用h2内存数据库，提高测试效率，减少测试数据对他人影响
 * kotlin
+和java的混合编译，先kotlin，多了kotlin文件夹
 ## 舍弃的技术点
 * zookeeper+dubbo
