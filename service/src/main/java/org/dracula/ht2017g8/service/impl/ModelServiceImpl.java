@@ -63,7 +63,7 @@ public class ModelServiceImpl implements ModelService {
             String wml_token;
             CommonBO<String> tokenCommonBO = getAuth();
             if(tokenCommonBO != null){
-                if(! ReturnCodeAndMsg.SUCCESS.getCode().equals(tokenCommonBO.getCode())){
+                if(ReturnCodeAndMsg.SUCCESS.getCode().equals(tokenCommonBO.getCode())){
                     wml_token = tokenCommonBO.getData();
                 }else{
                     return tokenCommonBO;
