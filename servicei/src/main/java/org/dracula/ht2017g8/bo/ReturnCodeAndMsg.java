@@ -22,7 +22,7 @@ public enum ReturnCodeAndMsg {
     FAIL_00016("00016", "未能检索到web_card信息"),
     FAIL_00017("00017", "查询web_card信息，后台异常，service向portal返回null"),
     FAIL_00018("00018", "查询客户web_customer信息，后台异常，service向portal返回null"),
-    FAIL_00019("00019", "未查询到此客户的web_custapply信息"),
+    FAIL_00019("00019", "预测信用卡推荐，web_custapply向prediction返回null"),
     FAIL_00020("00020", "将此客户信息转换为model需要的输入时出错"),
     FAIL_00021("00021", "连接mybluemix得到登录token出错，需要检查认证url或代理设置，或检查网络情况"),
     FAIL_00022("00022", "mybluemix返回登录token，解析出错，需要检查用户名密码，或检查最新的登录token格式"),
@@ -30,7 +30,9 @@ public enum ReturnCodeAndMsg {
     FAIL_00024("00024", "连接模型进行预测部分，意外错误，需要查看日志"),
     FAIL_00025("00025", "model向predict返回null"),
     FAIL_00026("00026", "预测信用卡推荐，service向portal返回null"),
-    FAIL_00027("00027", "预测信用卡推荐，得到的token返回对象为null，意外错误")
+    FAIL_00027("00027", "预测信用卡推荐，得到的token返回对象为null，意外错误"),
+    FAIL_00028("00028", "未查询到此客户的web_custapply信息"),
+    FAIL_00029("00029", "查询客户的web_custapply信息，service向portal返回null")
     ;
 
     ReturnCodeAndMsg(String code, String msg){

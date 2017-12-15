@@ -2,19 +2,16 @@ package org.dracula.ht2017g8.service.impl;
 
 import org.dracula.ht2017g8.bo.CommonBO;
 import org.dracula.ht2017g8.bo.ReturnCodeAndMsg;
+import org.dracula.ht2017g8.bo.WebCustapplyBO;
 import org.dracula.ht2017g8.bo_othersys.CardPredictBO;
-import org.dracula.ht2017g8.dao.mybatis.WebCustapplyMapper;
-import org.dracula.ht2017g8.po.mybatis.WebCustapply;
-import org.dracula.ht2017g8.po.mybatis.WebCustapplyExample;
 import org.dracula.ht2017g8.service.ModelService;
 import org.dracula.ht2017g8.service.PredictionService;
+import org.dracula.ht2017g8.service.WebCustapplyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class PredictionServiceImpl implements PredictionService {
@@ -22,7 +19,7 @@ public class PredictionServiceImpl implements PredictionService {
     private static Logger logger = LoggerFactory.getLogger(PredictionServiceImpl.class);
 
     @Autowired
-    private WebCustapplyMapper webCustapplyMappler;
+    private WebCustapplyService webCustapplyService;
 
     @Autowired
     private ModelService modelService;
@@ -31,14 +28,19 @@ public class PredictionServiceImpl implements PredictionService {
     public CommonBO<String> predict(String custId){
         logger.info("将要进行客户推荐的信用卡预测，入参custId="+custId);
         CommonBO<String> rslt = new CommonBO<>();
-        WebCustapplyExample example = new WebCustapplyExample();
-        WebCustapplyExample.Criteria criteria = example.createCriteria();
-        criteria.andCustidEqualTo(custId);
-        List<WebCustapply> webCustapplies = webCustapplyMappler.selectByExample(example);
-        logger.info("从数据库查web_custapply，入参custId="+custId+"，返回="+webCustapplies);
+        CommonBO<WebCustapplyBO> webCustapplyBOCommonBO = webCustapplyService.getById(custId);
+        logger.info("从数据库查web_custapply，入参custId="+custId+"，返回="+webCustapplyBOCommonBO);
         String payload = null;
-        if(webCustapplies != null && webCustapplies.size() >0 ){
-            WebCustapply po = webCustapplies.get(0);
+        if(webCustapplyBOCommonBO != null){
+            WebCustapplyBO po = null;
+            if(ReturnCodeAndMsg.SUCCESS.getCode().equals(webCustapplyBOCommonBO.getCode())){
+                po = webCustapplyBOCommonBO.getData();
+            }else{
+                CommonBO<String> tmpRslt = new CommonBO<>();
+                tmpRslt.setCode(webCustapplyBOCommonBO.getCode());
+                tmpRslt.setMsg(webCustapplyBOCommonBO.getMsg());
+                return tmpRslt;
+            }
             CardPredictBO bo = new CardPredictBO();
             BeanUtils.copyProperties(po, bo);
             try {
