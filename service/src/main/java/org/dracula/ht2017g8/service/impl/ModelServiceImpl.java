@@ -68,6 +68,8 @@ public class ModelServiceImpl implements ModelService {
 
     public CommonBO<String> predict(String payload){
 
+        logger.info("将要连接模型进行预测，入参pyaload="+payload);
+
         CommonBO<String> rslt = new CommonBO<>();
         HttpsURLConnection scoringConnection = null;
         BufferedReader scoringBuffer = null;
@@ -184,11 +186,15 @@ public class ModelServiceImpl implements ModelService {
     }
 
     private CommonBO<String> getAuth(){
-        if(System.currentTimeMillis() - lastAuthTimeMilli >= maxBetweenAuth){
+        long currentMili = System.currentTimeMillis();
+        if(currentMili - lastAuthTimeMilli >= maxBetweenAuth){
+            logger.info("距离上次认证太久，重新认证");
             return getAuth0();
         }else{
+            logger.info("使用上次认证的信息");
             CommonBO<String> rslt = new CommonBO();
             rslt.setData(lastAuthToken);
+            rslt.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
             return rslt;
         }
     }
@@ -214,6 +220,7 @@ public class ModelServiceImpl implements ModelService {
         BufferedReader tokenBuffer = null;
 
         try {
+            logger.info("将要发送认证信息。目标url="+wml_url+"，代理开关="+useProxy+"，代理ip:port="+proxyIP+":"+proxyPort);
             URL tokenUrl = new URL(wml_url);
             if(useProxy) {
                 Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(proxyIP, proxyPort));
@@ -251,6 +258,7 @@ public class ModelServiceImpl implements ModelService {
                 e.printStackTrace();
             }
         }
+        logger.info("认证请求的返回信息="+jsonString.toString());
         String wml_token = null;
         try {
             wml_token = "Bearer " +
