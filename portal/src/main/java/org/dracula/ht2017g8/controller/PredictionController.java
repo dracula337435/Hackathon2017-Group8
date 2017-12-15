@@ -15,6 +15,18 @@ public class PredictionController {
     @Autowired
     private PredictionService predictionService;
 
+    @RequestMapping(value="/prediction/card/payload/{custId}", method= RequestMethod.GET)
+    public CommonBO<String> getPayload(@PathVariable("custId") String custId){
+        CommonBO<String> stringCommonBO = predictionService.getPayLoad(custId);
+        if(stringCommonBO != null){
+            return stringCommonBO;
+        }else{
+            stringCommonBO = new CommonBO<>();
+            stringCommonBO.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00033);
+            return stringCommonBO;
+        }
+    }
+
     @RequestMapping(value="/prediction/card/{custId}", method= RequestMethod.GET)
     public CommonBO<String> prediction_card(@PathVariable("custId") String custId){
         CommonBO<String> stringCommonBO = predictionService.predict(custId);

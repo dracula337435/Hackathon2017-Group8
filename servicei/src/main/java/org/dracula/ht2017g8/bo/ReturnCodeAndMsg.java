@@ -34,7 +34,9 @@ public enum ReturnCodeAndMsg {
     FAIL_00028("00028", "未查询到此客户的web_custapply信息"),
     FAIL_00029("00029", "查询客户的web_custapply信息，service向portal返回null"),
     FAIL_00030("00030", "未查询到此产品线的web_card信息"),
-    FAIL_00031("00031", "查询到此产品线的web_card信息，service向portal返回null")
+    FAIL_00031("00031", "查询到此产品线的web_card信息，service向portal返回null"),
+    FAIL_00032("00032", "预测功能中，service内getPayload向predict返回null"),
+    FAIL_00033("00033", "预测功能，得到payload中，service向portal返回null")
     ;
 
     ReturnCodeAndMsg(String code, String msg){
