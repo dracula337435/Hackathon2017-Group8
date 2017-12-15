@@ -77,7 +77,7 @@ public class ModelServiceImpl implements ModelService {
             try {
                 URL scoringUrl = new URL(wml_service_scoringUrl);
                 if(useProxy){
-                    Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyIP, proxyPort));
+                    Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(proxyIP, proxyPort));
                     scoringConnection = (HttpURLConnection) scoringUrl.openConnection(proxy);
                 }else{
                     scoringConnection = (HttpURLConnection) scoringUrl.openConnection();
@@ -162,7 +162,7 @@ public class ModelServiceImpl implements ModelService {
         try {
             URL tokenUrl = new URL(wml_url);
             if(useProxy) {
-                Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyIP, proxyPort));
+                Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(proxyIP, proxyPort));
                 tokenConnection = (HttpURLConnection) tokenUrl.openConnection(proxy);
             }else{
                 tokenConnection = (HttpURLConnection) tokenUrl.openConnection();
