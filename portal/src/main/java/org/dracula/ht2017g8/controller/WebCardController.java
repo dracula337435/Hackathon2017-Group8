@@ -45,7 +45,7 @@ public class WebCardController {
             return listCommonBO;
         }else{
             listCommonBO = new CommonBO<>();
-            listCommonBO.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00006);
+            listCommonBO.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00017);
             return listCommonBO;
         }
     }

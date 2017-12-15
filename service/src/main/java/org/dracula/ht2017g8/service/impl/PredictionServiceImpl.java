@@ -50,7 +50,7 @@ public class PredictionServiceImpl implements PredictionService {
         if(stringCommonBO != null){
             return stringCommonBO;
         }else{
-            stringCommonBO.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00007);
+            stringCommonBO.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00025);
             return stringCommonBO;
         }
     }

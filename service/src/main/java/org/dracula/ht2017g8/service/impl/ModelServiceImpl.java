@@ -70,7 +70,7 @@ public class ModelServiceImpl implements ModelService {
                 }
             }else{
                 CommonBO<String> tmpRslt = new CommonBO<>();
-                tmpRslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00008);
+                tmpRslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00027);
                 return tmpRslt;
             }
             // Scoring request
@@ -98,7 +98,7 @@ public class ModelServiceImpl implements ModelService {
                 scoringBuffer = new BufferedReader(new InputStreamReader(scoringConnection.getInputStream()));
             } catch (IOException e) {
                 e.printStackTrace();
-                rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00007);
+                rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00023);
             }
             StringBuffer jsonStringScoring = new StringBuffer();
             String lineScoring;
