@@ -2,7 +2,8 @@ package org.dracula.ht2017g8.service.impl;
 
 import org.dracula.ht2017g8.bo.CommonBO;
 import org.dracula.ht2017g8.bo.ReturnCodeAndMsg;
-import org.dracula.ht2017g8.bo_othersys.PayLoadsBO;
+import org.dracula.ht2017g8.bo_othersys.CardPredictBO;
+import org.dracula.ht2017g8.bo_othersys.PayLoadsNewBO;
 import org.dracula.ht2017g8.service.ModelService;
 import org.dracula.ht2017g8.service.impl.util.Json;
 import org.slf4j.Logger;
@@ -282,35 +283,51 @@ public class ModelServiceImpl implements ModelService {
         }
     }
 
-    public static String getRequiredJson(Object... boList){
-        String rslt = null;
-        if(boList != null && boList.length > 0){
-            PayLoadsBO payLoadsBO = new PayLoadsBO();
-            Map<String, String> tmpMap = null;
-            //
-            List<String> fieldsList = new LinkedList<>();
-            payLoadsBO.setFields(fieldsList);
-            boolean is1stElement = true;
-            //
-            List<List<String>> valueListList = new LinkedList<>();
-            for(Object bo: boList){
-                String tmp = Json.getJsonString(bo);
-                tmpMap = Json.readJsonAsMap(tmp, String.class, String.class);
-                List<String> valueList = new LinkedList<>();
-                for(String key: tmpMap.keySet()){
-                    valueList.add(tmpMap.get(key));
-                    if(is1stElement){
-                        fieldsList.add(key);
-                    }
-                }
-                is1stElement = false;
-                valueListList.add(valueList);
-            }
-            payLoadsBO.setValues(valueListList);
-            return Json.getJsonString(payLoadsBO);
-        }
-        return rslt;
+    public static String getRequiredJson(CardPredictBO cardPredictBO){
+        PayLoadsNewBO newBO = new PayLoadsNewBO();
+        newBO.setFields(new LinkedList<>());
+        newBO.getFields().add("GENDER");
+        newBO.getFields().add("AGE");
+        newBO.getFields().add("MARITAL_STATUS");
+        newBO.getFields().add("PROFESSION");
+        newBO.setValues(new LinkedList<>());
+        newBO.getValues().add(new LinkedList<>());
+        newBO.getValues().get(0).add(cardPredictBO.getGender());
+        newBO.getValues().get(0).add(cardPredictBO.getAge());
+        newBO.getValues().get(0).add(cardPredictBO.getMaritalStatus());
+        newBO.getValues().get(0).add(cardPredictBO.getProfession());
+        return Json.getJsonString(newBO);
     }
+
+//    public static String getRequiredJson(Object... boList){
+//        String rslt = null;
+//        if(boList != null && boList.length > 0){
+//            PayLoadsBO payLoadsBO = new PayLoadsBO();
+//            Map<String, String> tmpMap = null;
+//            //
+//            List<String> fieldsList = new LinkedList<>();
+//            payLoadsBO.setFields(fieldsList);
+//            boolean is1stElement = true;
+//            //
+//            List<List<String>> valueListList = new LinkedList<>();
+//            for(Object bo: boList){
+//                String tmp = Json.getJsonString(bo);
+//                tmpMap = Json.readJsonAsMap(tmp, String.class, String.class);
+//                List<String> valueList = new LinkedList<>();
+//                for(String key: tmpMap.keySet()){
+//                    valueList.add(tmpMap.get(key));
+//                    if(is1stElement){
+//                        fieldsList.add(key);
+//                    }
+//                }
+//                is1stElement = false;
+//                valueListList.add(valueList);
+//            }
+//            payLoadsBO.setValues(valueListList);
+//            return Json.getJsonString(payLoadsBO);
+//        }
+//        return rslt;
+//    }
 
     @ManagedAttribute
     public String getWml_service_credentials_url() {
