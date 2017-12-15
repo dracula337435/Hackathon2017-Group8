@@ -5,26 +5,31 @@ import org.dracula.ht2017g8.bo.ReturnCodeAndMsg;
 import org.dracula.ht2017g8.bo_othersys.PayLoadsBO;
 import org.dracula.ht2017g8.service.ModelService;
 import org.dracula.ht2017g8.service.impl.util.Json;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jmx.export.annotation.ManagedAttribute;
 import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Component;
 
+import javax.net.ssl.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.security.cert.X509Certificate;
 import java.util.*;
 
 @Component
 @ManagedResource
 public class ModelServiceImpl implements ModelService {
+
+    private static Logger logger = LoggerFactory.getLogger(ModelServiceImpl.class);
 
     @Value("${predict.auth.url}")
     private String wml_service_credentials_url;
@@ -53,10 +58,18 @@ public class ModelServiceImpl implements ModelService {
 
     private String lastAuthToken;
 
+    static{
+        try {
+            trustAllHttpsCertificates();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public CommonBO<String> predict(String payload){
 
         CommonBO<String> rslt = new CommonBO<>();
-        HttpURLConnection scoringConnection = null;
+        HttpsURLConnection scoringConnection = null;
         BufferedReader scoringBuffer = null;
         try {
             // Getting WML token
@@ -78,9 +91,9 @@ public class ModelServiceImpl implements ModelService {
                 URL scoringUrl = new URL(wml_service_scoringUrl);
                 if(useProxy){
                     Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(proxyIP, proxyPort));
-                    scoringConnection = (HttpURLConnection) scoringUrl.openConnection(proxy);
+                    scoringConnection = (HttpsURLConnection) scoringUrl.openConnection(proxy);
                 }else{
-                    scoringConnection = (HttpURLConnection) scoringUrl.openConnection();
+                    scoringConnection = (HttpsURLConnection) scoringUrl.openConnection();
                 }
 
                 scoringConnection.setDoInput(true);
@@ -129,6 +142,47 @@ public class ModelServiceImpl implements ModelService {
         }
     }
 
+    private static void trustAllHttpsCertificates() throws Exception {
+        TrustManager[] trustAllCerts = new javax.net.ssl.TrustManager[1];
+        TrustManager tm = new miTM();
+        trustAllCerts[0] = tm;
+        SSLContext sc = SSLContext.getInstance("SSL");
+        sc.init(null, trustAllCerts, null);
+        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+        HostnameVerifier hv = new HostnameVerifier() {
+            public boolean verify(String urlHostName, SSLSession session) {
+                logger.info("Warning: URL Host: " + urlHostName + " vs. " + session.getPeerHost());
+                return true;
+            }
+        };
+        HttpsURLConnection.setDefaultHostnameVerifier(hv);
+    }
+
+
+    static class miTM implements TrustManager, X509TrustManager {
+        public X509Certificate[] getAcceptedIssuers() {
+            return null;
+        }
+
+        public boolean isServerTrusted(X509Certificate[] certs) {
+            return true;
+        }
+
+        public boolean isClientTrusted(X509Certificate[] certs) {
+            return true;
+        }
+
+        public void checkServerTrusted(X509Certificate[] certs, String authType)
+                throws java.security.cert.CertificateException {
+            return;
+        }
+
+        public void checkClientTrusted(X509Certificate[] certs, String authType)
+                throws java.security.cert.CertificateException {
+            return;
+        }
+    }
+
     private CommonBO<String> getAuth(){
         if(System.currentTimeMillis() - lastAuthTimeMilli >= maxBetweenAuth){
             return getAuth0();
@@ -156,16 +210,16 @@ public class ModelServiceImpl implements ModelService {
                 Base64.getEncoder().encodeToString((wml_credentials.get("username") + ":" +
                         wml_credentials.get("password")).getBytes(StandardCharsets.UTF_8));
         String wml_url = wml_credentials.get("url") + "/v3/identity/token";
-        HttpURLConnection tokenConnection = null;
+        HttpsURLConnection tokenConnection = null;
         BufferedReader tokenBuffer = null;
 
         try {
             URL tokenUrl = new URL(wml_url);
             if(useProxy) {
                 Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(proxyIP, proxyPort));
-                tokenConnection = (HttpURLConnection) tokenUrl.openConnection(proxy);
+                tokenConnection = (HttpsURLConnection) tokenUrl.openConnection(proxy);
             }else{
-                tokenConnection = (HttpURLConnection) tokenUrl.openConnection();
+                tokenConnection = (HttpsURLConnection) tokenUrl.openConnection();
             }
             tokenConnection.setDoInput(true);
             tokenConnection.setDoOutput(true);
