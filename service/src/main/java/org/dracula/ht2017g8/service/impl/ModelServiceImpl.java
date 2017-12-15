@@ -6,6 +6,9 @@ import org.dracula.ht2017g8.bo_othersys.PayLoadsBO;
 import org.dracula.ht2017g8.service.ModelService;
 import org.dracula.ht2017g8.service.impl.util.Json;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jmx.export.annotation.ManagedAttribute;
+import org.springframework.jmx.export.annotation.ManagedOperation;
+import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -20,6 +23,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @Component
+@ManagedResource
 public class ModelServiceImpl implements ModelService {
 
     @Value("${predict.auth.url}")
@@ -135,7 +139,8 @@ public class ModelServiceImpl implements ModelService {
         }
     }
 
-    private CommonBO<String> getAuth0(){
+    @ManagedOperation
+    public CommonBO<String> getAuth0(){
 
         CommonBO<String> rslt = new CommonBO<>();
 
@@ -243,58 +248,72 @@ public class ModelServiceImpl implements ModelService {
         return rslt;
     }
 
+    @ManagedAttribute
     public String getWml_service_credentials_url() {
         return wml_service_credentials_url;
     }
 
+    @ManagedAttribute
     public void setWml_service_credentials_url(String wml_service_credentials_url) {
         this.wml_service_credentials_url = wml_service_credentials_url;
     }
 
+    @ManagedAttribute
     public String getWml_service_credentials_username() {
         return wml_service_credentials_username;
     }
 
+    @ManagedAttribute
     public void setWml_service_credentials_username(String wml_service_credentials_username) {
         this.wml_service_credentials_username = wml_service_credentials_username;
     }
 
+    @ManagedAttribute
     public String getWml_service_credentials_password() {
         return wml_service_credentials_password;
     }
 
+    @ManagedAttribute
     public void setWml_service_credentials_password(String wml_service_credentials_password) {
         this.wml_service_credentials_password = wml_service_credentials_password;
     }
 
+    @ManagedAttribute
     public boolean isUseProxy() {
         return useProxy;
     }
 
+    @ManagedAttribute
     public void setUseProxy(boolean useProxy) {
         this.useProxy = useProxy;
     }
 
+    @ManagedAttribute
     public String getProxyIP() {
         return proxyIP;
     }
 
+    @ManagedAttribute
     public void setProxyIP(String proxyIP) {
         this.proxyIP = proxyIP;
     }
 
+    @ManagedAttribute
     public int getProxyPort() {
         return proxyPort;
     }
 
+    @ManagedAttribute
     public void setProxyPort(int proxyPort) {
         this.proxyPort = proxyPort;
     }
 
+    @ManagedAttribute
     public String getWml_service_scoringUrl() {
         return wml_service_scoringUrl;
     }
 
+    @ManagedAttribute
     public void setWml_service_scoringUrl(String wml_service_scoringUrl) {
         this.wml_service_scoringUrl = wml_service_scoringUrl;
     }
