@@ -15,17 +15,9 @@ public class WebCardController {
     @Autowired
     private WebCardService webCardService;
 
-    @RequestMapping(value="/web_card/{id}", method=RequestMethod.GET)
-    public CommonBO<WebCardBO> getById(@PathVariable("id") String id){
-        int id_int;
-        try {
-            id_int = Integer.parseInt(id);
-        } catch (NumberFormatException e) {
-            CommonBO<WebCardBO> rslt = new CommonBO<>();
-            rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00009);
-            return rslt;
-        }
-        CommonBO<WebCardBO> webCardBOCommonBO = webCardService.getById(id_int);
+    @RequestMapping(value="/web_card/{card_code}", method=RequestMethod.GET)
+    public CommonBO<WebCardBO> getById(@PathVariable("card_code") String cardCode){
+        CommonBO<WebCardBO> webCardBOCommonBO = webCardService.getByCardCode(cardCode);
         if(webCardBOCommonBO != null){
             return webCardBOCommonBO;
         }else{
