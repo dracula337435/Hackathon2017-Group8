@@ -1,10 +1,9 @@
 package org.dracula.ht2017g8.dao.mybatis;
 
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.dracula.ht2017g8.po.mybatis.WebCustapply;
 import org.dracula.ht2017g8.po.mybatis.WebCustapplyExample;
-
-import java.util.List;
 
 public interface WebCustapplyMapper {
     long countByExample(WebCustapplyExample example);
