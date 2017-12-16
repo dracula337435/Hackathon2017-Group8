@@ -283,19 +283,24 @@ public class ModelServiceImpl implements ModelService {
         }
     }
 
-    public static String getRequiredJson(CardPredictBO cardPredictBO){
+    public static String getRequiredJson(CardPredictBO... boArray){
         PayLoadsNewBO newBO = new PayLoadsNewBO();
-        newBO.setFields(new LinkedList<>());
-        newBO.getFields().add("GENDER");
-        newBO.getFields().add("AGE");
-        newBO.getFields().add("MARITAL_STATUS");
-        newBO.getFields().add("PROFESSION");
-        newBO.setValues(new LinkedList<>());
-        newBO.getValues().add(new LinkedList<>());
-        newBO.getValues().get(0).add(cardPredictBO.getGender());
-        newBO.getValues().get(0).add(cardPredictBO.getAge());
-        newBO.getValues().get(0).add(cardPredictBO.getMaritalStatus());
-        newBO.getValues().get(0).add(cardPredictBO.getProfession());
+        List<String> fields = new LinkedList<>();
+        newBO.setFields(fields);
+        fields.add("GENDER");
+        fields.add("AGE");
+        fields.add("MARITAL_STATUS");
+        fields.add("PROFESSION");
+        List<List<Object>> values = new LinkedList<>();
+        newBO.setValues(values);
+        for(CardPredictBO bo: boArray){
+            List<Object> valueList = new LinkedList<>();
+            valueList.add(bo.getGender());
+            valueList.add(bo.getAge());
+            valueList.add(bo.getMaritalStatus());
+            valueList.add(bo.getProfession());
+            values.add(valueList);
+        }
         return Json.getJsonString(newBO);
     }
 
