@@ -15,4 +15,4 @@ spec:
     targetPort: 9080
 #指向应用名称selector
   selector:
-    app: "portal"
+    app: "team8-portal"
