@@ -1,5 +1,6 @@
 package org.dracula.ht2017g8.service.impl;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.dracula.ht2017g8.bo.CommonBO;
 import org.dracula.ht2017g8.bo.ReturnCodeAndMsg;
 import org.dracula.ht2017g8.bo_othersys.CardPredictBO;
@@ -76,7 +77,7 @@ public class ModelServiceImpl implements ModelService {
             // Getting WML token
             String wml_token;
             CommonBO<String> tokenCommonBO = getAuth();
-            logger.info("包含认证token的bo="+tokenCommonBO);
+            logger.info("包含认证token的bo="+ToStringBuilder.reflectionToString(tokenCommonBO));
             if(tokenCommonBO != null){
                 if(ReturnCodeAndMsg.SUCCESS.getCode().equals(tokenCommonBO.getCode())){
                     wml_token = tokenCommonBO.getData();
