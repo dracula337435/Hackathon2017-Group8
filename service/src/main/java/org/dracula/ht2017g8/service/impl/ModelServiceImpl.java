@@ -291,6 +291,8 @@ public class ModelServiceImpl implements ModelService {
         fields.add("AGE");
         fields.add("MARITAL_STATUS");
         fields.add("PROFESSION");
+        fields.add("INCOME");
+        fields.add("BAL_AST");
         List<List<Object>> values = new LinkedList<>();
         newBO.setValues(values);
         for(CardPredictBO bo: boArray){
@@ -299,6 +301,8 @@ public class ModelServiceImpl implements ModelService {
             valueList.add(bo.getAge());
             valueList.add(bo.getMaritalStatus());
             valueList.add(bo.getProfession());
+            valueList.add(bo.getIncome());
+            valueList.add(bo.getBalAst());
             values.add(valueList);
         }
         return Json.getJsonString(newBO);
