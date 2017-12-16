@@ -1,8 +1,8 @@
-package org.dracula.ht2017g8.bo;
+package org.dracula.ht2017g8.bo
 
-public enum ReturnCodeAndMsg {
+enum class ReturnCodeAndMsg {
 
-    SUCCESS("00000", null),
+    SUCCESS("00000", "成功"),
 
     FAIL_00001("00001", "未能检索到此客户的web_timeline信息"),
     FAIL_00002("00002", "查询客户web_timeline信息，后台异常，service向portal返回null"),
@@ -36,31 +36,17 @@ public enum ReturnCodeAndMsg {
     FAIL_00030("00030", "未查询到此产品线的web_card信息"),
     FAIL_00031("00031", "查询到此产品线的web_card信息，service向portal返回null"),
     FAIL_00032("00032", "预测功能中，service内getPayload向predict返回null"),
-    FAIL_00033("00033", "预测功能，得到payload中，service向portal返回null")
+    FAIL_00033("00033", "预测功能，得到payload中，service向portal返回null"),
     ;
 
-    ReturnCodeAndMsg(String code, String msg){
-        setCode(code);
-        setMsg(msg);
-    }
+    var code: String? =null
 
-    private String code;
+    var msg: String? =null
 
-    private String msg;
-
-    public java.lang.String getCode() {
-        return code;
-    }
-
-    public void setCode(java.lang.String code) {
-        this.code = code;
-    }
-
-    public java.lang.String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(java.lang.String msg) {
-        this.msg = msg;
+    constructor(code: String?, msg: String?) {
+        this.code = code
+        this.msg = msg
     }
 }
+
+
