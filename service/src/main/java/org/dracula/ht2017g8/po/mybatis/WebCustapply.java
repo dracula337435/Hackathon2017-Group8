@@ -7,11 +7,15 @@ public class WebCustapply {
 
     private String gender;
 
-    private Integer age;
+    private String age;
 
     private String maritalStatus;
 
     private String profession;
+
+    private String income;
+
+    private String balAst;
 
     public Integer getId() {
         return id;
@@ -37,12 +41,12 @@ public class WebCustapply {
         this.gender = gender == null ? null : gender.trim();
     }
 
-    public Integer getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setAge(String age) {
+        this.age = age == null ? null : age.trim();
     }
 
     public String getMaritalStatus() {
@@ -59,5 +63,21 @@ public class WebCustapply {
 
     public void setProfession(String profession) {
         this.profession = profession == null ? null : profession.trim();
+    }
+
+    public String getIncome() {
+        return income;
+    }
+
+    public void setIncome(String income) {
+        this.income = income == null ? null : income.trim();
+    }
+
+    public String getBalAst() {
+        return balAst;
+    }
+
+    public void setBalAst(String balAst) {
+        this.balAst = balAst == null ? null : balAst.trim();
     }
 }

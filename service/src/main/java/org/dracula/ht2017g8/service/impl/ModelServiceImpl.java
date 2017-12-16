@@ -1,5 +1,6 @@
 package org.dracula.ht2017g8.service.impl;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.dracula.ht2017g8.bo.CommonBO;
 import org.dracula.ht2017g8.bo.ReturnCodeAndMsg;
 import org.dracula.ht2017g8.bo_othersys.CardPredictBO;
@@ -76,7 +77,7 @@ public class ModelServiceImpl implements ModelService {
             // Getting WML token
             String wml_token;
             CommonBO<String> tokenCommonBO = getAuth();
-            logger.info("包含认证token的bo="+tokenCommonBO);
+            logger.info("包含认证token的bo="+ToStringBuilder.reflectionToString(tokenCommonBO));
             if(tokenCommonBO != null){
                 if(ReturnCodeAndMsg.SUCCESS.getCode().equals(tokenCommonBO.getCode())){
                     wml_token = tokenCommonBO.getData();
@@ -291,6 +292,8 @@ public class ModelServiceImpl implements ModelService {
         fields.add("AGE");
         fields.add("MARITAL_STATUS");
         fields.add("PROFESSION");
+        fields.add("INCOME");
+        fields.add("BAL_AST");
         List<List<Object>> values = new LinkedList<>();
         newBO.setValues(values);
         for(CardPredictBO bo: boArray){
@@ -299,6 +302,8 @@ public class ModelServiceImpl implements ModelService {
             valueList.add(bo.getAge());
             valueList.add(bo.getMaritalStatus());
             valueList.add(bo.getProfession());
+            valueList.add(bo.getIncome());
+            valueList.add(bo.getBalAst());
             values.add(valueList);
         }
         return Json.getJsonString(newBO);

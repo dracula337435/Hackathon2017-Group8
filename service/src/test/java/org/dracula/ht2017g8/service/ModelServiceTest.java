@@ -32,7 +32,7 @@ public class ModelServiceTest {
     public void test_anotherModel(){
         //
         CardPredictBO predictBO = new CardPredictBO();
-        predictBO.setAge(25);
+        predictBO.setAge("25");
         predictBO.setGender("M");
         predictBO.setMaritalStatus("Single");
         predictBO.setProfession("Other");

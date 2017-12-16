@@ -8,11 +8,17 @@ class CardPredictBO {
     var gender: String? = null
 
     @JsonProperty("AGE")
-    var age: Int? = null
+    var age: String? = null
 
     @JsonProperty("MARITAL_STATUS")
     var maritalStatus: String? = null
 
     @JsonProperty("PROFESSION")
     var profession: String? = null
+
+    @JsonProperty("INCOME")
+    var income: String? = null
+
+    @JsonProperty("BAL_AST")
+    var balAst: String? = null
 }

@@ -5,9 +5,11 @@
     <result column="id" jdbcType="INTEGER" property="id" />
     <result column="custid" jdbcType="VARCHAR" property="custid" />
     <result column="gender" jdbcType="VARCHAR" property="gender" />
-    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="age" jdbcType="VARCHAR" property="age" />
     <result column="marital_status" jdbcType="VARCHAR" property="maritalStatus" />
     <result column="profession" jdbcType="VARCHAR" property="profession" />
+    <result column="income" jdbcType="VARCHAR" property="income" />
+    <result column="BAL_AST" jdbcType="VARCHAR" property="balAst" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, custid, gender, age, marital_status, profession
+    id, custid, gender, age, marital_status, profession, income, BAL_AST
   </sql>
   <select id="selectByExample" parameterType="org.dracula.ht2017g8.po.mybatis.WebCustapplyExample" resultMap="BaseResultMap">
     select
@@ -92,11 +94,11 @@
   </delete>
   <insert id="insert" parameterType="org.dracula.ht2017g8.po.mybatis.WebCustapply">
     insert into web_custapply (id, custid, gender, 
-      age, marital_status, profession
-      )
+      age, marital_status, profession, 
+      income, BAL_AST)
     values (#{id,jdbcType=INTEGER}, #{custid,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
-      #{age,jdbcType=INTEGER}, #{maritalStatus,jdbcType=VARCHAR}, #{profession,jdbcType=VARCHAR}
-      )
+      #{age,jdbcType=VARCHAR}, #{maritalStatus,jdbcType=VARCHAR}, #{profession,jdbcType=VARCHAR}, 
+      #{income,jdbcType=VARCHAR}, #{balAst,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.dracula.ht2017g8.po.mybatis.WebCustapply">
     insert into web_custapply
@@ -119,6 +121,12 @@
       <if test="profession != null">
         profession,
       </if>
+      <if test="income != null">
+        income,
+      </if>
+      <if test="balAst != null">
+        BAL_AST,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -131,13 +139,19 @@
         #{gender,jdbcType=VARCHAR},
       </if>
       <if test="age != null">
-        #{age,jdbcType=INTEGER},
+        #{age,jdbcType=VARCHAR},
       </if>
       <if test="maritalStatus != null">
         #{maritalStatus,jdbcType=VARCHAR},
       </if>
       <if test="profession != null">
         #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null">
+        #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="balAst != null">
+        #{balAst,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -160,13 +174,19 @@
         gender = #{record.gender,jdbcType=VARCHAR},
       </if>
       <if test="record.age != null">
-        age = #{record.age,jdbcType=INTEGER},
+        age = #{record.age,jdbcType=VARCHAR},
       </if>
       <if test="record.maritalStatus != null">
         marital_status = #{record.maritalStatus,jdbcType=VARCHAR},
       </if>
       <if test="record.profession != null">
         profession = #{record.profession,jdbcType=VARCHAR},
+      </if>
+      <if test="record.income != null">
+        income = #{record.income,jdbcType=VARCHAR},
+      </if>
+      <if test="record.balAst != null">
+        BAL_AST = #{record.balAst,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -178,9 +198,11 @@
     set id = #{record.id,jdbcType=INTEGER},
       custid = #{record.custid,jdbcType=VARCHAR},
       gender = #{record.gender,jdbcType=VARCHAR},
-      age = #{record.age,jdbcType=INTEGER},
+      age = #{record.age,jdbcType=VARCHAR},
       marital_status = #{record.maritalStatus,jdbcType=VARCHAR},
-      profession = #{record.profession,jdbcType=VARCHAR}
+      profession = #{record.profession,jdbcType=VARCHAR},
+      income = #{record.income,jdbcType=VARCHAR},
+      BAL_AST = #{record.balAst,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

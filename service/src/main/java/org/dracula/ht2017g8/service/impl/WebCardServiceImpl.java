@@ -25,10 +25,10 @@ public class WebCardServiceImpl implements WebCardService {
     private WebCardNewMapper webCardNewMapper;
 
     @Override
-    public CommonBO<WebCardBO> getById(Integer id) {
+    public CommonBO<WebCardBO> getByCardCode(String cardCode) {
         WebCardExample webCardExample = new WebCardExample();
         WebCardExample.Criteria webCardExampleCriteria = webCardExample.createCriteria();
-        webCardExampleCriteria.andIdEqualTo(id);
+        webCardExampleCriteria.andCardCodeEqualTo(cardCode);
         CommonBO<WebCardBO> webCardBOCommonBO = new CommonBO<>();
         List<WebCard> webCards = webCardMapper.selectByExampleWithBLOBs(webCardExample);
         if(webCards !=null && webCards.size() >0){

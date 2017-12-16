@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface WebCardService {
 
-    CommonBO<WebCardBO> getById(Integer id);
+    CommonBO<WebCardBO> getByCardCode(String cardCode);
 
     CommonBO<List<WebCardBO>> getSome(int limit);
 
