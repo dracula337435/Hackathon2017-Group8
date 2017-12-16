@@ -16,7 +16,7 @@ public class WebCardController {
     private WebCardService webCardService;
 
     @RequestMapping(value="/web_card/{card_code}", method=RequestMethod.GET)
-    public CommonBO<WebCardBO> getById(@PathVariable("card_code") String cardCode){
+    public CommonBO<WebCardBO> getByCardCode(@PathVariable("card_code") String cardCode){
         CommonBO<WebCardBO> webCardBOCommonBO = webCardService.getByCardCode(cardCode);
         if(webCardBOCommonBO != null){
             return webCardBOCommonBO;
