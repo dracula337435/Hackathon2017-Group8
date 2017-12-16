@@ -18,7 +18,7 @@ spec:
         - name: SOME_ENV_NAME
           value: "some-value"
         name: portal
-        image: 172.16.100.16:5005/guanxiaokang/HT2017Team8-portal:0.0.003
+        image: 172.16.100.16:5005/guanxiaokang/HT2017Team8-portal:latest
         ports:
 #请在下方加入需要的端口，注意写清协议
         - containerPort: 9080
