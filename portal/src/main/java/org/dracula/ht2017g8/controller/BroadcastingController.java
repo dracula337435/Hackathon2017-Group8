@@ -15,7 +15,7 @@ public class BroadcastingController {
     @Autowired
     private MyWebSocket myWebSocket;
 
-    @RequestMapping(value="/websocket/broadcast", method= RequestMethod.GET)
+    @RequestMapping(value="/websocket/broadcast", method= RequestMethod.POST)
     public CommonBO<String> broadcast(BroadcastReqVO reqVO){
         myWebSocket.broadcast(reqVO.getMsg());
         CommonBO<String> rslt = new CommonBO<>();
