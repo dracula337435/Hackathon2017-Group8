@@ -11,7 +11,6 @@
         <relativePath>../abstract-pom/abstract-mod/pom.xml</relativePath>
     </parent>
 
-    <groupId>org.dracula</groupId>
     <artifactId>HT2017G8-servicei</artifactId>
     <packaging>jar</packaging>
 

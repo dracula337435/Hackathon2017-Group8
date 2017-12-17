@@ -11,7 +11,6 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <groupId>org.dracula</groupId>
     <artifactId>HT2017G8-abstract</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
