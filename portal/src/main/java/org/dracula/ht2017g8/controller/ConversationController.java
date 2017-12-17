@@ -31,7 +31,7 @@ public class ConversationController {
             synchronized(MONITOR_OBJ){
                 count++;
             }
-            attribute = Long.valueOf(count);
+            attribute = Long.toString(count);
             session.setAttribute(CONVERSATION_TALK_ID_NAME, attribute);
         }
         if(attribute instanceof String){
