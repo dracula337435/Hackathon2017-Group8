@@ -64,6 +64,7 @@ public class WatsonConversationServiceImpl implements org.dracula.ht2017g8.servi
 //        System.out.println(response);
         idToRespones.put(id, response);
         rslt.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
+        rslt.setData(response.getOutput().getText());
         return rslt;
     }
 
