@@ -13,7 +13,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 @Component
 public class MyWebSocketImpl implements MyWebSocket {
 
-    Logger logger = LoggerFactory.getLogger(MyWebSocketImpl.class);
+    private static Logger logger = LoggerFactory.getLogger(MyWebSocketImpl.class);
 
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
     private static int onlineCount = 0;
