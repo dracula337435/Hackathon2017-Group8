@@ -31,7 +31,8 @@ public class ConversationController {
             synchronized(MONITOR_OBJ){
                 count++;
             }
-            session.setAttribute(CONVERSATION_TALK_ID_NAME, Long.valueOf(count));
+            attribute = Long.valueOf(count);
+            session.setAttribute(CONVERSATION_TALK_ID_NAME, attribute);
         }
         if(attribute instanceof String){
             String talkId = (String)attribute;
@@ -46,6 +47,32 @@ public class ConversationController {
         }else{
             CommonBO<List<String>> rslt = new CommonBO<>();
             rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00035);
+            return rslt;
+        }
+    }
+
+    @RequestMapping(value="/conversation/ending", method=RequestMethod.POST)
+    public CommonBO<String> end(HttpSession session){
+        CommonBO<String> rslt;
+        Object attribute = session.getAttribute(CONVERSATION_TALK_ID_NAME);
+        if(attribute == null){  //没有就没有吧。。。办法了。。。//或者context存在session中。。。
+            rslt = new CommonBO<>();
+            rslt.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
+            return rslt;
+        }
+        if(attribute instanceof String){
+            String talkId = (String)attribute;
+            rslt = watsonConversationService.endDialog(talkId);
+            if(rslt != null){
+                return rslt;
+            }else{
+                rslt = new CommonBO<>();
+                rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00036);
+                return rslt;
+            }
+        }else{
+            rslt = new CommonBO<>();
+            rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00037);
             return rslt;
         }
     }

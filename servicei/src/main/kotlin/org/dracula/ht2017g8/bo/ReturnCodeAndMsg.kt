@@ -38,7 +38,9 @@ enum class ReturnCodeAndMsg {
     FAIL_00032("00032", "预测功能中，service内getPayload向predict返回null"),
     FAIL_00033("00033", "预测功能，得到payload中，service向portal返回null"),
     FAIL_00034("00034", "conversation，service向portal返回null"),
-    FAIL_00035("00035", "conversation，session特定字段已被占用，无法提供服务"),
+    FAIL_00035("00035", "conversation，session特定字段已被其他类型占用，无法提供服务"),
+    FAIL_00036("00035", "conversation，service向portal返回null"),
+    FAIL_00037("00035", "conversation，session特定字段已被其他类型占用，无法提供服务"),
     ;
 
     var code: String? =null
