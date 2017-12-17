@@ -36,6 +36,7 @@
         <kotlin.version>1.2.0</kotlin.version>
         <spring-boot-admin.version>1.5.5</spring-boot-admin.version>
         <commons-lang.version>2.6</commons-lang.version>
+        <ibm.watson-developer.java-sdk>4.2.1</ibm.watson-developer.java-sdk>
     </properties>
 
     <dependencies>

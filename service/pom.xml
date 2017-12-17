@@ -76,6 +76,12 @@
             <artifactId>commons-lang</artifactId>
             <version>${commons-lang.version}</version>
         </dependency>
+        <!--ibm-watson-->
+        <dependency>
+            <groupId>com.ibm.watson.developer_cloud</groupId>
+            <artifactId>conversation</artifactId>
+            <version>${ibm.watson-developer.java-sdk}</version>
+        </dependency>
     </dependencies>
 
     <build>
