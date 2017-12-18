@@ -4,6 +4,8 @@ import org.dracula.ht2017g8.bo.CommonBO;
 import org.dracula.ht2017g8.bo.ReturnCodeAndMsg;
 import org.dracula.ht2017g8.service.WatsonConversationService;
 import org.dracula.ht2017g8.vo.BroadcastReqVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +16,8 @@ import java.util.List;
 
 @RestController
 public class ConversationController {
+
+    private static Logger logger = LoggerFactory.getLogger(ConversationController.class);
 
     private static long count;
 
@@ -32,7 +36,10 @@ public class ConversationController {
                 count++;
             }
             attribute = Long.toString(count);
+            logger.info("新会话，分配新id。talk-id="+attribute);
             session.setAttribute(CONVERSATION_TALK_ID_NAME, attribute);
+        }else{
+            logger.info("老会话，继续使用原有id。talk-id="+attribute);
         }
         if(attribute instanceof String){
             String talkId = (String)attribute;
