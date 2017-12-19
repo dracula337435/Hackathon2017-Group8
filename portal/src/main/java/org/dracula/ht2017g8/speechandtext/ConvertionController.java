@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jmx.export.annotation.ManagedAttribute;
+import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+@ManagedResource
 @RestController
 public class ConvertionController {
 
@@ -35,7 +37,7 @@ public class ConvertionController {
     @Value("baidu.aip.app-id")
     private String baiduAipAppId;
 
-    @Value("baidu.aip.app-key")
+    @Value("baidu.aip.api-key")
     private String baiduAipApiKey;
 
     @Value("baidu.aip.secret-key")
