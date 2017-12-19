@@ -3,14 +3,23 @@
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
 <script type="text/javascript" src="../js/lib/luyin.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.js"></script>
 <div>
     <audio controls autoplay></audio>
     <input onclick="startRecording()" type="button" value="录音" />
     <input onclick="stopRecording()" type="button" value="停止" />
     <input onclick="playRecording()" type="button" value="播放" />
     <input onclick="uploadAudio()" type="button" value="提交" />
+    <hr>
+    <audio autoplay id="t2s-bar"></audio>
+    <textarea id="t2s-text"></textarea>
+    <button id="t2s-btn">文字到语音</button>
 </div>
 <script>
+$(document).ready(function() {
+    $("#t2s-btn").click(function(){
+        $("#t2s-bar")[0].src="text2speech?text="+$("#t2s-text")[0].value
+    });
     var recorder;
     var audio = document.querySelector('audio');
     function startRecording() {
@@ -46,6 +55,7 @@
             }
         });
     }
+});
 </script>
 </body>
 </html>

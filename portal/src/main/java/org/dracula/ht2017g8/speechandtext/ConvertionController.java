@@ -10,6 +10,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.jmx.export.annotation.ManagedAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,9 +31,14 @@ public class ConvertionController {
 
     private static Logger logger = LoggerFactory.getLogger(ConvertionController.class);
 
-    private String baiduAipAppId = "10551192";
-    private String baiduAipApiKey = "APpErmod7XEARkCG4uUfSeUv";
-    private String baiduAipSecretKey = "Rwt29B63vrG0AVwGCw2LnWWM0btoTXF7";
+    @Value("baidu.aip.app-id")
+    private String baiduAipAppId;
+
+    @Value("baidu.aip.app-key")
+    private String baiduAipApiKey;
+
+    @Value("baidu.aip.secret-key")
+    private String baiduAipSecretKey;
 
     @RequestMapping(value="/speechandtext/speech2text", method= RequestMethod.POST)
     public CommonBO<List<String>> speech2text(@RequestParam("file")MultipartFile file){
@@ -86,6 +97,36 @@ public class ConvertionController {
         return null;
     }
 
+    @RequestMapping(value="/speechandtext/text2speech", method=RequestMethod.GET)
+    public ResponseEntity<byte[]> text2speech_get(@RequestParam("text") String text){
+        AipSpeech client = getSpeech();
+        // 调用接口
+        TtsResponse res = client.synthesis(text, "zh", 1, null);
+        byte[] data = res.getData();
+        JSONObject res1 = res.getResult();
+        if (res1 != null) {
+            System.out.println(res1.toString(2));
+            // error
+        } else {
+            // no error
+            if (data != null) {
+                try {
+                    Util.writeBytesToFileSystem(data, "e:/tmp_speech/output"+System.currentTimeMillis()+".mp3");
+                    HttpHeaders headers = new HttpHeaders();
+                    headers.setContentType(new MediaType("audio", "mp3"));
+                    ResponseEntity<byte[]> rslt = new ResponseEntity(data, headers, HttpStatus.OK);
+                    return rslt;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                //error
+            }
+        }
+
+        return null;
+    }
+
     private AipSpeech getSpeech(){
         // 初始化一个AipSpeech
         AipSpeech client = new AipSpeech(baiduAipAppId, baiduAipApiKey, baiduAipSecretKey);
@@ -100,4 +141,33 @@ public class ConvertionController {
         return client;
     }
 
+    @ManagedAttribute
+    public String getBaiduAipAppId() {
+        return baiduAipAppId;
+    }
+
+    @ManagedAttribute
+    public void setBaiduAipAppId(String baiduAipAppId) {
+        this.baiduAipAppId = baiduAipAppId;
+    }
+
+    @ManagedAttribute
+    public String getBaiduAipApiKey() {
+        return baiduAipApiKey;
+    }
+
+    @ManagedAttribute
+    public void setBaiduAipApiKey(String baiduAipApiKey) {
+        this.baiduAipApiKey = baiduAipApiKey;
+    }
+
+    @ManagedAttribute
+    public String getBaiduAipSecretKey() {
+        return baiduAipSecretKey;
+    }
+
+    @ManagedAttribute
+    public void setBaiduAipSecretKey(String baiduAipSecretKey) {
+        this.baiduAipSecretKey = baiduAipSecretKey;
+    }
 }
