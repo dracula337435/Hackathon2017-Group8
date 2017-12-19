@@ -129,16 +129,19 @@
         }
 
         //上传
-        this.upload = function (url, callback) {
+        this.upload = function (url, callback, returnSuccessCallBack) {
             var fd = new FormData();
-            fd.append("file", this.getBlob());
+            var blob = this.getBlob();
+            fd.append("file", blob);
             var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function(){
-                if(xhr.readyState == 4 && xhr.status == 200){
-                    var response = xhr.response;
-                    console.log(response);
-                }
-            };
+            if(returnSuccessCallBack){
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState == 4 && xhr.status == 200){
+                        var response = xhr.response;
+                        returnSuccessCallBack(fd, response);
+                    }
+                };
+            }
             if (callback) {
                 xhr.upload.addEventListener("progress", function (e) {
                     callback('uploading', e);

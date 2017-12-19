@@ -9,7 +9,8 @@
     <input onclick="startRecording()" type="button" value="录音" />
     <input onclick="stopRecording()" type="button" value="停止" />
     <input onclick="playRecording()" type="button" value="播放" />
-    <input onclick="uploadAudio()" type="button" value="提交" />
+    <input onclick="uploadAudio()" type="button" value="提交并转文字" />
+    <div id="audio-result"></div>
     <hr>
     <audio autoplay id="t2s-bar"></audio>
     <textarea id="t2s-text"></textarea>
@@ -37,23 +38,34 @@
     function uploadAudio() {
 
         //提交到服务器
-        recorder.upload("speech2text", function (state, e) {
-            switch (state) {
-                case 'uploading':
-                    //var percentComplete = Math.round(e.loaded * 100 / e.total) + '%';
-                    break;
-                case 'ok':
-                    //alert(e.target.responseText);
-                    alert("上传成功");
-                    break;
-                case 'error':
-                    alert("上传失败");
-                    break;
-                case 'cancel':
-                    alert("上传被取消");
-                    break;
+        recorder.upload(
+            "speech2text",
+            function (state, e) {
+                switch (state) {
+                    case 'uploading':
+                        //var percentComplete = Math.round(e.loaded * 100 / e.total) + '%';
+                        break;
+                    case 'ok':
+                        //alert(e.target.responseText);
+                        alert("上传成功");
+                        break;
+                    case 'error':
+                        alert("上传失败");
+                        break;
+                    case 'cancel':
+                        alert("上传被取消");
+                        break;
+                }
+            },
+            function(requestFormData, response){
+                console.log(response);
+                var blob = requestFormData.get("file");
+                blobURL = URL.createObjectURL(blob);
+                $("#audio-result")[0].innerHTML +=
+                    '<br>返回内容为：' + JSON.parse(response).data
+                    +'，音频链接为：<a href="' + blobURL + '">' + '音频blob</a>';
             }
-        });
+        );
     }
 // });
 </script>
