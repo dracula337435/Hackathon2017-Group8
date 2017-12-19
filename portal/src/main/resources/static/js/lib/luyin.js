@@ -133,6 +133,12 @@
             var fd = new FormData();
             fd.append("file", this.getBlob());
             var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    var response = xhr.response;
+                    console.log(response);
+                }
+            };
             if (callback) {
                 xhr.upload.addEventListener("progress", function (e) {
                     callback('uploading', e);

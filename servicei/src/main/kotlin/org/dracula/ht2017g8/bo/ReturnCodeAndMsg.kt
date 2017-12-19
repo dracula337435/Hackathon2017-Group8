@@ -41,6 +41,8 @@ enum class ReturnCodeAndMsg {
     FAIL_00035("00035", "conversation，session特定字段已被其他类型占用，无法提供服务"),
     FAIL_00036("00035", "conversation，service向portal返回null"),
     FAIL_00037("00035", "conversation，session特定字段已被其他类型占用，无法提供服务"),
+    FAIL_00038("00038", "语音识别，百度返回错误，详细信息为："),
+    FAIL_00039("00039", "语音识别，出现未知错误"),
     ;
 
     var code: String? =null
