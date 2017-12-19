@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,6 +41,12 @@ public class ConvertionController {
     @Value("baidu.aip.secret-key")
     private String baiduAipSecretKey;
 
+    @Value("speechandtext.input.location")
+    private String inputSpeechLocation;
+
+    @Value("speechandtext.output.location")
+    private String outputSpeechLocation;
+
     @RequestMapping(value="/speechandtext/speech2text", method= RequestMethod.POST)
     public CommonBO<List<String>> speech2text(@RequestParam("file")MultipartFile file){
         CommonBO<List<String>> rslt = new CommonBO<>();
@@ -47,7 +54,13 @@ public class ConvertionController {
         try {
             byte[] bytes = file.getBytes();
 
-            Util.writeBytesToFileSystem(bytes, "e:/tmp_speech/input"+System.currentTimeMillis()+".wav");
+            if(inputSpeechLocation!=null && !"".equals(inputSpeechLocation)){
+                File dir = new File(inputSpeechLocation);
+                if(!dir.exists()){
+                    dir.mkdirs();
+                }
+                Util.writeBytesToFileSystem(bytes, inputSpeechLocation+"/"+System.currentTimeMillis()+".wav");
+            }
 
             AipSpeech client = getSpeech();
 //            JSONObject asrRes = client.asr(bytes, "pcm", 16000, null);
@@ -85,7 +98,13 @@ public class ConvertionController {
         JSONObject res1 = res.getResult();
         if (data != null) {
             try {
-                Util.writeBytesToFileSystem(data, "e:/tmp_speech/output"+System.currentTimeMillis()+".mp3");
+                if(outputSpeechLocation!=null && !"".equals(outputSpeechLocation)){
+                    File dir = new File(outputSpeechLocation);
+                    if(!dir.exists()){
+                        dir.mkdirs();
+                    }
+                    Util.writeBytesToFileSystem(data, outputSpeechLocation+"/"+System.currentTimeMillis()+".mp3");
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -111,7 +130,13 @@ public class ConvertionController {
             // no error
             if (data != null) {
                 try {
-                    Util.writeBytesToFileSystem(data, "e:/tmp_speech/output"+System.currentTimeMillis()+".mp3");
+                    if(outputSpeechLocation!=null && !"".equals(outputSpeechLocation)) {
+                        File dir = new File(outputSpeechLocation);
+                        if (!dir.exists()) {
+                            dir.mkdirs();
+                        }
+                        Util.writeBytesToFileSystem(data, outputSpeechLocation + "/" + System.currentTimeMillis() + ".mp3");
+                    }
                     HttpHeaders headers = new HttpHeaders();
                     headers.setContentType(new MediaType("audio", "mp3"));
                     ResponseEntity<byte[]> rslt = new ResponseEntity(data, headers, HttpStatus.OK);
@@ -169,5 +194,25 @@ public class ConvertionController {
     @ManagedAttribute
     public void setBaiduAipSecretKey(String baiduAipSecretKey) {
         this.baiduAipSecretKey = baiduAipSecretKey;
+    }
+
+    @ManagedAttribute
+    public String getInputSpeechLocation() {
+        return inputSpeechLocation;
+    }
+
+    @ManagedAttribute
+    public void setInputSpeechLocation(String inputSpeechLocation) {
+        this.inputSpeechLocation = inputSpeechLocation;
+    }
+
+    @ManagedAttribute
+    public String getOutputSpeechLocation() {
+        return outputSpeechLocation;
+    }
+
+    @ManagedAttribute
+    public void setOutputSpeechLocation(String outputSpeechLocation) {
+        this.outputSpeechLocation = outputSpeechLocation;
     }
 }
