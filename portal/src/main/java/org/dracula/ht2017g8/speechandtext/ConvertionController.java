@@ -34,19 +34,19 @@ public class ConvertionController {
 
     private static Logger logger = LoggerFactory.getLogger(ConvertionController.class);
 
-    @Value("baidu.aip.app-id")
+    @Value("${baidu.aip.app-id}")
     private String baiduAipAppId;
 
-    @Value("baidu.aip.api-key")
+    @Value("${baidu.aip.api-key}")
     private String baiduAipApiKey;
 
-    @Value("baidu.aip.secret-key")
+    @Value("${baidu.aip.secret-key}")
     private String baiduAipSecretKey;
 
-    @Value("speechandtext.input.location")
+    @Value("${speechandtext.input.location}")
     private String inputSpeechLocation;
 
-    @Value("speechandtext.output.location")
+    @Value("${speechandtext.output.location}")
     private String outputSpeechLocation;
 
     @RequestMapping(value="/speechandtext/speech2text", method= RequestMethod.POST)
