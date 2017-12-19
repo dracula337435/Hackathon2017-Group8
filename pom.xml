@@ -37,6 +37,7 @@
         <spring-boot-admin.version>1.5.5</spring-boot-admin.version>
         <commons-lang.version>2.6</commons-lang.version>
         <ibm.watson-developer.java-sdk>4.2.1</ibm.watson-developer.java-sdk>
+        <baidu.aip.version>3.4.1</baidu.aip.version>
     </properties>
 
     <dependencies>

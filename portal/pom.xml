@@ -80,6 +80,12 @@
             <version>${aspectj.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.baidu.aip</groupId>
+            <artifactId>java-sdk</artifactId>
+            <version>${baidu.aip.version}</version>
+        </dependency>
+
     </dependencies>
 
 </project>
