@@ -60,6 +60,7 @@ spring-boot
 starter-web
 spring-data-jpa
 spring-boot-admin及server带来的静态资源问题
+profile控制bean的创建
 * swagger
 * docker
 包含dockerfile
@@ -70,3 +71,12 @@ spring-boot-admin及server带来的静态资源问题
 
 ## 舍弃的技术点
 * zookeeper+dubbo
+
+## 调用外部的技术
+
+### ibm
+* conversation
+* data-science
+
+### 百度
+* 语音识别，语音合成
