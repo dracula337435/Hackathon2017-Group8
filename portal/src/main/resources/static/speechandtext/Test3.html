@@ -47,7 +47,7 @@
                         break;
                     case 'ok':
                         //alert(e.target.responseText);
-                        alert("上传成功");
+                        // alert("上传成功");
                         break;
                     case 'error':
                         alert("上传失败");
@@ -59,11 +59,12 @@
             },
             function(requestFormData, response){
                 console.log(response);
-                var blob = requestFormData.get("file");
-                blobURL = URL.createObjectURL(blob);
+                // var blob = requestFormData.get("file");
+                // blobURL = URL.createObjectURL(blob);
                 $("#audio-result")[0].innerHTML +=
                     '<br>返回内容为：' + JSON.parse(response).data
-                    +'，音频链接为：<a href="' + blobURL + '">' + '音频blob</a>';
+                    // +'，音频链接为：<a href="' + blobURL + '">' + '音频blob</a>'
+                ;
             }
         );
     }
