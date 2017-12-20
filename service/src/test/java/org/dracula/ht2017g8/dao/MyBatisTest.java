@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes={MyBatisConfig.class, DataSourceH2.class})
+@ContextConfiguration(classes={MyBatisConfig.class, DataSourceEmbeddedH2.class})
 public class MyBatisTest {
 
     @Autowired

@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {SpringDataJPAConfig.class, DataSourceH2.class})
+@ContextConfiguration(classes = {SpringDataJPAConfig.class, DataSourceEmbeddedH2.class})
 public class SpringDataJPATest {
 
     @Autowired

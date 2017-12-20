@@ -4,6 +4,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -11,7 +12,8 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import javax.sql.DataSource;
 
 @Configuration
-public class DataSourceConfig {
+@Profile("DataSourceDruidAndMysql")
+public class DataSourceDruidAndMysql {
 
     @Value("${db.ip&port}")
     private String db_ip_port;
