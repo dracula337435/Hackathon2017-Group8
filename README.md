@@ -59,6 +59,7 @@ profile和filter
 spring-boot  
 starter-web  
 spring-data-jpa  
+spring-data-rest   
 spring-boot-admin及server带来的静态资源问题  
 profile控制bean的创建  
 * swagger
