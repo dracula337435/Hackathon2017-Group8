@@ -56,7 +56,9 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
                     <excludes>
-                        <exclude>**/*.properties</exclude>
+                        <!-- 引入spring-boot-maven-plugin打出可执行jar包后，发现properties不进jar包，导致可执行jar包有问题，没有properties了 -->
+                        <!-- 兼顾zip包方式，想到spring的机制，jar包外的配置覆盖jar包内的，这个其实可以进jar包 -->
+                        <!--<exclude>**/*.properties</exclude>-->
                         <exclude>bin/</exclude>
                     </excludes>
                 </configuration>
