@@ -34,11 +34,13 @@ fi
 
 #classpath中加上conf
 #凑出lib下的jar包为classpath
-CLASSPATH="$CONF_DIR/"
-for i in $LIB_DIR/*.jar
-do
-    CLASSPATH="$CLASSPATH":"$i"
-done
+#CLASSPATH="$CONF_DIR/"
+#for i in $LIB_DIR/*.jar
+#do
+#    CLASSPATH="$CLASSPATH":"$i"
+#done
+#新写法
+CLASSPATH="$CONF_DIR/:$LIB_DIR/*"
 
 #执行java命令
 #nohup java -classpath $CLASSPATH org.dracula.ht2017g8.MainApp &
