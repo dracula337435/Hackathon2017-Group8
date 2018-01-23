@@ -15,8 +15,14 @@ import javax.sql.DataSource;
 @Profile("DataSourceDruidAndMysql")
 public class DataSourceDruidAndMysql {
 
-    @Value("${db.ip&port}")
+    @Value("${db.ip.and.port}")
     private String db_ip_port;
+
+    @Value("${db.user}")
+    private String db_user;
+
+    @Value("${db.pswd}")
+    private String db_pswd;
 
     @Bean
     public DataSource dataSource(){
@@ -27,8 +33,8 @@ public class DataSourceDruidAndMysql {
                 "/" +
                 "team8" +
                 "?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC");
-        dataSource.setUsername("root");
-        dataSource.setPassword("team8");
+        dataSource.setUsername(db_user);
+        dataSource.setPassword(db_pswd);
         dataSource.setInitialSize(0);
         dataSource.setMaxActive(30);
         dataSource.setMinIdle(1);
