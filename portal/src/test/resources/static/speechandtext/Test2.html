@@ -1,0 +1,142 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>test audio</title>
+    <script src="../js/lib/MediaStreamRecorder.js" ></script>
+    <script src="../js/lib/jquery.js" ></script>
+</head>
+
+<body>
+
+<video autoplay id="video"></video>
+<audio autoplay id="audio"></audio>
+<button id="start-recording">开始录音</button>
+<button id="stop-recording-and-send">停止录音并发送</button>
+<script>
+
+function hasGetUserMedia() {
+//请注意:在Opera浏览器中不使用前缀
+    return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia || navigator.msGetUserMedia);
+}
+
+$(document).ready(function() {
+
+    $("#start-recording").click(function(e){
+        rec.record();
+    });
+
+    $("#stop-recording-and-send").click(function(e){
+        mediaRecorder.stop
+    });
+
+    var currentUrl = window.location.href;
+    currentUrl = currentUrl.replace("http://", "ws://");
+    var ws = new WebSocket(currentUrl+"/../websocket");
+
+
+    ws.onerror = function(){
+        console.log("error");
+    };
+
+    //连接成功建立的回调方法
+    ws.onopen = function(event){
+        console.log("open");
+    }
+
+    //接收到消息的回调方法
+    ws.onmessage = function(event){
+        console.log(event.data);
+    }
+
+    //连接关闭的回调方法
+    ws.onclose = function(){
+        console.log("close");
+    }
+
+    var mediaRecorder = null;
+
+    if (hasGetUserMedia()) {
+        alert('您的浏览器支持getUserMedia方法');
+
+        var onFailSoHard = function() {
+            alert('设备拒绝访问');
+        };
+//不使用供应商前缀
+        navigator.getUserMedia({video: false, audio: true}, function(localMediaStream) {
+//             var video = document.getElementById('video');
+//             video.src = window.URL.createObjectURL(localMediaStream);
+// //请注意:当使用getUserMedia方法时,在Chrome浏览器中不触发onloadedmetadata事件
+//             video.onloadedmetadata = function(e) {
+// //后续代码略
+//             };
+//             var audio = document.getElementById('audio');
+//             audio.src = window.URL.createObjectURL(localMediaStream);
+//             audio.onloadedmetadata = function(e){
+//
+//             };
+
+
+            mediaRecorder = new MediaStreamRecorder(localMediaStream);
+            mediaRecorder.mimeType = 'audio/wav'; // check this line for audio/wav
+            mediaRecorder.ondataavailable = function (blob) {
+
+                ws.send(new Uint8Array([8, 6, 7, 5, 3, 0, 9]));
+
+                // POST/PUT "Blob" using FormData/XHR2
+                var blobURL = URL.createObjectURL(blob);
+                document.write('<a href="' + blobURL + '">' + blobURL + '</a>');
+                var formData = new FormData();
+
+                formData.append("file", blob, "input.wav");  // 文件名
+                // JavaScript file-like 对象
+
+                // $.ajax({
+                //     type: 'POST',
+                //     url: 'speech2text',
+                //     data: formData,
+                //     processData: false, // 不会将 data 参数序列化字符串
+                //     contentType: false, // 根据表单 input 提交的数据使用其默认的 contentType
+                //     // xhr: function() {
+                //     //     var xhr = new window.XMLHttpRequest();
+                //     //     xhr.upload.addEventListener("progress", function(evt) {
+                //     //         if (evt.lengthComputable) {
+                //     //             var percentComplete = evt.loaded / evt.total;
+                //     //             console.log('进度', percentComplete);
+                //     //         }
+                //     //     }, false);
+                //     //
+                //     //     return xhr;
+                //     // }
+                // }).success(function (res) {
+                //     conosol.log(res)
+                // }).error(function (err) {
+                //     console.error(err);
+                // });
+
+                // $.post("speech2text", formData, function (data) {
+                //     console.log(data);
+                // });
+
+                var request = new XMLHttpRequest();
+                request.open("POST", "speech2text");
+                request.send(formData);
+                // ws.send(blob);
+            };
+            mediaRecorder.start(3000);
+
+        }, onFailSoHard);
+
+
+    }
+    else {
+        alert('您的浏览器不支持getUserMedia方法');
+    }
+})
+
+
+
+</script>
+
+</body>
