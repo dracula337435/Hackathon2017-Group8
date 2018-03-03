@@ -68,22 +68,23 @@ public class ConvertionController {
 //            JSONObject asrRes = client.asr(bytes, "pcm", 16000, null);
             JSONObject asrRes = client.asr(bytes, "wav", 16000, null);
             logger.info("百度语音返回结果："+asrRes);
-            long err_no = asrRes.getLong("err_no");
-            if(err_no==0){
-                JSONArray resultArray = asrRes.getJSONArray("result");
-                List<String> list = new LinkedList<>();
-                int len = resultArray.length();
-                for(int i=0; i<len; i++){
-                    list.add((String)resultArray.get(i));
+            if(asrRes.has("err_no")){
+                long err_no = asrRes.getLong("err_no");
+                if(err_no==0){
+                    JSONArray resultArray = asrRes.getJSONArray("result");
+                    List<String> list = new LinkedList<>();
+                    int len = resultArray.length();
+                    for(int i=0; i<len; i++){
+                        list.add((String)resultArray.get(i));
+                    }
+                    rslt.setData(list);
+                    rslt.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
+                    return rslt;
                 }
-                rslt.setData(list);
-                rslt.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
-                return rslt;
-            }else{
-                rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00038);
-                rslt.setMsg(rslt.getMsg()+asrRes);
-                return rslt;
             }
+            rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00038);
+            rslt.setMsg(rslt.getMsg()+asrRes);
+            return rslt;
         } catch (IOException e) {
             logger.error("出错", e);
             rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00039);
