@@ -21,7 +21,7 @@ spec:
         image: 172.16.100.16:5005/guanxiaokang/ht2017team8-portal
         ports:
 #请在下方加入需要的端口，注意写清协议
-        - containerPort: 9080
+        - containerPort: 8080
           name: portal
           protocol: TCP
 #以下这一行请勿动

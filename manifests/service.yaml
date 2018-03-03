@@ -12,7 +12,7 @@ spec:
   #Service暴露出的端口
     port: 20080
     #容器内端口，没有的话会直接指向port里写的
-    targetPort: 9080
+    targetPort: 8080
 #指向应用名称selector
   selector:
     app: "team8-portal"
