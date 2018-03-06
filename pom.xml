@@ -24,7 +24,7 @@
     </modules>
 
     <properties>
-        <springfox-swagger.version>2.7.0</springfox-swagger.version>
+        <springfox-swagger.version>2.8.0</springfox-swagger.version>
         <java.version>1.8</java.version>
         <global.encoding>UTF-8</global.encoding>
         <junit.version>4.12</junit.version>
@@ -34,7 +34,7 @@
         <mysql.driver.version>6.0.6</mysql.driver.version>
         <mybatis-generator.version>1.3.5</mybatis-generator.version>
         <kotlin.version>1.2.21</kotlin.version>
-        <spring-boot-admin.version>1.5.5</spring-boot-admin.version>
+        <spring-boot-admin.version>1.5.7</spring-boot-admin.version>
         <commons-lang.version>2.6</commons-lang.version>
         <ibm.watson-developer.java-sdk>4.2.1</ibm.watson-developer.java-sdk>
         <baidu.aip.version>3.4.1</baidu.aip.version>
