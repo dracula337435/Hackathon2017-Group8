@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -120,10 +121,15 @@ public class ConvertionController {
     }
 
     @RequestMapping(value="/speechandtext/text2speech", method=RequestMethod.GET)
-    public ResponseEntity<byte[]> text2speech_get(@RequestParam("text") String text){
+    public ResponseEntity<byte[]> text2speech_get(@RequestParam("text") String text,
+                                                  @RequestParam(value = "spd", defaultValue = "5") String spd,
+                                                  @RequestParam(value = "per", defaultValue = "0") String per){
         AipSpeech client = getSpeech();
         // 调用接口
-        TtsResponse res = client.synthesis(text, "zh", 1, null);
+        HashMap<String, Object> options = new HashMap<>();
+        options.put("spd", spd);
+        options.put("per", per);
+        TtsResponse res = client.synthesis(text, "zh", 1, options);
         byte[] data = res.getData();
         JSONObject res1 = res.getResult();
         if (res1 != null) {
