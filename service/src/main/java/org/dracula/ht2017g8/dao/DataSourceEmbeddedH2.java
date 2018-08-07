@@ -11,6 +11,9 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import javax.sql.DataSource;
 
+/**
+ * @author dk
+ */
 @Configuration
 @Profile("DataSourceEmbeddedH2")
 public class DataSourceEmbeddedH2 {

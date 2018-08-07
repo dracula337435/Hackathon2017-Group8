@@ -4,6 +4,7 @@ import com.ibm.watson.developer_cloud.conversation.v1.Conversation;
 import com.ibm.watson.developer_cloud.conversation.v1.model.*;
 import org.dracula.ht2017g8.bo.CommonBO;
 import org.dracula.ht2017g8.bo.ReturnCodeAndMsg;
+import org.dracula.ht2017g8.service.WatsonConversationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,9 +16,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author dk
+ */
 @Component
 @ManagedResource
-public class WatsonConversationServiceImpl implements org.dracula.ht2017g8.service.WatsonConversationService {
+public class WatsonConversationServiceImpl implements WatsonConversationService {
 
     @Value("${conversation.username}")
     private String username;
@@ -33,6 +37,12 @@ public class WatsonConversationServiceImpl implements org.dracula.ht2017g8.servi
     private Map<String, MessageResponse> idToRespones = new HashMap<>();
 
     //TODO 很多异常情况没有处理
+    /**
+     *
+     * @param id
+     * @param inputText
+     * @return
+     */
     @Override
     public CommonBO<List<String>> talk(String id, String inputText){
         CommonBO<List<String>> rslt = new CommonBO();
@@ -61,7 +71,6 @@ public class WatsonConversationServiceImpl implements org.dracula.ht2017g8.servi
         MessageResponse response = service.message(options).execute();
         //
         logger.info(response.toString());
-//        System.out.println(response);
         idToRespones.put(id, response);
         rslt.setCodeAndMsg(ReturnCodeAndMsg.SUCCESS);
         rslt.setData(response.getOutput().getText());

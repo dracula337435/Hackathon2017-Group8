@@ -13,6 +13,9 @@ import org.springframework.stereotype.Component;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * @author dk
+ */
 @Component
 public class WebRateServiceImpl implements WebRateService {
 

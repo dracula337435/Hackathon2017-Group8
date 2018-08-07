@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author dk
+ */
 @Entity
 @Table(name="web_customer")
 public class WebCustomer {

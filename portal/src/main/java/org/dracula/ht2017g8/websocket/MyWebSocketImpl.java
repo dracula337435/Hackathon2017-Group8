@@ -9,16 +9,23 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArraySet;
 
+/**
+ * @author dk
+ */
 @ServerEndpoint(value = "/websocket/connection")
 @Component
 public class MyWebSocketImpl implements MyWebSocket {
 
     private static Logger logger = LoggerFactory.getLogger(MyWebSocketImpl.class);
 
-    //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
+    /**
+     * 静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
+     */
     private static int onlineCount = 0;
 
-    //concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。
+    /**
+     * concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。
+     */
     private static CopyOnWriteArraySet<SessionContainer> webSocketSet = new CopyOnWriteArraySet<>();
 
     /**
@@ -27,7 +34,8 @@ public class MyWebSocketImpl implements MyWebSocket {
     @OnOpen
     public void onOpen(Session session) {
         SessionContainer sessionContainer = new SessionContainer(session);
-        webSocketSet.add(sessionContainer);     //加入set中
+        //加入set中
+        webSocketSet.add(sessionContainer);
         addOnlineCount();           //在线数加1
         logger.info("有新连接加入！当前在线人数为" + getOnlineCount());
         try {
@@ -48,8 +56,10 @@ public class MyWebSocketImpl implements MyWebSocket {
                 webSocketSet.remove(sc);
             }
         }
-        webSocketSet.remove(this);  //从set中删除
-        subOnlineCount();           //在线数减1
+        //从set中删除
+        webSocketSet.remove(this);
+        //在线数减1
+        subOnlineCount();
         logger.info("有一连接关闭！当前在线人数为" + getOnlineCount());
     }
 
@@ -64,6 +74,7 @@ public class MyWebSocketImpl implements MyWebSocket {
         broadcast(message);
     }
 
+    @Override
     public void broadcast(String message){
         //群发消息
         for (SessionContainer item : webSocketSet) {

@@ -4,6 +4,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+/**
+ * @author dk
+ */
 @Configuration
 @EnableJpaRepositories(basePackages="org.dracula.ht2017g8.dao.jpa", entityManagerFactoryRef = "entityManagerFactory")
 @ImportResource("classpath:org/dracula/ht2017g8/dao/jpa/jpa.xml")

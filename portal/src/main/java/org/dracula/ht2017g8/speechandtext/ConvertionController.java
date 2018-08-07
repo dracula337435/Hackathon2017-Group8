@@ -29,6 +29,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * @author dk
+ */
 @ManagedResource
 @RestController
 public class ConvertionController {
@@ -70,8 +73,8 @@ public class ConvertionController {
             JSONObject asrRes = client.asr(bytes, "wav", 16000, null);
             logger.info("百度语音返回结果："+asrRes);
             if(asrRes.has("err_no")){
-                long err_no = asrRes.getLong("err_no");
-                if(err_no==0){
+                long errNo = asrRes.getLong("err_no");
+                if(errNo==0){
                     JSONArray resultArray = asrRes.getJSONArray("result");
                     List<String> list = new LinkedList<>();
                     int len = resultArray.length();

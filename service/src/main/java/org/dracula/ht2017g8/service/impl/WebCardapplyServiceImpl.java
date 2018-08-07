@@ -13,6 +13,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * @author dk
+ */
 @Component
 public class WebCardapplyServiceImpl implements WebCardapplyService {
 

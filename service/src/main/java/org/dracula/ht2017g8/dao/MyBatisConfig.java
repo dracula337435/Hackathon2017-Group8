@@ -9,6 +9,9 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import javax.sql.DataSource;
 import java.io.IOException;
 
+/**
+ * @author dk
+ */
 @Configuration
 public class MyBatisConfig {
 

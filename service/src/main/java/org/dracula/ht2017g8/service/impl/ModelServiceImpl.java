@@ -27,6 +27,9 @@ import java.nio.charset.StandardCharsets;
 import java.security.cert.X509Certificate;
 import java.util.*;
 
+/**
+ * @author dk
+ */
 @Component
 @ManagedResource
 public class ModelServiceImpl implements ModelService {
@@ -68,6 +71,7 @@ public class ModelServiceImpl implements ModelService {
         }
     }
 
+    @Override
     public CommonBO<String> predict(String payload){
 
         CommonBO<String> rslt = new CommonBO<>();
@@ -149,12 +153,13 @@ public class ModelServiceImpl implements ModelService {
 
     private static void trustAllHttpsCertificates() throws Exception {
         TrustManager[] trustAllCerts = new javax.net.ssl.TrustManager[1];
-        TrustManager tm = new miTM();
+        TrustManager tm = new MITM();
         trustAllCerts[0] = tm;
         SSLContext sc = SSLContext.getInstance("SSL");
         sc.init(null, trustAllCerts, null);
         HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
         HostnameVerifier hv = new HostnameVerifier() {
+            @Override
             public boolean verify(String urlHostName, SSLSession session) {
                 logger.info("Warning: URL Host: " + urlHostName + " vs. " + session.getPeerHost());
                 return true;
@@ -164,7 +169,9 @@ public class ModelServiceImpl implements ModelService {
     }
 
 
-    static class miTM implements TrustManager, X509TrustManager {
+    static class MITM implements TrustManager, X509TrustManager {
+
+        @Override
         public X509Certificate[] getAcceptedIssuers() {
             return null;
         }
@@ -177,11 +184,13 @@ public class ModelServiceImpl implements ModelService {
             return true;
         }
 
+        @Override
         public void checkServerTrusted(X509Certificate[] certs, String authType)
                 throws java.security.cert.CertificateException {
             return;
         }
 
+        @Override
         public void checkClientTrusted(X509Certificate[] certs, String authType)
                 throws java.security.cert.CertificateException {
             return;

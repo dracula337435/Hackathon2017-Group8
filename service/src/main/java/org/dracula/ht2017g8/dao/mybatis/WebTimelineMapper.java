@@ -6,6 +6,9 @@ import org.dracula.ht2017g8.po.mybatis.WebTimelineExample;
 
 import java.util.List;
 
+/**
+ * @author dk
+ */
 public interface WebTimelineMapper {
     long countByExample(WebTimelineExample example);
 

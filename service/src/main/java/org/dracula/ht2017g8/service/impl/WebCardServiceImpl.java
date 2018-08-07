@@ -53,8 +53,9 @@ public class WebCardServiceImpl implements WebCardService {
         List<WebCardBO> list = new LinkedList<>();
         if(webCards != null && webCards.size()>0){
             int size = webCards.size();
-            if(size < limit)
+            if(size < limit) {
                 limit = size;
+            }
             for(int i=0; i<limit; i++){
                 WebCard po = webCards.get(i);
                 WebCardBO bo = new WebCardBO();

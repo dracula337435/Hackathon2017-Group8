@@ -1,5 +1,8 @@
 package org.dracula.ht2017g8.bo_othersys
 
+/**
+ * @author dk
+ */
 class PredictionResultBO{
 
     var label: String? =null

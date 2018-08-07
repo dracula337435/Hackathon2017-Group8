@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author dk
+ */
 @RestController
 public class WebCardApplyController {
 
@@ -18,15 +21,15 @@ public class WebCardApplyController {
 
     @RequestMapping(value="/web_cardapply/{id}", method=RequestMethod.GET)
     public CommonBO<WebCardapplyBO> getById(@PathVariable("id") String id){
-        int id_int;
+        int idInt;
         try {
-            id_int = Integer.parseInt(id);
+            idInt = Integer.parseInt(id);
         } catch (NumberFormatException e) {
             CommonBO<WebCardapplyBO> rslt = new CommonBO<>();
             rslt.setCodeAndMsg(ReturnCodeAndMsg.FAIL_00009);
             return rslt;
         }
-        CommonBO<WebCardapplyBO> webCardapplyBOCommonBO = webCardapplyService.getById(id_int);
+        CommonBO<WebCardapplyBO> webCardapplyBOCommonBO = webCardapplyService.getById(idInt);
         if(webCardapplyBOCommonBO != null){
             return webCardapplyBOCommonBO;
         }else{

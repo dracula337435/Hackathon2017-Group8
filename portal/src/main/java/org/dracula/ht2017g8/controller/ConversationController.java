@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * @author dk
+ */
 @RestController
 public class ConversationController {
 
