@@ -1,0 +1,64 @@
+#
+server:
+  port: 8080
+
+db:
+  user: root
+  pswd: team8
+  ip-and-port: @db_ip_and_port@
+
+predict:
+  auth:
+    url: https://ibm-watson-ml.mybluemix.net
+    username: 793ddab0-5897-4f74-b20e-dfd0d175b25e
+    password:  f2d6e707-0b44-4c3b-a1b2-bdfdde1e1887
+  scoringUrl: https://ibm-watson-ml.mybluemix.net/v3/wml_instances/edbdeb87-218e-4faa-a403-6f418dfc9dd2/published_models/5bd0df82-da38-4786-b47c-58df3bd30028/deployments/e883da76-bd3f-4646-ae6b-2c422b06b2b4/online
+  proxy:
+    switch: true
+    ip: @predict_proxy_ip@
+    port: @predict_proxy_port@
+
+conversation:
+  username: dd561000-d615-485d-9ada-ba8fe90090ba
+  password: jM7LzJJAzgBt
+  workspace-id: 43bce0c8-a28d-44d5-a501-c1f62f57f06f
+
+spring:
+  boot:
+    #for spring-boot admin
+    admin:
+      #for server
+      context-path: /admin-server
+      #for client
+      client:
+        url: http://localhost:8080${spring.boot.admin.context-path}
+  servlet:
+    #上传文件的设置
+    multipart:
+      max-file-size: 50Mb
+      max-request-size: 50Mb
+  profiles:
+    active: @dataSource@
+  data:
+    rest:
+      basePath: /data
+
+#for actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+baidu:
+  aip:
+    app-id: 10551192
+    api-key: APpErmod7XEARkCG4uUfSeUv
+    secret-key: Rwt29B63vrG0AVwGCw2LnWWM0btoTXF7
+#这两个配置，如果空白，则不保存音频文件
+speechandtext:
+  input-location:
+  output-location:
