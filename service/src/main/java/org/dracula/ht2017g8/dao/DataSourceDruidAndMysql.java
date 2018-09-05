@@ -18,26 +18,26 @@ import javax.sql.DataSource;
 @Profile("DataSourceDruidAndMysql")
 public class DataSourceDruidAndMysql {
 
-    @Value("${db.ip.and.port}")
-    private String db_ip_port;
+    @Value("${db.ip-and-port}")
+    private String dbIpPort;
 
     @Value("${db.user}")
-    private String db_user;
+    private String dbUser;
 
     @Value("${db.pswd}")
-    private String db_pswd;
+    private String dbPswd;
 
     @Bean
     public DataSource dataSource(){
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://" +
-                db_ip_port +
+                dbIpPort +
                 "/" +
                 "team8" +
                 "?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC");
-        dataSource.setUsername(db_user);
-        dataSource.setPassword(db_pswd);
+        dataSource.setUsername(dbUser);
+        dataSource.setPassword(dbPswd);
         dataSource.setInitialSize(0);
         dataSource.setMaxActive(30);
         dataSource.setMinIdle(1);

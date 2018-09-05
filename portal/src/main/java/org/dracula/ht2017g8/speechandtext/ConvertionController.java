@@ -47,10 +47,10 @@ public class ConvertionController {
     @Value("${baidu.aip.secret-key}")
     private String baiduAipSecretKey;
 
-    @Value("${speechandtext.input.location}")
+    @Value("${speechandtext.input-location}")
     private String inputSpeechLocation;
 
-    @Value("${speechandtext.output.location}")
+    @Value("${speechandtext.output-location}")
     private String outputSpeechLocation;
 
     @RequestMapping(value="/speechandtext/speech2text", method= RequestMethod.POST)
