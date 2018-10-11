@@ -10,13 +10,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jmx.export.annotation.ManagedAttribute;
-import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,26 +30,16 @@ import java.util.List;
 /**
  * @author dk
  */
-@ManagedResource
 @RestController
 public class ConvertionController {
 
     private static Logger logger = LoggerFactory.getLogger(ConvertionController.class);
 
-    @Value("${baidu.aip.app-id}")
-    private String baiduAipAppId;
+    @Autowired
+    private BaiduAipProperties baiduAipProperties;
 
-    @Value("${baidu.aip.api-key}")
-    private String baiduAipApiKey;
-
-    @Value("${baidu.aip.secret-key}")
-    private String baiduAipSecretKey;
-
-    @Value("${speechandtext.input-location}")
-    private String inputSpeechLocation;
-
-    @Value("${speechandtext.output-location}")
-    private String outputSpeechLocation;
+    @Autowired
+    private SpeechAndTextProperties speechAndTextProperties;
 
     @RequestMapping(value="/speechandtext/speech2text", method= RequestMethod.POST)
     public CommonBO<List<String>> speech2text(@RequestParam("file")MultipartFile file){
@@ -60,6 +48,7 @@ public class ConvertionController {
         try {
             byte[] bytes = file.getBytes();
 
+            String inputSpeechLocation = speechAndTextProperties==null?null:speechAndTextProperties.getInputLocation();
             if(inputSpeechLocation!=null && !"".equals(inputSpeechLocation)){
                 File dir = new File(inputSpeechLocation);
                 if(!dir.exists()){
@@ -105,6 +94,7 @@ public class ConvertionController {
         JSONObject res1 = res.getResult();
         if (data != null) {
             try {
+                String outputSpeechLocation = speechAndTextProperties==null?null:speechAndTextProperties.getOutputLocation();
                 if(outputSpeechLocation!=null && !"".equals(outputSpeechLocation)){
                     File dir = new File(outputSpeechLocation);
                     if(!dir.exists()){
@@ -142,6 +132,7 @@ public class ConvertionController {
             // no error
             if (data != null) {
                 try {
+                    String outputSpeechLocation = speechAndTextProperties==null?null:speechAndTextProperties.getOutputLocation();
                     if(outputSpeechLocation!=null && !"".equals(outputSpeechLocation)) {
                         File dir = new File(outputSpeechLocation);
                         if (!dir.exists()) {
@@ -166,7 +157,10 @@ public class ConvertionController {
 
     private AipSpeech getSpeech(){
         // 初始化一个AipSpeech
-        AipSpeech client = new AipSpeech(baiduAipAppId, baiduAipApiKey, baiduAipSecretKey);
+        AipSpeech client = new AipSpeech(
+                baiduAipProperties.getAppId(),
+                baiduAipProperties.getApiKey(),
+                baiduAipProperties.getSecretKey());
 
         // 可选：设置网络连接参数
         client.setConnectionTimeoutInMillis(2000);
@@ -178,53 +172,19 @@ public class ConvertionController {
         return client;
     }
 
-    @ManagedAttribute
-    public String getBaiduAipAppId() {
-        return baiduAipAppId;
+    public BaiduAipProperties getBaiduAipProperties() {
+        return baiduAipProperties;
     }
 
-    @ManagedAttribute
-    public void setBaiduAipAppId(String baiduAipAppId) {
-        this.baiduAipAppId = baiduAipAppId;
+    public void setBaiduAipProperties(BaiduAipProperties baiduAipProperties) {
+        this.baiduAipProperties = baiduAipProperties;
     }
 
-    @ManagedAttribute
-    public String getBaiduAipApiKey() {
-        return baiduAipApiKey;
+    public SpeechAndTextProperties getSpeechAndTextProperties() {
+        return speechAndTextProperties;
     }
 
-    @ManagedAttribute
-    public void setBaiduAipApiKey(String baiduAipApiKey) {
-        this.baiduAipApiKey = baiduAipApiKey;
-    }
-
-    @ManagedAttribute
-    public String getBaiduAipSecretKey() {
-        return baiduAipSecretKey;
-    }
-
-    @ManagedAttribute
-    public void setBaiduAipSecretKey(String baiduAipSecretKey) {
-        this.baiduAipSecretKey = baiduAipSecretKey;
-    }
-
-    @ManagedAttribute
-    public String getInputSpeechLocation() {
-        return inputSpeechLocation;
-    }
-
-    @ManagedAttribute
-    public void setInputSpeechLocation(String inputSpeechLocation) {
-        this.inputSpeechLocation = inputSpeechLocation;
-    }
-
-    @ManagedAttribute
-    public String getOutputSpeechLocation() {
-        return outputSpeechLocation;
-    }
-
-    @ManagedAttribute
-    public void setOutputSpeechLocation(String outputSpeechLocation) {
-        this.outputSpeechLocation = outputSpeechLocation;
+    public void setSpeechAndTextProperties(SpeechAndTextProperties speechAndTextProperties) {
+        this.speechAndTextProperties = speechAndTextProperties;
     }
 }
