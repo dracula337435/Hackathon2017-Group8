@@ -53,10 +53,11 @@ sh <zip包下项目一层>/bin/stop.sh
 * linux中用的启动脚本
 * maven  
 jar，assembly插件配合，最终生成bin，conf和lib三个文件夹。  
-多了abstact和concrete两个pom，分别被接口模块和非接口模块继承，以方便为非接口模块单独设置filter，测试，assembly  
+多了abstract和concrete两个pom，分别被接口模块和非接口模块继承，以方便为非接口模块单独设置filter，测试，assembly  
 profile和filter  
 * spring系列  
 spring-boot  
+ConfigurationProperties  
 starter-web  
 spring-data-jpa  
 spring-data-rest  
