@@ -35,8 +35,8 @@ spring:
   servlet:
     #上传文件的设置
     multipart:
-      max-file-size: 50Mb
-      max-request-size: 50Mb
+      max-file-size: 50MB
+      max-request-size: 50MB
   profiles:
     active: @dataSource@
   data:
